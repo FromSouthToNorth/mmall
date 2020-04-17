@@ -65,7 +65,7 @@
                             </span>
                             <span class="el-checkbox__label">记住我</span>
                         </labeel>
-                        <a class="register" href="">注册 MMall 账号</a>
+                        <a class="register" href="/register.jsp">注册 MMall 账号</a>
                         <a style="padding: 1px 0px 0px 10px" href="">忘记密码?</a>
                     </li>
                 </ul>
@@ -84,7 +84,7 @@
                         url:'/user',
                         data:{'method':'login', 'userName': username, 'password' : password},
                         success:function (url) {
-                            window.location.href = url;
+                            window.location.href = url
                         }
                     });
                 });

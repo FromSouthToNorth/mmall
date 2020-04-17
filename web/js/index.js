@@ -1,9 +1,9 @@
 $(function () {
 
     $(".shop").mouseover(function () {
-        $(".nav-user-wrapper").show();
+        $(".shop .nav-user-wrapper").show();
     }).mouseout(function () {
-        $(".nav-user-wrapper").hide();
+        $(".shop .nav-user-wrapper").hide();
     });
 
     function changeImg(a) {

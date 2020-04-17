@@ -362,6 +362,10 @@ header[data-v-7d15c3c3] {
     right: 34px;
 }
 
+.w-box .user .nav-user-list[data-v-7d15c3c3]::before {
+    left: 50%;
+}
+
 .nav-user-wrapper .nav-user-list[data-v-7d15c3c3]::before {
     position: absolute;
     content: " ";
@@ -1100,7 +1104,6 @@ ul.box li img {
     left: 0;
     width: 50%;
     height: 430px;
-    height: 4;
     background: url(data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEHAAEALAAAAAABAAEAAAICTAEAOw==) repeat;
 }
 
@@ -1251,9 +1254,9 @@ ul.box li img {
 
 .content-c3[data-v-5be35fd1] {
     margin-right: 20px;
-    color: 
-    #bdbdbd;
+    color:  #bdbdbd;
     font-size: 12px;
     height: 12px;
     line-height: 1;
 }
+

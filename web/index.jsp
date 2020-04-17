@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: musix
@@ -13,6 +14,84 @@
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/index.js"></script>
   </head>
+  <style>
+    .w-box .user:hover .nav-user-wrapper[data-v-7d15c3c3] {
+      top: 18px;
+      visibility: visible;
+      opacity: 1;
+      transition: opacity .15s ease-out;
+    }
+
+    .w-box .user .nav-user-wrapper[data-v-7d15c3c3] {
+      width: 168px;
+      transform: translate(-50%);
+      left: 50%;
+    }
+
+    .nav-user-wrapper[data-v-7d15c3c3] {
+      position: absolute;
+      z-index: 30;
+      padding-top: 18px;
+      opacity: 0;
+      visibility: hidden;
+      top: -3000px;
+    }
+
+    .w-box .user .nav-user-list[data-v-7d15c3c3] {
+      width: 168px;
+    }
+
+    .nav-user-wrapper .nav-user-list[data-v-7d15c3c3] {
+      position: relative;
+      padding-top: 20px;
+      background: #fff;
+      border: 1px solid #d6d6d6;
+      border-color: rgba(0, 0, 0, .08);
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.15);
+      z-index: 10;
+    }
+
+    .w-box .user .nav-user-avatar > div[data-v-7d15c3c3] {
+      position: relative;
+      margin: 0 auto 8px;
+      width: 46px;
+      height: 46px;
+      text-align: center;
+    }
+
+    .w-box .user .nav-user-wrapper > div .avatar[data-v-7d15c3c3] {
+      border-radius: 50%;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .w-box .user .nav-user-avatar .name[data-v-7d15c3c3] {
+      margin-bottom: 16px;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+      color: #757575;
+    }
+
+    .w-box .user li + li[data-v-7d15c3c3] {
+      text-align: center;
+      position: relative;
+      border-top: 1px solid #f5f5f5;
+      line-height: 44px;
+      height: 44px;
+      color: #616161;
+      font-size: 12px;
+    }
+
+    .w-box .user li + li a[data-v-7d15c3c3] {
+      display: block;
+      color: #616161;
+    }
+  </style>
   <body>
   <div id="app">
     <div class="main" data-v-c8a942a0="">
@@ -46,6 +125,28 @@
                 <div class="nav-aside" data-v-7d15c3c3="">
                   <div class="user pr" data-v-7d15c3c3="">
                     <a class="" data-v-7d15c3c3="" href="login.html">个人中心</a>
+                    <c:if test="${user != null}">
+                      <div class="nav-user-wrapper pa" data-v-7d15c3c3="">
+                        <div class="nav-user-list"data-v-7d15c3c3="">
+                          <ul>
+                            <li class="nav-user-avatar" data-v-7d15c3c3="">
+                              <div data-v-7d15c3c3="">
+                              <span class="avatar" data-v-7d15c3c3=""
+                                    style="background-image: url(/image/avatar/20190826144820.jpg)">
+                              </span>
+                              </div>
+                              <p class="name" data-v-7d15c3c3="">${user.userName}</p>
+                            </li>
+                            <li data-v-7d15c3c3=""><a class="" href="" data-v-7d15c3c3="">我的订单</a></li>
+                            <li data-v-7d15c3c3=""><a class="" href="" data-v-7d15c3c3="">账号资料</a></li>
+                            <li data-v-7d15c3c3=""><a class="" href="" data-v-7d15c3c3="">收货地址</a></li>
+                            <li data-v-7d15c3c3=""><a class="" href="" data-v-7d15c3c3="">售后服务</a></li>
+                            <li data-v-7d15c3c3=""><a class="" href="" data-v-7d15c3c3="">我的优惠</a></li>
+                            <li data-v-7d15c3c3=""><a class="" href="/user?method=remove" data-v-7d15c3c3="">退出</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </c:if>
                   </div>
                   <div class="shop pr" data-v-7d15c3c3="">
                     <a class="" data-v-7d15c3c3="" href="#/cart"></a>
@@ -102,7 +203,7 @@
                   <li data-v-7d15c3c3=""><a class="" data-v-7d15c3c3="">手机</a></li>
                   <li data-v-7d15c3c3=""><a class="" data-v-7d15c3c3="">服饰</a></li>
                   <li data-v-7d15c3c3=""><a class="" data-v-7d15c3c3="">周边</a></li>
-                  <li data-v-7d15c3c3=""><a class="" data-v-7d15c3c3="">Github</a></li>
+                  <li data-v-7d15c3c3=""><a href="https://github.com/FromSouthToNorth/mmall" class="" data-v-7d15c3c3="">Github</a></li>
                 </ul>
                 <div data-v-7d15c3c3=""></div>
               </div>

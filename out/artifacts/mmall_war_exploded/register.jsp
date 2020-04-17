@@ -91,7 +91,7 @@
                         url:'/user',
                         data:{'method':'register', 'userName': username, 'password' : passwordOk},
                         success:function (url) {
-                            alert(url)
+                            window.location.href = url
                         }
                     });
                 });

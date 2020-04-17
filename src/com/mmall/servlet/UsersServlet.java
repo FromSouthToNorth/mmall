@@ -9,12 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
 @WebServlet("/user")
 public class UsersServlet extends HttpServlet {
-    private UsersService service = new UsersServiceImpl();
+    private final UsersService service = new UsersServiceImpl();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
@@ -23,6 +24,7 @@ public class UsersServlet extends HttpServlet {
         String method = req.getParameter("method");
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
+        HttpSession session = req.getSession();
         Users users = new Users();
         users.setUserName(userName);
         users.setUserPassword(password);
@@ -37,9 +39,26 @@ public class UsersServlet extends HttpServlet {
             case "login":
                 Users user = service.findUsers(users);
                 if (user != null) {
+                    session.setAttribute("user", user);
                     resp.getWriter().write("index.jsp");
                 } else {
                     resp.getWriter().write("login.jsp");
+                }
+                break;
+
+        }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        HttpSession session = req.getSession();
+        String method = req.getParameter("method");
+        switch (method){
+            case "remove":
+                if (session.getAttribute("user") != null) {
+                    session.removeAttribute("user");
+                    resp.sendRedirect("index.jsp");
                 }
                 break;
         }

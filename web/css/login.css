@@ -1,0 +1,181 @@
+
+
+.login {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.main {
+    background: #ededed;
+}
+
+.login .wrapper {
+    background: url(../image/bg_9b9dcb65ff.png) repeat;
+    background-size: 100px;
+    min-height: 800px;
+    min-width: 630px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.dialog_shadow {
+    box-shadow: 0 9px 30px -6px rgba(0,0,0,.2),0 18px 20px -10px rgba(0,0,0,.04),0 18px 20px -10px rgba(0,0,0,.04),0 10px 20px -10px rgba(0,0,0,.04);
+}
+
+.v2 .dialog {
+    width: 450px;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    margin-left: -225px;
+    position: absolute;
+}
+
+.dialog {
+    background: url(../image/dialog-gray-bg.png) #fff bottom repeat-x;
+   margin: -163px 0 0 -218px;
+}
+
+.v2 .dialog .title {
+    background: linear-gradient(#fff,#f5f5f5);
+    overflow: visible;
+    position: relative;
+    background-image: url(../image/smartisan_4ada7fecea.png);
+    background-size: 140px;
+    background-position: top;
+    background-repeat: no-repeat;
+    height: 92px;
+    margin: 23px 0 50px;
+    padding: 75px 0 0;
+    box-shadow: none;
+}
+
+.v2 .dialog .title h4 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    border-bottom: 0;
+    box-shadow: none;
+    line-height: 1em;
+    height: auto;
+    color: #333;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.v2 .dialog .content {
+    padding: 0 40px 22px;
+    height: auto;
+}
+
+.v2 .dialog .content .common-from li {
+    clear: both;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.login .input {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.login .input input {
+    font-size: 16px;
+    width: 100%;
+    height: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.auto-login {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    color: #999;
+}
+.el-checkbox {
+    -webkit-user-select: none;
+}
+
+.el-checkbox,
+.el-checkbox__input {
+    cursor: pointer;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.el-checkbox__input {
+    outline: 0;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.el-checkbox__inner {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #bfcbd9;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    z-index: 1;
+    transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+}
+
+.el-checkbox__inner::after {
+    box-sizing: content-box;
+    content: "";
+    border: 2px solid #fff;
+    border-left: 0;
+    border-top: 0;
+    height: 8px;
+    left: 5px;
+    position: absolute;
+    top: 1px;
+    transform: rotate(45deg) scaleY(0);
+    width: 4px;
+    transition: transform .15s cubic-bezier(.71,-.46,.88,.6) .05s;
+    transform-origin: center;
+}
+
+.el-checkbox__original {
+    opacity: 0;
+    outline: 0;
+    position: absolute;
+    margin: 0;
+    width: 0;
+    height: 0;
+    left: -999px;
+}
+
+.register {
+    padding: 1px 10px 0;
+    border-right: 1px solid #ccc;
+}
+
+.main-btn {
+    margin: 0px;
+    width: 100%;
+    height: 48px;
+    font-size: 18px;
+    line-height: 48px;
+    border: 1px solid #5c81e3;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #678ee7;
+    background-image: linear-gradient(180deg,#678ee7,#5078df);
+    vertical-align: middle;
+}
+

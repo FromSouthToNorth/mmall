@@ -165,7 +165,7 @@
                         <div class="thumbnail" data-v-f85ff452="">
                             <ul data-v-f85ff452="">
                                 <c:forEach items="${goodsThumb}" var="thumb">
-                                    <li class="" data-v-f85ff452="">
+                                    <li class=""  data-v-f85ff452="">
                                         <img src="${thumb.goodsImg}" alt="" data-v-f85ff452="">
                                     </li>
                                 </c:forEach>
@@ -219,7 +219,9 @@
                             <div class="img-item" data-v-f85ff452="" data-v-26571f4f="">
                                 <div data-v-26571f4f="" data-v-f85ff452="">
                                     <p style="text-align: center">
-                                        <img src="https://img30.360buyimg.com/popWaterMark/jfs/t7843/137/3005340945/124833/dc7c71f2/59b8ccd1N2bffd055.jpg" alt="">
+                                        <c:forEach items="${goodsInfo}" var="info">
+                                            <img src="${info.goodsInfoImg}" alt="">
+                                        </c:forEach>
                                     </p>
                                 </div>
                             </div>
@@ -229,6 +231,15 @@
             </div>
         </div>
         <!---->
+        <script>
+            $(function () {
+                $(".thumbnail ul li").click(function () {
+                    $(this).addClass("on").siblings().removeClass("on");
+                    let path = $(this).children("img")[0].src;
+                    $(".big img").attr("src",path);
+                })
+            })
+        </script>
         <!---->
         <!-- 底部 -->
         <div class="footer" data-v-5be35fd1="" data-v-c8a942a0="">

@@ -6,7 +6,7 @@ import com.mmall.entity.Users;
 import com.mmall.service.UsersService;
 
 public class UsersServiceImpl implements UsersService {
-    private UsersDAO usersDAO = new UsersDAOImpl();
+    private final UsersDAO usersDAO = new UsersDAOImpl();
     @Override
     public void saveUsers(Users users) {
         usersDAO.saveUsers(users);

@@ -83,8 +83,12 @@
                         type:'post',
                         url:'/user',
                         data:{'method':'login', 'userName': username, 'password' : password},
-                        success:function (url) {
-                            window.location.href = url
+                        success:function (result) {
+                            if (result !== 'index.jsp') {
+                                alert(result);
+                                return;
+                            }
+                            window.location.href = result
                         }
                     });
                 });

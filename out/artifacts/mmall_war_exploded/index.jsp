@@ -14,84 +14,6 @@
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/index.js"></script>
   </head>
-  <style>
-    .w-box .user:hover .nav-user-wrapper[data-v-7d15c3c3] {
-      top: 18px;
-      visibility: visible;
-      opacity: 1;
-      transition: opacity .15s ease-out;
-    }
-
-    .w-box .user .nav-user-wrapper[data-v-7d15c3c3] {
-      width: 168px;
-      transform: translate(-50%);
-      left: 50%;
-    }
-
-    .nav-user-wrapper[data-v-7d15c3c3] {
-      position: absolute;
-      z-index: 30;
-      padding-top: 18px;
-      opacity: 0;
-      visibility: hidden;
-      top: -3000px;
-    }
-
-    .w-box .user .nav-user-list[data-v-7d15c3c3] {
-      width: 168px;
-    }
-
-    .nav-user-wrapper .nav-user-list[data-v-7d15c3c3] {
-      position: relative;
-      padding-top: 20px;
-      background: #fff;
-      border: 1px solid #d6d6d6;
-      border-color: rgba(0, 0, 0, .08);
-      border-radius: 8px;
-      box-shadow: 0 20px 40px rgba(0,0,0,.15);
-      z-index: 10;
-    }
-
-    .w-box .user .nav-user-avatar > div[data-v-7d15c3c3] {
-      position: relative;
-      margin: 0 auto 8px;
-      width: 46px;
-      height: 46px;
-      text-align: center;
-    }
-
-    .w-box .user .nav-user-wrapper > div .avatar[data-v-7d15c3c3] {
-      border-radius: 50%;
-      display: block;
-      width: 100%;
-      height: 100%;
-      background-repeat: no-repeat;
-      background-size: contain;
-    }
-
-    .w-box .user .nav-user-avatar .name[data-v-7d15c3c3] {
-      margin-bottom: 16px;
-      font-size: 12px;
-      line-height: 1.5;
-      text-align: center;
-      color: #757575;
-    }
-
-    .w-box .user li + li[data-v-7d15c3c3] {
-      text-align: center;
-      position: relative;
-      border-top: 1px solid #f5f5f5;
-      line-height: 44px;
-      height: 44px;
-      color: #616161;
-      font-size: 12px;
-    }
-
-    .w-box .user li + li a[data-v-7d15c3c3] {
-      display: block;
-      color: #616161;
-    }
-  </style>
   <body>
   <div id="app">
     <div class="main" data-v-c8a942a0="">
@@ -287,65 +209,8 @@
                   <div data-v-26571f4f=""></div>
                 </div>
                 <div data-v-26571f4f="">
-                  <div class="hot" data-v-4af9704d="" data-v-26571f4f="">
-                    <div class="good-item" data-v-0265f772="" data-v-4af9704d="" data-v-26571f4f="">
-                      <div data-v-0265f772="">
-                        <div class="good-img" data-v-0265f772="">
-                          <a data-v-0265f772=""><img data-v-0265f772=""
-                                                     data-src="https://i.loli.net/2018/07/13/5b48a7f468bf2.png"
-                                                     src="https://i.loli.net/2018/07/13/5b48a7f468bf2.png"
-                                                     alt="支付测试商品 IPhone 11 Pro Max 4G手机 双卡双待"></a>
-                        </div>
-                        <h6 class="good-title" data-v-0265f772="">支付测试商品 IPhone 11 Pro Max 4G手机
-                          双卡双待</h6>
-                        <h3 class="sub-title ellipsis" data-v-0265f772="">此仅为测试商品 拍下不会发货</h3>
-                        <div class="good-price pr" data-v-0265f772="">
-                          <div class="ds pa" data-v-0265f772="">
-                            <a data-v-0265f772="">
-                              <input class="default-btn" data-v-612d7650=""
-                                     data-v-0265f772="" type="button" readonly="readonly"
-                                     value="查看详情" style="margin: 0px 5px;">
-                            </a>
-                            <input class="main-btn" data-v-612d7650="" data-v-0265f772=""
-                                   type="button" readonly="readonly" value="加入购物车"
-                                   style="margin: 0px 5px;">
-                          </div>
-                          <p data-v-0265f772="">
-                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>
-                            1.00
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="good-item" data-v-0265f772="" data-v-4af9704d="" data-v-26571f4f="">
-                      <div data-v-0265f772="">
-                        <div class="good-img" data-v-0265f772="">
-                          <a data-v-0265f772=""><img data-v-0265f772=""
-                                                     data-src="https://resource.smartisan.com/resource/f195e666e089d4e3775ce67d8e9523ce.png?x-oss-process=image/resize,w_270"
-                                                     src="https://resource.smartisan.com/resource/f195e666e089d4e3775ce67d8e9523ce.png?x-oss-process=image/resize,w_270"
-                                                     alt="支付测试商品 IPhone 11 Pro Max 4G手机 双卡双待"></a>
-                        </div>
-                        <h6 class="good-title" data-v-0265f772="">坚果 Pro 3</h6>
-                        <h3 class="sub-title ellipsis" data-v-0265f772="">高通骁龙™ 855Plus · 4800 万模范四摄 · Smartisan OS 7.0
-                        </h3>
-                        <div class="good-price pr" data-v-0265f772="1">
-                          <div class="ds pa" data-v-0265f772="">
-                            <a data-v-0265f772="">
-                              <input class="default-btn" data-v-612d7650=""
-                                     data-v-0265f772="" type="button" readonly="readonly"
-                                     value="查看详情" style="margin: 0px 5px;">
-                            </a>
-                            <input class="main-btn" data-v-612d7650 data-v-0265f772=""
-                                   type="button" readonly="readonly" value="加入购物车"
-                                   style="margin: 0px 5px;">
-                          </div>
-                          <p data-v-0265f772="">
-                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>
-                            1.00
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                  <div class="hot" id="hot" data-v-4af9704d="" data-v-26571f4f="">
+
                   </div>
                 </div>
               </div>
@@ -452,6 +317,7 @@
           let clothing = [];
           let parts = [];
           let phone = [];
+          let hot = [];
           $.ajax({
             type: 'get',
             url: '/goods',
@@ -469,6 +335,9 @@
                 if (data[i].goodsType.id === 4) {
                   phone.push(data[i]);
                 }
+                if (data[i].goodsType.id === 5) {
+                  hot.push(data[i]);
+                }
               }
               for (let i = 0; i < phone.length; i++) {
                 if (i === 6)
@@ -482,7 +351,7 @@
                         '                      <h3 class="sub-title ellipsis" data-v-0265f772="">' + phone[i].goodsTitle + '</h3>\n' +
                         '                      <div class="good-price pr" data-v-0265f772="">\n' +
                         '                        <div class="ds pa" data-v-0265f772="">\n' +
-                        '                          <a data-v-0265f772="">\n' +
+                        '                          <a href="/goods?method=info&goodsId='+ phone[i].id +'" data-v-0265f772="">\n' +
                         '                            <input class="default-btn" data-v-612d7650="" data-v-0265f772=""\n' +
                         '                                   type="button" readonly="readonly" value="查看详情"\n' +
                         '                                   style="margin: 0px 5px;">\n' +
@@ -511,7 +380,7 @@
                         '                      <h3 class="sub-title ellipsis" data-v-0265f772="">' + clothing[i].goodsTitle + '</h3>\n' +
                         '                      <div class="good-price pr" data-v-0265f772="">\n' +
                         '                        <div class="ds pa" data-v-0265f772="">\n' +
-                        '                          <a data-v-0265f772="">\n' +
+                        '                          <a href="/goods?method=info&method=info&goodsId='+ clothing[i].id +'" data-v-0265f772="">\n' +
                         '                            <input class="default-btn" data-v-612d7650="" data-v-0265f772=""\n' +
                         '                                   type="button" readonly="readonly" value="查看详情"\n' +
                         '                                   style="margin: 0px 5px;">\n' +
@@ -540,7 +409,7 @@
                         '                      <h3 class="sub-title ellipsis" data-v-0265f772="">' + parts[i].goodsTitle + '</h3>\n' +
                         '                      <div class="good-price pr" data-v-0265f772="">\n' +
                         '                        <div class="ds pa" data-v-0265f772="">\n' +
-                        '                          <a data-v-0265f772="">\n' +
+                        '                          <a href="/goods?method=info&goodsId='+ parts[i].id +'" data-v-0265f772="">\n' +
                         '                            <input class="default-btn" data-v-612d7650="" data-v-0265f772=""\n' +
                         '                                   type="button" readonly="readonly" value="查看详情"\n' +
                         '                                   style="margin: 0px 5px;">\n' +
@@ -555,6 +424,35 @@
                         '                    </div>\n' +
                         '                  </div>';
                 $("#parts").append(label);
+              }
+              for (let i = 0; i < hot.length; i++) {
+                if (i == 2) {
+                  break;
+                }
+                let label = '<div class="good-item" data-v-0265f772="" data-v-4af9704d="" data-v-26571f4f="">\n' +
+                        '                      <div data-v-0265f772="">\n' +
+                        '                        <div class="good-img" data-v-0265f772="">\n' +
+                        '                          <a data-v-0265f772=""><img src='+ hot[i].goodsImg +' data-v-0265f772="" alt="支付测试商品 IPhone 11 Pro Max 4G手机 双卡双待"></a>\n' +
+                        '                        </div>\n' +
+                        '                        <h6 class="good-title" data-v-0265f772="">'+ hot[i].goodsName +'</h6>\n' +
+                        '                        <h3 class="sub-title ellipsis" data-v-0265f772="">'+ hot[i].goodsTitle +'</h3>\n' +
+                        '                        <div class="good-price pr" data-v-0265f772="1">\n' +
+                        '                          <div class="ds pa" data-v-0265f772="">\n' +
+                        '                            <a href="/goods?method=info&goodsId='+ hot[i].id +'" data-v-0265f772="">\n' +
+                        '                              <input class="default-btn" data-v-612d7650=""\n' +
+                        '                                     data-v-0265f772="" type="button" readonly="readonly"\n' +
+                        '                                     value="查看详情" style="margin: 0px 5px;">\n' +
+                        '                            </a>\n' +
+                        '                            <input class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
+                        '                                   type="button" readonly="readonly" value="加入购物车"\n' +
+                        '                                   style="margin: 0px 5px;">\n' +
+                        '                          </div>\n' +
+                        '                          <p data-v-0265f772="">\n' +
+                        '                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>'+ hot[i].price +'</p>\n' +
+                        '                        </div>\n' +
+                        '                      </div>\n' +
+                        '                    </div>';
+                $("#hot").append(label);
               }
             }
           });

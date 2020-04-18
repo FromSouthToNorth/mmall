@@ -42,7 +42,7 @@ public class UsersServlet extends HttpServlet {
                     session.setAttribute("user", user);
                     resp.getWriter().write("index.jsp");
                 } else {
-                    resp.getWriter().write("login.jsp");
+                    resp.getWriter().write("用户名或密码错误！");
                 }
                 break;
 

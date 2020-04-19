@@ -31,6 +31,7 @@ public class GoodsServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
         String method = req.getParameter("method");
+        HttpSession session = req.getSession();
         if (method == null) {
             method = "findAllGoods";
         }
@@ -41,7 +42,6 @@ public class GoodsServlet extends HttpServlet {
                 resp.getWriter().write(json);
                 break;
             case "info":
-                HttpSession session = req.getSession();
                 String goodsId = req.getParameter("goodsId");
                 Integer id = Integer.parseInt(goodsId);
                 Goods byIdGoods = goodsService.findByIdGoods(id);
@@ -51,6 +51,27 @@ public class GoodsServlet extends HttpServlet {
                 session.setAttribute("goodsInfo", byGoodsIdGoodsInfo);
                 session.setAttribute("goodsThumb", byGoodsIdGoodsThumb);
                 resp.sendRedirect("goodsDetails.jsp");
+                break;
+            case "goods":
+                String term = req.getParameter("term");
+                List<Goods> goodsList = null;
+                switch (term) {
+                    case "all":
+                        goodsList = goodsService.findAllGoods();
+                        break;
+                    case "phone":
+                        goodsList = goodsService.findByTypeGoods(4);
+                        break;
+                    case "costume":
+                        goodsList = goodsService.findByTypeGoods(1);
+                        break;
+                    case "goodsCity":
+                        goodsList = goodsService.findByTypeGoods(2);
+                        break;
+                }
+                session.setAttribute("goodsList", goodsList);
+                session.setAttribute("total", goodsList.size());
+                resp.sendRedirect("goods.jsp");
                 break;
         }
 

@@ -2,39 +2,156 @@
   Created by IntelliJ IDEA.
   User: musix
   Date: 2020/4/18
-  Time: 11:53
+  Time: 23:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>商品详情</title>
+    <title>商品</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/details.css">
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/index.js"></script>
 </head>
 <style>
- .gray-box[data-v-f85ff452] {
+    .main[data-v-9e9501ca] {
+        min-height: calc(100vh - 454px);
+        background: #ededed;
+        overflow: hidden;
+        width: 100%;
+    }
+    .nav[data-v-9e9501ca] {
+        height: 60px;
+        line-height: 60px;
+    }
+    .nav > div[data-v-9e9501ca] {
         display: -ms-flexbox;
         display: flex;
-        padding: 60px;
-        margin: 20px 0;
- }
- .down.down-disabled[data-v-d10cb02a] {
-     background-position: 0 -300px;
-     cursor: not-allowed;
- }
-
- .select .down[data-v-d10cb02a] {
-     background-position: 0 -60px;
- }
-
- .item-info .gray-box[data-v-f85ff452] {
-     padding: 0;
-     display: block;
- }
+        -ms-flex-align: center;
+        align-items: center;
+    }
+    .nav > div a.active[data-v-9e9501ca] {
+        color: #6683ea;
+    }
+    .nav > div a[data-v-9e9501ca] {
+        padding: 0 15px;
+        height: 100%;
+        font-size: 12px;
+        color: #999;
+    }
+    .nav .price-interval[data-v-9e9501ca] {
+        padding: 0 15px;
+    }
+    .nav .price-interval[data-v-9e9501ca],
+    .nav > div a[data-v-9e9501ca] {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+    .nav .price-interval input[type="number"][data-v-9e9501ca] {
+        border: 1px solid #ccc;
+        text-align: center;
+        background: none;
+        border-radius: 5px;
+    }
+    .nav > div input[data-v-9e9501ca] {
+        width: 80px;
+        height: 30px;
+        border: 1px solid #ccc;
+    }
+    input[type="number"],
+    textarea {
+        -moz-appearance: textfield;
+    }
+    .img-item[data-v-9e9501ca] {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    .goods-box > div[data-v-9e9501ca] {
+        float: left;
+        border: 1px solid #efefef;
+    }
+    .paging {
+        margin: 3vw 10vw 2vw;
+        align-self: flex-end;
+        padding: 2px 6px;
+        white-space: nowrap;
+        font-size: 0;
+    }
+    .paging span,
+    .paging button,
+    .paging p,
+    .pager,
+    .pager li {
+        display: inline-block;
+        font-size: 14px;
+        min-width: 28px;
+        height: 28px;
+        line-height: 28px;
+        vertical-align: top;
+        box-sizing: border-box;
+    }
+    .goods .paging .total {
+        min-width: 10px;
+        padding-right: 3px;
+        text-align: center;
+    }
+    .paging p {
+        margin: 0 10px;
+    }
+    .pager {
+        list-style: none;
+        font-size: 0;
+        padding: 0;
+    }
+    .pager li,
+    .btn-prev,
+    .btn-next {
+        background: 50% no-repeat #fff;
+        background-size: 16px;
+        border: 1px solid #d1dbe5;
+        text-align: center;
+        cursor: pointer;
+    }
+    .pager li.active {
+        border-color: #20a0ff;
+        background-color: #20a0ff;
+        color: #fff;
+        cursor: default;
+    }
+    .pager li.active:hover {
+        color: #fff;
+    }
+    .paging button:hover,
+    .pager li:hover {
+        color: #20a0ff;
+    }
+    .paging .btn-prev,
+    .paging .btn-next {
+        color: #bebebe;
+        font-size: 14px;
+    }
+    .paging .btn-prev {
+        border-radius: 2px 0 0 2px;
+        border-right: 0;
+    }
+    .paging .btn-next {
+        border-radius: 0 2px 2px 0;
+        border-left: 0;
+    }
+    .pager li.active + li {
+        border-left: 0;
+        padding-left: 5px;
+    }
+    .pager li:last-child {
+        border-right: 1px solid #d1dbe5;
+    }
 </style>
 <body>
 <div id="add">
@@ -157,89 +274,81 @@
         </div>
         <!-- /头部 -->
         <!---->
-        <!---->
-        <div class="w store-content main" data-v-f85ff452="" data-v-c8a942a0="">
-            <div class="gray-box" data-v-f85ff452="">
-                <div class="gallery-wrapper">
-                    <div class="gallery" data-v-f85ff452="">
-                        <div class="thumbnail" data-v-f85ff452="">
-                            <ul data-v-f85ff452="">
-                                <c:forEach items="${goodsThumb}" var="thumb">
-                                    <li class=""  data-v-f85ff452="">
-                                        <img src="${thumb.goodsImg}" alt="" data-v-f85ff452="">
-                                    </li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                        <div class="thumb" data-v-f85ff452="">
-                            <div class="big" data-v-f85ff452="">
-                                <img data-v-f85ff452="" src="${goods.goodsImg}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner" data-v-f85ff452="">
-                    <div class="sku-custom-title" data-v-f85ff452="">
-                        <h4 data-v-f85ff452="">${goods.goodsName}</h4>
-                        <h6 data-v-f85ff452="">
-                            <span data-v-f85ff452="">${goods.goodsTitle}</span>
-                            <span class="price" data-v-f85ff452="">
-                                <em data-v-f85ff452="">￥</em>
-                                <i data-v-f85ff452="">${goods.price}</i>
-                            </span>
-                        </h6>
-                    </div>
-                    <div class="number" data-v-f85ff452="">
-                        <span class="params-name" data-v-f85ff452="">数量</span>
-                        <div class="item-cols-num clearfix" data-v-d10cb02a="" data-v-f85ff452="">
-                            <div class="select" data-v-d10cb02a="">
-                                <span class="down down-disabled" data-v-d10cb02a="">-</span>
-                                <span class="number" data-v-d10cb02a="">
-                                    <input class="show" data-v-d10cb02a="" value="1" maxlength="2" type="text">
-                                    <ul data-v-d10cb02a="" style="z-index: 1; transition: all 0s ease 0s; transform: translateY(-36px);"></ul>
-                                </span>
-                                <span class="up" data-v-d10cb02a="">+</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buy" data-v-f85ff452="">
-                        <input class="main-btn" data-v-612d7650="" data-v-f85ff452="" type="button" value="加入购物车" style="width: 145px; height: 50px; line-height: 48px">
-                        <input class="default-btn" data-v-612d7650="" data-v-f85ff452="" type="button" value="现在购买" style="width: 145px; height: 50px; margin-left: 10px">
+        <div class="goods main" data-v-9e9501ca="" data-v-c8a942a0="">
+            <div class="nav" data-v-9e9501ca="">
+                <div class="w" data-v-9e9501ca="">
+                    <a class="active" href="" data-v-9e9501ca="">综合排序</a>
+                    <a class="" href="" data-v-9e9501ca="">价格从高到底</a>
+                    <a class="" href="" data-v-9e9501ca="">价格从低到高</a>
+                    <div class="price-interval" data-v-9e9501ca="">
+                        <input class="input" data-v-9e9501ca="" type="number" placeholder="价格">
+                        <span data-v-9e9501ca="" style="margin: 0 5px">-</span>
+                        <input data-v-9e9501ca="" type="number" placeholder="价格">
+                        <input class="main-btn" data-v-612d7650="" data-v-9e9501ca="" type="button" value="确定" style="margin-left: 10px">
                     </div>
                 </div>
             </div>
-            <div class="item-info" data-v-f85ff452="">
-                <div class="gray-box" data-v-26571f4f="" data-v-f85ff452="">
-                    <div class="title" data-v-26571f4f="">
-                        <h2 data-v-26571f4f="">产品信息</h2>
-                        <div class="" data-v-26571f4f=""></div>
-                    </div>
-                    <div data-v-26571f4f="">
-                        <div data-v-f85ff452="" data-v-26571f4f="">
-                            <div class="img-item" data-v-f85ff452="" data-v-26571f4f="">
-                                <div data-v-26571f4f="" data-v-f85ff452="">
-                                    <p style="text-align: center">
-                                        <c:forEach items="${goodsInfo}" var="info">
-                                            <img class="info-img" src="${info.goodsInfoImg}" alt="">
-                                        </c:forEach>
-                                    </p>
+            <div data-v-9e9501ca="" class="" style="min-height: 35vw; position: static">
+                <div class="img-item" data-v-9e9501ca="">
+                    <div class="goods-box w" data-v-9e9501ca="">
+                        <c:forEach items="${goodsList}" var="goods">
+                            <div class="good-item" data-v-0265f772="" data-v-9e9501ca="">
+                                <div data-v-0265f772="">
+                                    <div class="good-img" data-v-0265f772="">
+                                        <a data-v-0265f772=""><img src="${goods.goodsImg}" data-v-0265f772=""></a>
+                                    </div>
+                                    <h6 class="good-title" data-v-0265f772="">${goods.goodsName}</h6>
+                                    <h3 class="sub-title ellipsis" data-v-0265f772="">${goods.goodsTitle}</h3>
+                                    <div class="good-price pr" data-v-0265f772="">
+                                        <div class="ds pa" data-v-0265f772="">
+                                            <a href="/goods?method=info&goodsId=${goods.id}" data-v-0265f772="">
+                                                <input class="default-btn" data-v-612d7650="" data-v-0265f772=""
+                                                       type="button" readonly="readonly" value="查看详情"
+                                                       style="margin: 0px 5px;">
+                                            </a>
+                                            <input class="main-btn" data-v-612d7650 data-v-0265f772=""
+                                                   type="button" readonly="readonly" value="加入购物车"
+                                                   style="margin: 0px 5px;">
+                                        </div>
+                                        <p data-v-0265f772="">
+                                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>
+                                            ${goods.price}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
+                    </div>
+                    <div class="paging">
+                        <p>共 <span class="total">${total}</span>件</p>
+                        <button class="btn-prev"><<</button>
+                        <ul class="pager">
+                        </ul>
+                        <button class="btn-next">>></button>
                     </div>
                 </div>
+                <script>
+                    $(function () {
+                        let pager = "";
+                        let total = $(".total").text();
+                        alert(total);
+                        let pageCount;
+                        parseInt(total);
+                        pageCount = total % 8 === 0 ? total / 8 : total / 8 + 1;
+                        alert(pageCount);
+                        for (let i = 1; i <= pageCount; i++) {
+                            pager = '<li>' + i + '</li>';
+                            $(".pager").append(pager);
+                            console.debug(pager);
+                        }
+                        $(".pager li").click(function () {
+                            $(this).addClass("active").siblings().removeClass("active");
+                        })
+                    })
+                </script>
             </div>
         </div>
         <!---->
-        <script>
-            $(function () {
-                $(".thumbnail ul li").click(function () {
-                    $(this).addClass("on").siblings().removeClass("on");
-                    let path = $(this).children("img")[0].src;
-                    $(".big img").attr("src",path);
-                })
-            })
-        </script>
         <!---->
         <!-- 底部 -->
         <div class="footer" data-v-5be35fd1="" data-v-c8a942a0="">

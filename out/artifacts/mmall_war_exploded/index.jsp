@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: musix
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
     <title>M</title>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="nav-aside" data-v-7d15c3c3="">
                   <div class="user pr" data-v-7d15c3c3="">
-                    <a class="" data-v-7d15c3c3="" href="login.html">个人中心</a>
+                    <a class="" data-v-7d15c3c3="" href="${user == null ? '/login.jsp' : '#'}">个人中心</a>
                     <c:if test="${user != null}">
                       <div class="nav-user-wrapper pa" data-v-7d15c3c3="">
                         <div class="nav-user-list"data-v-7d15c3c3="">
@@ -119,12 +119,12 @@
               <div class="w" data-v-7d15c3c3="">
                 <ul class="nav-list2" data-v-7d15c3c3="">
                   <li data-v-7d15c3c3=""><a class="router-link-active" data-v-7d15c3c3=""
-                                            href="#/"><object><a class="active" data-v-7d15c3c3="">首页</a></object></a>
+                                            href="/index.jsp"><object><a class="active" data-v-7d15c3c3="">首页</a></object></a>
                   </li>
-                  <li data-v-7d15c3c3=""><a class="" data-v-7d15c3c3="">全部</a></li>
-                  <li data-v-7d15c3c3=""><a class="" data-v-7d15c3c3="">手机</a></li>
-                  <li data-v-7d15c3c3=""><a class="" data-v-7d15c3c3="">服饰</a></li>
-                  <li data-v-7d15c3c3=""><a class="" data-v-7d15c3c3="">周边</a></li>
+                  <li data-v-7d15c3c3=""><a href="/goods?method=goods&term=all" class="" data-v-7d15c3c3="">全部</a></li>
+                  <li data-v-7d15c3c3=""><a href="/goods?method=goods&term=phone" class="" data-v-7d15c3c3="">手机</a></li>
+                  <li data-v-7d15c3c3=""><a href="/goods?method=goods&term=costume" class="" data-v-7d15c3c3="">服饰</a></li>
+                  <li data-v-7d15c3c3=""><a href="/goods?method=goods&term=goodsCity" class="" data-v-7d15c3c3="">配件</a></li>
                   <li data-v-7d15c3c3=""><a href="https://github.com/FromSouthToNorth/mmall" class="" data-v-7d15c3c3="">Github</a></li>
                 </ul>
                 <div data-v-7d15c3c3=""></div>

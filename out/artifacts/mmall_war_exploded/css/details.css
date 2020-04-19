@@ -23,6 +23,11 @@
     width: 540px;
 }
 
+.thumbnail[data-v-f85ff452] {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 .gray-box .gallery-wrapper .gallery .thumbnail li[data-v-f85ff452]:first-child {
     margin-top: 0;
 }
@@ -215,3 +220,12 @@
     width: 1220px;
     text-align: center;
 }
+
+.info-img {
+    display: block;
+    width: 1220px;
+    height: auto;
+    max-width: inherit;
+    margin-left: -1px;
+}
+

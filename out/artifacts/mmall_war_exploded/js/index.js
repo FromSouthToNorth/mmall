@@ -84,7 +84,7 @@ $(function () {
         $("h5 .price-num").html(total_price);
     }
     
-    $(".main-btn").click(function () {
+    $(".good-price .main-btn").click(function () {
         total_price = 0;
         var src = $(this).parent().parent().prev().prev().prev().children().children().attr("data-src");
         var name = $(this).parent().parent().prev().prev().html();

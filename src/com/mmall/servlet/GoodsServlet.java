@@ -54,6 +54,12 @@ public class GoodsServlet extends HttpServlet {
                 break;
             case "goods":
                 String term = req.getParameter("term");
+                String pageStr = req.getParameter("page");
+                String goodsSort = req.getParameter("sort");
+                if (pageStr == null) {
+                    pageStr = "1";
+                }
+                int page = Integer.parseInt(pageStr);
                 List<Goods> goodsList = null;
                 switch (term) {
                     case "all":
@@ -69,11 +75,51 @@ public class GoodsServlet extends HttpServlet {
                         goodsList = goodsService.findByTypeGoods(2);
                         break;
                 }
-                session.setAttribute("goodsList", goodsList);
+                if ("descending".equals(goodsSort)) {
+                    goodsList = goodsService.descendingGoods(goodsService.findAllGoods());
+                    getData(resp, session,"descending", term, page, goodsList);
+                    System.out.println(goodsSort);
+                    return;
+                }
+                if ("ascending".equals(goodsSort)) {
+                    goodsList = goodsService.ascendingGoods(goodsService.findAllGoods());
+                    getData(resp, session, "ascending", term, page, goodsList);
+                    System.out.println(goodsSort);
+                    return;
+                }
+                System.out.println(goodsSort);
+                int dataNum;
+                assert goodsList != null;
+                Integer total = goodsService.getTotal(goodsList.size(), 8);
+                if (page >= total) {
+                    dataNum = goodsList.size();
+                } else {
+                    dataNum = 8 * page;
+                }
+                session.setAttribute("term", term);
+                session.setAttribute("page", page);
+                session.setAttribute("goodsList", goodsList.subList((page - 1) * 8, dataNum));
                 session.setAttribute("total", goodsList.size());
                 resp.sendRedirect("goods.jsp");
                 break;
         }
 
+    }
+
+    private void getData(HttpServletResponse resp, HttpSession session,String sort, String term, int page, List<Goods> goodsList) throws IOException {
+        int dataNum;
+        assert goodsList != null;
+        Integer total = goodsService.getTotal(goodsList.size(), 8);
+        if (page >= total) {
+            dataNum = goodsList.size();
+        } else {
+            dataNum = 8 * page;
+        }
+        session.setAttribute("sort", sort);
+        session.setAttribute("term", term);
+        session.setAttribute("page", page);
+        session.setAttribute("goodsList", goodsList.subList((page - 1) * 8, dataNum));
+        session.setAttribute("total", goodsList.size());
+        resp.sendRedirect("goods.jsp");
     }
 }

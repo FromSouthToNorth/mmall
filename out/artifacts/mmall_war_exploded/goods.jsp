@@ -277,9 +277,9 @@
         <div class="goods main" data-v-9e9501ca="" data-v-c8a942a0="">
             <div class="nav" data-v-9e9501ca="">
                 <div class="w" data-v-9e9501ca="">
-                    <a class="active" href="" data-v-9e9501ca="">综合排序</a>
-                    <a class="" href="" data-v-9e9501ca="">价格从高到底</a>
-                    <a class="" href="" data-v-9e9501ca="">价格从低到高</a>
+                    <a id="synthesize" class="" href="" data-v-9e9501ca="">综合排序</a>
+                    <a id="descending" class="" href="/goods?method=goods&term=${term}&sort=descending" data-v-9e9501ca="">价格从高到底</a>
+                    <a id="ascending" class="" href="/goods?method=goods&term=${term}&sort=ascending" data-v-9e9501ca="">价格从低到高</a>
                     <div class="price-interval" data-v-9e9501ca="">
                         <input class="input" data-v-9e9501ca="" type="number" placeholder="价格">
                         <span data-v-9e9501ca="" style="margin: 0 5px">-</span>
@@ -326,24 +326,50 @@
                         </ul>
                         <button class="btn-next">>></button>
                     </div>
+                    <input id="term" type="hidden" value="${term}">
+                    <input type="hidden" id="page" value="${page}">
+                    <input type="hidden" id="sort" value="${sort}">
                 </div>
                 <script>
                     $(function () {
+                        let sort = $("#sort").val();
+                        alert(sort);
+                        if ("descending" === sort) {
+                            $("#descending").addClass("active");
+                        } else if ("ascending" === sort) {
+                            $("#ascending").addClass("active");
+                        } else {
+                            $("#synthesize").addClass("active");
+                        }
                         let pager = "";
-                        let total = $(".total").text();
-                        alert(total);
+                        let page = parseInt($("#page").val());
+                        let total = parseInt($(".total").text());
+                        let term = $("#term").val();
                         let pageCount;
-                        parseInt(total);
-                        pageCount = total % 8 === 0 ? total / 8 : total / 8 + 1;
-                        alert(pageCount);
+                        pageCount = Math.ceil(total / 8);
                         for (let i = 1; i <= pageCount; i++) {
                             pager = '<li>' + i + '</li>';
                             $(".pager").append(pager);
-                            console.debug(pager);
                         }
+                        $(".pager li").eq(page - 1).addClass("active");
                         $(".pager li").click(function () {
                             $(this).addClass("active").siblings().removeClass("active");
-                        })
+                            location.href = "/goods?method=goods&page=" + $(this).text() + "&term=" + term + "&sort=" + sort;
+                        });
+                        // 下一页
+                        $(".btn-next").click(function () {
+                            if (page === pageCount)
+                                return;
+                            page ++;
+                            location.href = "/goods?method=goods&page=" + page + "&term=" + term + "&sort=" + sort;
+                        });
+                        // 上一页
+                        $(".btn-prev").click(function () {
+                            if (page === 1)
+                                return;
+                            page --;
+                            location.href = "/goods?method=goods&page=" + page + "&term=" + term + "&sort=" + sort;
+                        });
                     })
                 </script>
             </div>

@@ -8,4 +8,7 @@ public interface GoodsService {
     List<Goods> findAllGoods();
     List<Goods> findByTypeGoods(Integer id);
     Goods findByIdGoods(Integer id);
+    Integer getTotal(Integer size, Integer limit);
+    List<Goods> descendingGoods(List<Goods> goodsList);
+    List<Goods> ascendingGoods(List<Goods> goodsList);
 }

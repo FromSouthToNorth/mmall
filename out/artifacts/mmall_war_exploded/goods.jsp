@@ -37,7 +37,7 @@
     .nav > div a[data-v-9e9501ca] {
         padding: 0 15px;
         height: 100%;
-        font-size: 12px;
+        font-size: 14px;
         color: #999;
     }
     .nav .price-interval[data-v-9e9501ca] {
@@ -277,15 +277,15 @@
         <div class="goods main" data-v-9e9501ca="" data-v-c8a942a0="">
             <div class="nav" data-v-9e9501ca="">
                 <div class="w" data-v-9e9501ca="">
-                    <a id="synthesize" class="" href="" data-v-9e9501ca="">综合排序</a>
+                    <a id="synthesize" class="" href="/goods?method=goods&term=${term}" data-v-9e9501ca="">综合排序</a>
                     <a id="descending" class="" href="/goods?method=goods&term=${term}&sort=descending" data-v-9e9501ca="">价格从高到底</a>
                     <a id="ascending" class="" href="/goods?method=goods&term=${term}&sort=ascending" data-v-9e9501ca="">价格从低到高</a>
-                    <div class="price-interval" data-v-9e9501ca="">
-                        <input class="input" data-v-9e9501ca="" type="number" placeholder="价格">
-                        <span data-v-9e9501ca="" style="margin: 0 5px">-</span>
-                        <input data-v-9e9501ca="" type="number" placeholder="价格">
-                        <input class="main-btn" data-v-612d7650="" data-v-9e9501ca="" type="button" value="确定" style="margin-left: 10px">
-                    </div>
+<%--                    <div class="price-interval" data-v-9e9501ca="">--%>
+<%--                        <input id="lowPrice" class="input" data-v-9e9501ca="" type="number" placeholder="价格">--%>
+<%--                        <span data-v-9e9501ca="" style="margin: 0 5px">-</span>--%>
+<%--                        <input id="highPrice" data-v-9e9501ca="" type="number" placeholder="价格">--%>
+<%--                        <input id="ok" class="main-btn" data-v-612d7650="" data-v-9e9501ca="" type="button" value="确定" style="margin-left: 10px">--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <div data-v-9e9501ca="" class="" style="min-height: 35vw; position: static">
@@ -333,7 +333,6 @@
                 <script>
                     $(function () {
                         let sort = $("#sort").val();
-                        alert(sort);
                         if ("descending" === sort) {
                             $("#descending").addClass("active");
                         } else if ("ascending" === sort) {

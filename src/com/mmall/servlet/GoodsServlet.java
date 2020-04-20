@@ -56,6 +56,10 @@ public class GoodsServlet extends HttpServlet {
                 String term = req.getParameter("term");
                 String pageStr = req.getParameter("page");
                 String goodsSort = req.getParameter("sort");
+                String findBy = req.getParameter("findBy");
+                if (goodsSort == null) {
+                    session.removeAttribute("sort");
+                }
                 if (pageStr == null) {
                     pageStr = "1";
                 }
@@ -76,18 +80,47 @@ public class GoodsServlet extends HttpServlet {
                         break;
                 }
                 if ("descending".equals(goodsSort)) {
-                    goodsList = goodsService.descendingGoods(goodsService.findAllGoods());
-                    getData(resp, session,"descending", term, page, goodsList);
-                    System.out.println(goodsSort);
+                    switch (term) {
+                        case "all":
+                            goodsList = goodsService.descendingGoods(goodsService.findAllGoods());
+                            getData(resp, session,"descending", term, page, goodsList);
+                            break;
+                        case "phone":
+                            goodsList = goodsService.descendingGoods(goodsService.findByTypeGoods(4));
+                            getData(resp, session,"descending", term, page, goodsList);
+                            break;
+                        case "costume":
+                            goodsList = goodsService.descendingGoods(goodsService.findByTypeGoods(1));
+                            getData(resp, session,"descending", term, page, goodsList);
+                            break;
+                        case "goodsCity":
+                            goodsList = goodsService.descendingGoods(goodsService.findByTypeGoods(2));
+                            getData(resp, session,"descending", term, page, goodsList);
+                            break;
+                    }
                     return;
                 }
                 if ("ascending".equals(goodsSort)) {
-                    goodsList = goodsService.ascendingGoods(goodsService.findAllGoods());
-                    getData(resp, session, "ascending", term, page, goodsList);
-                    System.out.println(goodsSort);
+                    switch (term) {
+                        case "all":
+                            goodsList = goodsService.ascendingGoods(goodsService.findAllGoods());
+                            getData(resp, session,"ascending", term, page, goodsList);
+                            break;
+                        case "phone":
+                            goodsList = goodsService.ascendingGoods(goodsService.findByTypeGoods(4));
+                            getData(resp, session,"ascending", term, page, goodsList);
+                            break;
+                        case "costume":
+                            goodsList = goodsService.ascendingGoods(goodsService.findByTypeGoods(1));
+                            getData(resp, session,"ascending", term, page, goodsList);
+                            break;
+                        case "goodsCity":
+                            goodsList = goodsService.ascendingGoods(goodsService.findByTypeGoods(2));
+                            getData(resp, session,"ascending", term, page, goodsList);
+                            break;
+                    }
                     return;
                 }
-                System.out.println(goodsSort);
                 int dataNum;
                 assert goodsList != null;
                 Integer total = goodsService.getTotal(goodsList.size(), 8);

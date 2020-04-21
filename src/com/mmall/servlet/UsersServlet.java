@@ -39,7 +39,9 @@ public class UsersServlet extends HttpServlet {
             case "login":
                 Users user = service.findUsers(users);
                 if (user != null) {
+                    user.setLoginDate(new Date());
                     session.setAttribute("user", user);
+                    service.updateLoginData(user);
                     resp.getWriter().write("index.jsp");
                 } else {
                     resp.getWriter().write("用户名或密码错误！");

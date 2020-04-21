@@ -19,7 +19,6 @@ public class UsersDAOImpl implements UsersDAO {
             statement.setString(2, users.getUserPassword());
             statement.setInt(3, users.getUserType());
             statement.setDate(4, date);
-            System.out.println(date);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,5 +55,23 @@ public class UsersDAOImpl implements UsersDAO {
             JDBCTools.release(connection, statement ,resultSet);
         }
         return user;
+    }
+
+    @Override
+    public void updateLoginData(Users users) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "update users set login_date = ? where id = ?";
+        PreparedStatement statement = null;
+        Date date = new Date(users.getLoginDate().getTime());
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setDate(1, date);
+            statement.setInt(2, users.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
     }
 }

@@ -1,5 +1,22 @@
 $(function () {
 
+    $("#index").click(function () {
+        $("#term").val("index");
+        location.href = "/goods?method=removeTerm";
+    })
+    let term = $("#term").val();
+    if (term === "all") {
+        $("#all").addClass("active");
+    } else if (term === "phone") {
+        $("#goods-phone").addClass("active");
+    } else if (term === "costume") {
+        $("#costume").addClass("active");
+    } else if (term === "goodsCity") {
+        $("#goodsCity").addClass("active");
+    } else {
+        $("#index").addClass("active");
+    }
+
     $(".shop").mouseover(function () {
         $(".shop .nav-user-wrapper").show();
     }).mouseout(function () {

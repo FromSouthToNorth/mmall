@@ -258,13 +258,13 @@
                         <div class="w" data-v-7d15c3c3="">
                             <ul class="nav-list2" data-v-7d15c3c3="">
                                 <li data-v-7d15c3c3=""><a class="router-link-active" data-v-7d15c3c3=""
-                                                          href="/index.jsp"><object><a class="active" data-v-7d15c3c3="">首页</a></object></a>
+                                                          href="/index.jsp"><object><a id="index" class="" data-v-7d15c3c3="">首页</a></object></a>
                                 </li>
-                                <li data-v-7d15c3c3=""><a href="/goods?method=goods&term=all" class="" data-v-7d15c3c3="">全部</a></li>
-                                <li data-v-7d15c3c3=""><a href="/goods?method=goods&term=phone" class="" data-v-7d15c3c3="">手机</a></li>
-                                <li data-v-7d15c3c3=""><a href="/goods?method=goods&term=costume" class="" data-v-7d15c3c3="">服饰</a></li>
-                                <li data-v-7d15c3c3=""><a href="/goods?method=goods&term=goodsCity" class="" data-v-7d15c3c3="">配件</a></li>
-                                <li data-v-7d15c3c3=""><a href="https://github.com/FromSouthToNorth/mmall" class="" data-v-7d15c3c3="">Github</a></li>
+                                <li data-v-7d15c3c3=""><a id="all" href="/goods?method=goods&term=all" class="" data-v-7d15c3c3="">全部</a></li>
+                                <li data-v-7d15c3c3=""><a id="goods-phone" href="/goods?method=goods&term=phone" class="" data-v-7d15c3c3="">手机</a></li>
+                                <li data-v-7d15c3c3=""><a id="costume" href="/goods?method=goods&term=costume" class="" data-v-7d15c3c3="">服饰</a></li>
+                                <li data-v-7d15c3c3=""><a id="goodsCity" href="/goods?method=goods&term=goodsCity" class="" data-v-7d15c3c3="">配件</a></li>
+                                <li data-v-7d15c3c3=""><a id="github" href="https://github.com/FromSouthToNorth/mmall" class="" data-v-7d15c3c3="">Github</a></li>
                             </ul>
                             <div data-v-7d15c3c3=""></div>
                         </div>

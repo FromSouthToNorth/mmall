@@ -16,4 +16,9 @@ public class UsersServiceImpl implements UsersService {
     public Users findUsers(Users users) {
         return usersDAO.findUsers(users);
     }
+
+    @Override
+    public void updateLoginData(Users users) {
+        usersDAO.updateLoginData(users);
+    }
 }

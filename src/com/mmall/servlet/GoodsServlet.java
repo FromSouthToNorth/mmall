@@ -56,7 +56,6 @@ public class GoodsServlet extends HttpServlet {
                 String term = req.getParameter("term");
                 String pageStr = req.getParameter("page");
                 String goodsSort = req.getParameter("sort");
-                String findBy = req.getParameter("findBy");
                 if (goodsSort == null) {
                     session.removeAttribute("sort");
                 }
@@ -134,6 +133,10 @@ public class GoodsServlet extends HttpServlet {
                 session.setAttribute("goodsList", goodsList.subList((page - 1) * 8, dataNum));
                 session.setAttribute("total", goodsList.size());
                 resp.sendRedirect("goods.jsp");
+                break;
+            case "removeTerm":
+                if (session.getAttribute("term") != null)
+                    session.removeAttribute("term");
                 break;
         }
 

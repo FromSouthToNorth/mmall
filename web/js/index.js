@@ -68,6 +68,57 @@ $(function () {
             $(".nav-sub-wrapper").removeClass("fixed");
         }
     });
+    $.ajax({
+        type:"get",
+        url: "/cart",
+        data: {"method":"findByUserIdCart"},
+        dataType:"JSON",
+        success:function (data) {
+           console.log(data);
+           let cartSize = data.length;
+           let totalPrice = 0;
+           if (0 === cartSize) {
+               $(".cart-num .num").addClass("no").text(0);
+               $("#cartCon").css("display","block");
+               $("#fullCart").css("display","none");
+           } else {
+               $(".cart-num .num").removeClass("no").text(cartSize);
+               $(".nav-cart-total p strong").text(cartSize);
+               $("#cartCon").css("display","none");
+               $("#fullCart").css("display","block");
+           }
+           for (let i = 0; i < data.length; i++) {
+               console.log(data);
+               totalPrice += parseInt(data[i].goods.price);
+               let label = '<li class="clearfix" data-v-7d15c3c3="">\n' +
+                   '           <div class="cart-item" data-v-7d15c3c3="">\n' +
+                   '             <div class="cart-item-inner" data-v-7d15c3c3="">\n' +
+                   '               <a data-v-7d15c3c3="">\n' +
+                   '                 <object>\n' +
+                   '                   <div class="item-thumb" data-v-7d15c3c3="">\n' +
+                   '                     <img data-v-7d15c3c3="" src='+ data[i].goods.goodsImg +' alt="">\n' +
+                   '                   </div>\n' +
+                   '                   <div class="item-desc" data-v-7d15c3c3="">\n' +
+                   '                     <div class="cart-cell" data-v-7d15c3c3="">\n' +
+                   '                       <h4 data-v-7d15c3c3=""><a data-v-7d15c3c3="">'+ data[i].goods.goodsName +'</a></h4>\n' +
+                   '                       <h6 data-v-7d15c3c3="">\n' +
+                   '                         <span class="price-icon" data-v-7d15c3c3="">￥</span>\n' +
+                   '                         <span class="price-num" data-v-7d15c3c3="">'+ data[i].goods.price +'.00</span>\n' +
+                   '                         <span class="item-num" data-v-7d15c3c3="">x 1</span>\n' +
+                   '                       </h6>\n' +
+                   '                     </div>\n' +
+                   '                   </div>\n' +
+                   '                 </object>\n' +
+                   '               </a>\n' +
+                   '               <div class="del-btn del" data-v-7d15c3c3="">删除</div>\n' +
+                   '             </div>\n' +
+                   '           </div>\n' +
+                   '         </li>';
+               $(".product_list").append(label);
+           }
+           $("#total-price").text(totalPrice+".00");
+        }
+    });
     //
     // function Delete() {
     //     if ($(".product_list li").length > 0) {

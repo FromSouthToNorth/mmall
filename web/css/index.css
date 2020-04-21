@@ -548,6 +548,10 @@ header[data-v-7d15c3c3] {
     margin-left: 10px;
 }
 
+.w-box .shop .nav-user-list .cart-item:hover .del[data-v-7d15c3c3] {
+    display: block;
+}
+
 .w-box .shop .nav-user-list .del[data-v-7d15c3c3] {
     display: none;
     overflow: hidden;
@@ -555,6 +559,10 @@ header[data-v-7d15c3c3] {
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.del-btn:hover {
+    background-position: -75px -60px;
 }
 
 .main-btn[data-v-7d15c3c3] {

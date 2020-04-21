@@ -33,7 +33,7 @@ public class CartDAOImpl implements CartDAO {
     }
 
     @Override
-    public List<Cart> findAllCart(Users users) {
+    public List<Cart> findByUserIdCart(Users users) {
         Connection connection = JDBCTools.getConnection();
         String sql = "select * from cart inner join users on users.id = cart.user_id inner join goods on goods.id = cart.goods_id inner join goods_type on goods_type.id = goods.goods_type where user_id = ?";
         PreparedStatement statement = null;

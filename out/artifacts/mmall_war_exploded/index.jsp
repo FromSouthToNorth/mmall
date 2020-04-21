@@ -78,34 +78,34 @@
                     <div class="nav-user-wrapper pa active" data-v-7d15c3c3=""
                          style="display: none;">
                       <div class="nav-user-list" data-v-7d15c3c3="">
-                        <div class="full" data-v-7d15c3c3="" style="display: none;">
-                          <div class="nav-cart-items">
-                            <ul class="product_list" data-v-7d15c3c3="">
-                            </ul>
+                          <div id="fullCart" class="full" data-v-7d15c3c3="" style="display: none">
+                            <div class="nav-cart-items">
+                              <ul class="product_list" data-v-7d15c3c3="">
+                              </ul>
+                            </div>
+                            <div class="nav-cart-total" data-v-7d15c3c3="">
+                              <p data-v-7d15c3c3="">
+                                共
+                                <strong data-v-7d15c3c3=""></strong>
+                                件商品
+                              </p>
+                              <h5 data-v-7d15c3c3="">
+                                合计：
+                                <span class="price-icon" data-v-7d15c3c3="">￥</span>
+                                <span id="total-price" class="price-num" data-v-7d15c3c3=""></span>
+                              </h5>
+                              <h6 data-v-7d15c3c3="">
+                                <input class="main-btn" data-v-612d7650=""
+                                       data-v-7d15c3c3="" type="button" readonly="readonly"
+                                       value="去购物车"
+                                       style="height: 40px; width: 100%; margin: 0px; color: rgb(255, 255, 255); font-size: 14px; line-height: 38px;">
+                              </h6>
+                            </div>
                           </div>
-                          <div class="nav-cart-total" data-v-7d15c3c3="">
-                            <p data-v-7d15c3c3="">
-                              共
-                              <strong data-v-7d15c3c3=""></strong>
-                              件商品
-                            </p>
-                            <h5 data-v-7d15c3c3="">
-                              合计：
-                              <span class="price-icon" data-v-7d15c3c3="">￥</span>
-                              <span class="price-num" data-v-7d15c3c3=""></span>
-                            </h5>
-                            <h6 data-v-7d15c3c3="">
-                              <input class="main-btn" data-v-612d7650=""
-                                     data-v-7d15c3c3="" type="button" readonly="readonly"
-                                     value="去购物车"
-                                     style="height: 40px; width: 100%; margin: 0px; color: rgb(255, 255, 255); font-size: 14px; line-height: 38px;">
-                            </h6>
+                          <div id="cartCon" class="cart-con" data-v-7d15c3c3=""
+                               style="height: 313px; text-align: center;">
+                            <p data-v-7d15c3c3="">您的购物车竟然是空的！</p>
                           </div>
-                        </div>
-                        <div class="cart-con" data-v-7d15c3c3=""
-                             style="height: 313px; text-align: center;">
-                          <p data-v-7d15c3c3="">您的购物车竟然是空的！</p>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -325,7 +325,6 @@
             data: {},
             dataType:'JSON',
             success: function (data) {
-              console.log(data);
               for (let i = 1; i < data.length; i++) {
                 if (data[i].goodsType.id === 1) {
                   clothing.push(data[i]);
@@ -362,7 +361,7 @@
                         '                                 style="margin: 0px 5px;">\n' +
                         '                        </div>\n' +
                         '                        <p data-v-0265f772="">\n' +
-                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + phone[i].price + ' </p>\n' +
+                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + phone[i].price + '.00</p>\n' +
                         '                      </div>\n' +
                         '                    </div>\n' +
                         '                  </div>';
@@ -391,7 +390,7 @@
                         '                                 style="margin: 0px 5px;">\n' +
                         '                        </div>\n' +
                         '                        <p data-v-0265f772="">\n' +
-                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + clothing[i].price + ' </p>\n' +
+                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + clothing[i].price + '.00</p>\n' +
                         '                      </div>\n' +
                         '                    </div>\n' +
                         '                  </div>';
@@ -420,7 +419,7 @@
                         '                                 style="margin: 0px 5px;">\n' +
                         '                        </div>\n' +
                         '                        <p data-v-0265f772="">\n' +
-                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + parts[i].price + ' </p>\n' +
+                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + parts[i].price + '.00</p>\n' +
                         '                      </div>\n' +
                         '                    </div>\n' +
                         '                  </div>';
@@ -449,7 +448,7 @@
                         '                                   style="margin: 0px 5px;">\n' +
                         '                          </div>\n' +
                         '                          <p data-v-0265f772="">\n' +
-                        '                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>'+ hot[i].price +'</p>\n' +
+                        '                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>'+ hot[i].price +'.00</p>\n' +
                         '                        </div>\n' +
                         '                      </div>\n' +
                         '                    </div>';

@@ -312,7 +312,7 @@
                                         </div>
                                         <p data-v-0265f772="">
                                             <span data-v-0265f772="" style="font-size: 14px;">￥</span>
-                                            ${goods.price}
+                                            ${goods.price}.00
                                         </p>
                                     </div>
                                 </div>

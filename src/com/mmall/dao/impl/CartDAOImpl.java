@@ -50,22 +50,23 @@ public class CartDAOImpl implements CartDAO {
                                 resultSet.getInt(4),
                                 resultSet.getString(5),
                                 resultSet.getString(6),
-                                resultSet.getInt(7),
-                                resultSet.getDate(8),
-                                resultSet.getDate(9)
+                                resultSet.getString(7),
+                                resultSet.getInt(8),
+                                resultSet.getDate(9),
+                                resultSet.getDate(10)
                         ),
                         new Goods(
-                               resultSet.getInt(10),
-                               resultSet.getString(11),
-                                resultSet.getDouble(12),
-                                resultSet.getString(13),
+                               resultSet.getInt(11),
+                               resultSet.getString(12),
+                                resultSet.getDouble(13),
                                 resultSet.getString(14),
+                                resultSet.getString(15),
                                 new GoodsType(
-                                       resultSet.getInt(18),
-                                       resultSet.getString(19)
+                                       resultSet.getInt(19),
+                                       resultSet.getString(20)
                                 ),
-                                resultSet.getDate(16),
-                                resultSet.getDate(17)
+                                resultSet.getDate(17),
+                                resultSet.getDate(18)
                         )
                 ));
             }

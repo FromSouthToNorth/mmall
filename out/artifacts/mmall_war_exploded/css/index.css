@@ -37,7 +37,7 @@ input {
 
 a {
     font-style: normal;
-    text-decoration: none !important;
+    text-decoration: none;
     color: #5079d9;
     cursor: pointer;
     transition: all .15s ease-out;

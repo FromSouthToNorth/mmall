@@ -6,6 +6,7 @@ public class Users {
     private Integer id;
     private String userName;
     private String userPassword;
+    private String avatar;
     private Integer userType;
     private Date registerDate;
     private Date loginDate;
@@ -58,13 +59,22 @@ public class Users {
         this.loginDate = loginDate;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public Users() {
     }
 
-    public Users(Integer id, String userName, String userPassword, Integer userType, Date registerDate, Date loginDate) {
+    public Users(Integer id, String userName, String userPassword, String avatar, Integer userType, Date registerDate, Date loginDate) {
         this.id = id;
         this.userName = userName;
         this.userPassword = userPassword;
+        this.avatar = avatar;
         this.userType = userType;
         this.registerDate = registerDate;
         this.loginDate = loginDate;

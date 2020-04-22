@@ -44,9 +44,10 @@ public class UsersDAOImpl implements UsersDAO {
                         resultSet.getInt(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
-                        resultSet.getInt(4),
-                        resultSet.getDate(5),
-                        resultSet.getDate(6)
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getDate(6),
+                        resultSet.getDate(7)
                 );
             }
         } catch (SQLException e) {

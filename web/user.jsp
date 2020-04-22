@@ -1,40 +1,79 @@
 <%--
   Created by IntelliJ IDEA.
   User: musix
-  Date: 2020/4/18
-  Time: 11:53
+  Date: 2020/4/22
+  Time: 22:43
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>商品详情</title>
+    <title>用户</title>
     <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/details.css">
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/index.js"></script>
 </head>
 <style>
- .gray-box[data-v-f85ff452] {
-        display: -ms-flexbox;
-        display: flex;
-        padding: 60px;
-        margin: 20px 0;
- }
- .down.down-disabled[data-v-d10cb02a] {
-     background-position: 0 -300px;
-     cursor: not-allowed;
- }
-
- .select .down[data-v-d10cb02a] {
-     background-position: 0 -60px;
- }
-
- .item-info .gray-box[data-v-f85ff452] {
-     padding: 0;
-     display: block;
- }
+    .w[data-v-541523cd] {
+        padding-top: 40px;
+    }
+    .account-sidebar[data-v-541523cd] {
+        width: 210px;
+        border-radius: 6px;
+    }
+    .gray-box {
+        overflow: hidden;
+        background: #fff;
+        border: 1px solid #cdcdcd;
+        border-color: rgba(0,0,0,.14);
+        box-shadow: 0 3px 8px -6px rgba(0,0,0,.1);
+    }
+    .account-sidebar .avatar[data-v-541523cd] {
+        padding-top: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .account-sidebar .avatar img[data-v-541523cd] {
+        width: 168px;
+        height: 168px;
+    }
+    .account-sidebar .avatar h5[data-v-541523cd] {
+        font-size: 18px;
+        line-height: 48px;
+        font-weight: 700;
+    }
+    .account-sidebar .account-nav[data-v-541523cd] {
+        padding-top: 15px;
+    }
+    .account-sidebar .account-nav li[data-v-541523cd] {
+        position: relative;
+        height: 48px;
+        border-top: 1px solid #ebebeb;
+        line-height: 48px;
+    }
+    li {
+        list-style-type: none;
+    }
+    .account-sidebar .account-nav li.current a[data-v-541523cd] {
+        position: relative;
+        z-index: 1;
+        height: 50px;
+        background-color: #98afee;
+        line-height: 50px;
+        color: #fff;
+    }
+    .account-sidebar .account-nav li:hover a[data-v-541523cd] {
+        position: relative;
+        z-index: 1;
+        height: 50px;
+        background-color: #98afee;
+        line-height: 50px;
+        color: #fff;
+    }
+    .account-sidebar .account-nav li a[data-v-541523cd] {
+        display: block;
+    }
 </style>
 <body>
 <div id="add">
@@ -72,9 +111,7 @@
                                                 <ul>
                                                     <li class="nav-user-avatar" data-v-7d15c3c3="">
                                                         <div data-v-7d15c3c3="">
-                              <span class="avatar" data-v-7d15c3c3=""
-                                    style="background-image: url(/image/avatar/20190826144820.jpg)">
-                              </span>
+                                                            <span class="avatar" data-v-7d15c3c3="" style="background-image: url(/image/avatar/20190826144820.jpg)"></span>
                                                         </div>
                                                         <p class="name" data-v-7d15c3c3="">${user.userName}</p>
                                                     </li>
@@ -97,7 +134,7 @@
                                     <div class="nav-user-wrapper pa active" data-v-7d15c3c3=""
                                          style="display: none;">
                                         <div class="nav-user-list" data-v-7d15c3c3="">
-                                            <div id="full-cart" class="full" data-v-7d15c3c3="" style="display: none;">
+                                            <div id="full-cart" class="full" data-v-7d15c3c3="" style="display: none">
                                                 <div class="nav-cart-items">
                                                     <ul class="product_list" data-v-7d15c3c3="">
                                                     </ul>
@@ -156,91 +193,30 @@
             </div>
         </div>
         <!-- /头部 -->
-        <!---->
-        <!---->
-        <div class="w store-content main" data-v-f85ff452="" data-v-c8a942a0="">
-            <div class="gray-box" data-v-f85ff452="">
-                <div class="gallery-wrapper">
-                    <div class="gallery" data-v-f85ff452="">
-                        <div class="thumbnail" data-v-f85ff452="">
-                            <ul data-v-f85ff452="">
-                                <c:forEach items="${goodsThumb}" var="thumb">
-                                    <li class=""  data-v-f85ff452="">
-                                        <img src="${thumb.goodsImg}" alt="" data-v-f85ff452="">
-                                    </li>
-                                </c:forEach>
+        <!--  -->
+        <div class="w" data-v-541523cd="">
+            <div class="content" data-v-541523cd="">
+                <div class="account-sidebar" data-v-541523cd="">
+                    <div class="avatar gray-box" data-v-541523cd="">
+                        <div data-v-541523cd="">
+                            <img data-v-541523cd="" src="${user.avatar}" alt="">
+                            <h5 data-v-541523cd="">${user.userName}</h5>
+                        </div>
+                        <div class="box-inner" data-v-541523cd="">
+                            <ul class="account-nav" data-v-541523cd="">
+                                <li class="current" data-v-541523cd=""><a data-v-541523cd="" href="">我的订单</a></li>
+                                <li class="" data-v-541523cd=""><a data-v-541523cd="" href="">账户资料</a></li>
+                                <li class="" data-v-541523cd=""><a data-v-541523cd="" href="">收货地址</a></li>
+                                <li class="" data-v-541523cd=""><a data-v-541523cd="" href="">我的优惠</a></li>
+                                <li class="" data-v-541523cd=""><a data-v-541523cd="" href="">售后服务</a></li>
+                                <li class="" data-v-541523cd=""><a data-v-541523cd="" href="">以旧换新</a></li>
                             </ul>
-                        </div>
-                        <div class="thumb" data-v-f85ff452="">
-                            <div class="big" data-v-f85ff452="">
-                                <img data-v-f85ff452="" src="${goods.goodsImg}" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="banner" data-v-f85ff452="">
-                    <div class="sku-custom-title" data-v-f85ff452="">
-                        <h4 data-v-f85ff452="">${goods.goodsName}</h4>
-                        <h6 data-v-f85ff452="">
-                            <span data-v-f85ff452="">${goods.goodsTitle}</span>
-                            <span class="price" data-v-f85ff452="">
-                                <em data-v-f85ff452="">￥</em>
-                                <i data-v-f85ff452="">${goods.price}</i>
-                            </span>
-                        </h6>
-                    </div>
-                    <div class="number" data-v-f85ff452="">
-                        <span class="params-name" data-v-f85ff452="">数量</span>
-                        <div class="item-cols-num clearfix" data-v-d10cb02a="" data-v-f85ff452="">
-                            <div class="select" data-v-d10cb02a="">
-                                <span class="down down-disabled" data-v-d10cb02a="">-</span>
-                                <span class="number" data-v-d10cb02a="">
-                                    <input class="show" data-v-d10cb02a="" readonly="readonly" value="1" maxlength="2" type="text">
-                                    <ul data-v-d10cb02a="" style="z-index: 1; transition: all 0s ease 0s; transform: translateY(-36px);"></ul>
-                                </span>
-                                <span class="up" data-v-d10cb02a="">+</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="buy" data-v-f85ff452="">
-                        <input class="main-btn" data-id="${goods.id}" data-v-612d7650="" data-v-f85ff452="" type="button" value="加入购物车" style="width: 145px; height: 50px; line-height: 48px">
-                        <input class="default-btn" data-v-612d7650="" data-v-f85ff452="" type="button" value="现在购买" style="width: 145px; height: 50px; margin-left: 10px">
-                    </div>
-                </div>
-            </div>
-            <div class="item-info" data-v-f85ff452="">
-                <div class="gray-box" data-v-26571f4f="" data-v-f85ff452="">
-                    <div class="title" data-v-26571f4f="">
-                        <h2 data-v-26571f4f="">产品信息</h2>
-                        <div class="" data-v-26571f4f=""></div>
-                    </div>
-                    <div data-v-26571f4f="">
-                        <div data-v-f85ff452="" data-v-26571f4f="">
-                            <div class="img-item" data-v-f85ff452="" data-v-26571f4f="">
-                                <div data-v-26571f4f="" data-v-f85ff452="">
-                                    <p style="text-align: center">
-                                        <c:forEach items="${goodsInfo}" var="info">
-                                            <img class="info-img" src="${info.goodsInfoImg}" alt="">
-                                        </c:forEach>
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!---->
-        <script>
-            $(function () {
-                $(".thumbnail ul li").click(function () {
-                    $(this).addClass("on").siblings().removeClass("on");
-                    let path = $(this).children("img")[0].src;
-                    $(".big img").attr("src",path);
-                })
-            })
-        </script>
-        <!---->
+        <!--  -->
         <!-- 底部 -->
         <div class="footer" data-v-5be35fd1="" data-v-c8a942a0="">
             <div class="container" data-v-5be35fd1="">
@@ -338,7 +314,8 @@
                 </div>
             </div>
         </div>
-        <!-- /底部 -->
+        </div>
+    <!-- /底部 -->
     </div>
 </div>
 </body>

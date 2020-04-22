@@ -382,7 +382,7 @@
                             </div>
                             <div class="nav-aside" data-v-7d15c3c3="">
                                 <div class="user pr" data-v-7d15c3c3="">
-                                    <a class="" data-v-7d15c3c3="" href="${user == null ? '/login.jsp' : '#'}">个人中心</a>
+                                    <a class="" data-v-7d15c3c3="" href="${user == null ? '/login.jsp' : '/user.jsp'}">个人中心</a>
                                     <c:if test="${user != null}">
                                         <div class="nav-user-wrapper pa" data-v-7d15c3c3="">
                                             <div class="nav-user-list"data-v-7d15c3c3="">

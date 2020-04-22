@@ -24,8 +24,7 @@
             <div class="w-box" data-v-7d15c3c3="">
               <div class="nav-logo" data-v-7d15c3c3="">
                 <h1 data-v-7d15c3c3="">
-                  <a class="router-link-active" data-v-7d15c3c3="" href="#/"
-                     title="XMall商城官网">XMall商城官网</a>
+                  <a class="router-link-active" data-v-7d15c3c3="" href="/index.jsp" title="XMall商城官网">XMall商城官网</a>
                 </h1>
               </div>
               <div class="right-box" data-v-7d15c3c3="">

@@ -41,7 +41,7 @@
                       <!---->
                     </div>
                   </div>
-                  <a class="" data-v-7d15c3c3="" href="#/goods"><object><a
+                  <a class="" data-v-7d15c3c3="" href="/goods?method=goods&term=all"><object><a
                           data-v-7d15c3c3="">全部商品</a></object></a>
                 </div>
                 <div class="nav-aside" data-v-7d15c3c3="">
@@ -71,14 +71,14 @@
                     </c:if>
                   </div>
                   <div class="shop pr" data-v-7d15c3c3="">
-                    <a class="" data-v-7d15c3c3="" href="#/cart"></a>
+                    <a id="go-cart" class="" data-v-7d15c3c3=""></a>
                     <span class="cart-num" data-v-7d15c3c3="">
                                             <i class="num no" data-v-7d15c3c3="">0</i>
                                         </span>
                     <div class="nav-user-wrapper pa active" data-v-7d15c3c3=""
                          style="display: none;">
                       <div class="nav-user-list" data-v-7d15c3c3="">
-                          <div id="fullCart" class="full" data-v-7d15c3c3="" style="display: none">
+                          <div id="full-cart" class="full" data-v-7d15c3c3="" style="display: none">
                             <div class="nav-cart-items">
                               <ul class="product_list" data-v-7d15c3c3="">
                               </ul>
@@ -95,14 +95,16 @@
                                 <span id="total-price" class="price-num" data-v-7d15c3c3=""></span>
                               </h5>
                               <h6 data-v-7d15c3c3="">
-                                <input class="main-btn" data-v-612d7650=""
-                                       data-v-7d15c3c3="" type="button" readonly="readonly"
-                                       value="去购物车"
-                                       style="height: 40px; width: 100%; margin: 0px; color: rgb(255, 255, 255); font-size: 14px; line-height: 38px;">
+                                <a href="/cart.jsp">
+                                  <input class="go-cart-btn" data-v-612d7650=""
+                                         data-v-7d15c3c3="" type="button" readonly="readonly"
+                                         value="去购物车"
+                                         style="height: 40px; width: 100%; margin: 0px; color: rgb(255, 255, 255); font-size: 14px; line-height: 38px;">
+                                </a>
                               </h6>
                             </div>
                           </div>
-                          <div id="cartCon" class="cart-con" data-v-7d15c3c3=""
+                          <div id="cart-con" class="cart-con" data-v-7d15c3c3=""
                                style="height: 313px; text-align: center;">
                             <p data-v-7d15c3c3="">您的购物车竟然是空的！</p>
                           </div>
@@ -137,7 +139,7 @@
       <!-- /头部 -->
 
       <div class="home main" data-v-4af9704d="">
-        <div data-v-4af9704d="" elemeent-loading-text="加载中..." style="min-height: 35vw; position: static;">
+        <div data-v-4af9704d="" style="min-height: 35vw; position: static;">
           <!--轮播图-->
           <div class="banner" data-v-4af9704d="">
             <div class="bg" data-v-4af9704d="">
@@ -356,12 +358,12 @@
                         '                                   type="button" readonly="readonly" value="查看详情"\n' +
                         '                                   style="margin: 0px 5px;">\n' +
                         '                          </a>\n' +
-                        '                          <input class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
+                        '                          <input data-id='+ phone[i].id +' class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
                         '                                 type="button" readonly="readonly" value="加入购物车"\n' +
                         '                                 style="margin: 0px 5px;">\n' +
                         '                        </div>\n' +
                         '                        <p data-v-0265f772="">\n' +
-                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + phone[i].price + '.00</p>\n' +
+                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + phone[i].price + '</p>\n' +
                         '                      </div>\n' +
                         '                    </div>\n' +
                         '                  </div>';
@@ -385,12 +387,12 @@
                         '                                   type="button" readonly="readonly" value="查看详情"\n' +
                         '                                   style="margin: 0px 5px;">\n' +
                         '                          </a>\n' +
-                        '                          <input class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
+                        '                          <input data-id='+ clothing[i].id +' class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
                         '                                 type="button" readonly="readonly" value="加入购物车"\n' +
                         '                                 style="margin: 0px 5px;">\n' +
                         '                        </div>\n' +
                         '                        <p data-v-0265f772="">\n' +
-                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + clothing[i].price + '.00</p>\n' +
+                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + clothing[i].price + '</p>\n' +
                         '                      </div>\n' +
                         '                    </div>\n' +
                         '                  </div>';
@@ -414,12 +416,12 @@
                         '                                   type="button" readonly="readonly" value="查看详情"\n' +
                         '                                   style="margin: 0px 5px;">\n' +
                         '                          </a>\n' +
-                        '                          <input class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
+                        '                          <input data-id='+ parts[i].id +' class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
                         '                                 type="button" readonly="readonly" value="加入购物车"\n' +
                         '                                 style="margin: 0px 5px;">\n' +
                         '                        </div>\n' +
                         '                        <p data-v-0265f772="">\n' +
-                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + parts[i].price + '.00</p>\n' +
+                        '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + parts[i].price + '</p>\n' +
                         '                      </div>\n' +
                         '                    </div>\n' +
                         '                  </div>';
@@ -443,12 +445,12 @@
                         '                                     data-v-0265f772="" type="button" readonly="readonly"\n' +
                         '                                     value="查看详情" style="margin: 0px 5px;">\n' +
                         '                            </a>\n' +
-                        '                            <input class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
+                        '                            <input data-id='+ hot[i].id +' class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
                         '                                   type="button" readonly="readonly" value="加入购物车"\n' +
                         '                                   style="margin: 0px 5px;">\n' +
                         '                          </div>\n' +
                         '                          <p data-v-0265f772="">\n' +
-                        '                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>'+ hot[i].price +'.00</p>\n' +
+                        '                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>'+ hot[i].price +'</p>\n' +
                         '                        </div>\n' +
                         '                      </div>\n' +
                         '                    </div>';

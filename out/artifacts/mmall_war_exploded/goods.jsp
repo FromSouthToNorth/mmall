@@ -15,12 +15,6 @@
     <script src="js/index.js"></script>
 </head>
 <style>
-    .main[data-v-9e9501ca] {
-        min-height: calc(100vh - 454px);
-        background: #ededed;
-        overflow: hidden;
-        width: 100%;
-    }
     .nav[data-v-9e9501ca] {
         height: 60px;
         line-height: 60px;
@@ -169,18 +163,16 @@
                         </div>
                         <div class="right-box" data-v-7d15c3c3="">
                             <div class="nav-list" data-v-7d15c3c3="">
-                                <div class="el-autocomplete" data-v-7d15c3c3="" minlength="1" maxlength="100">
-                                    <div class="el-input" props="[object Object]"
-                                         fetchsuggestions="function() { [native code] }" triggeronfocus="true">
+                                <div class="el-autocomplete" data-v-7d15c3c3="">
+                                    <div class="el-input">
                                         <!---->
                                         <i class="el-input__icon el-icon-search is-clickable"></i>
-                                        <input class="el-input__inner" autocomplete="off" placeholder="请输入商品信息"
-                                               icon="search" type="text" rows="2" validateevent="true">
+                                        <input class="el-input__inner" autocomplete="off" placeholder="请输入商品信息" type="text">
                                         <!---->
                                         <!---->
                                     </div>
                                 </div>
-                                <a class="" data-v-7d15c3c3="" href="#/goods"><object><a
+                                <a class="" data-v-7d15c3c3="" href="/goods?method=goods&term=all"><object><a
                                         data-v-7d15c3c3="">全部商品</a></object></a>
                             </div>
                             <div class="nav-aside" data-v-7d15c3c3="">
@@ -210,14 +202,14 @@
                                     </c:if>
                                 </div>
                                 <div class="shop pr" data-v-7d15c3c3="">
-                                    <a class="" data-v-7d15c3c3="" href="#/cart"></a>
+                                    <a id="go-cart" class="" data-v-7d15c3c3=""></a>
                                     <span class="cart-num" data-v-7d15c3c3="">
                                             <i class="num no" data-v-7d15c3c3="">0</i>
                                         </span>
                                     <div class="nav-user-wrapper pa active" data-v-7d15c3c3=""
                                          style="display: none;">
                                         <div class="nav-user-list" data-v-7d15c3c3="">
-                                            <div class="full" data-v-7d15c3c3="" style="display: none;">
+                                            <div id="full-cart" class="full" data-v-7d15c3c3="" style="display: none;">
                                                 <div class="nav-cart-items">
                                                     <ul class="product_list" data-v-7d15c3c3="">
                                                     </ul>
@@ -231,17 +223,19 @@
                                                     <h5 data-v-7d15c3c3="">
                                                         合计：
                                                         <span class="price-icon" data-v-7d15c3c3="">￥</span>
-                                                        <span class="price-num" data-v-7d15c3c3=""></span>
+                                                        <span id="total-price" class="price-num" data-v-7d15c3c3=""></span>
                                                     </h5>
                                                     <h6 data-v-7d15c3c3="">
-                                                        <input class="main-btn" data-v-612d7650=""
-                                                               data-v-7d15c3c3="" type="button" readonly="readonly"
-                                                               value="去购物车"
-                                                               style="height: 40px; width: 100%; margin: 0px; color: rgb(255, 255, 255); font-size: 14px; line-height: 38px;">
+                                                        <a href="/cart.jsp">
+                                                            <input class="go-cart-btn" data-v-612d7650=""
+                                                                   data-v-7d15c3c3="" type="button" readonly="readonly"
+                                                                   value="去购物车"
+                                                                   style="height: 40px; width: 100%; margin: 0px; color: rgb(255, 255, 255); font-size: 14px; line-height: 38px;">
+                                                        </a>
                                                     </h6>
                                                 </div>
                                             </div>
-                                            <div class="cart-con" data-v-7d15c3c3=""
+                                            <div id="cart-con" class="cart-con" data-v-7d15c3c3=""
                                                  style="height: 313px; text-align: center;">
                                                 <p data-v-7d15c3c3="">您的购物车竟然是空的！</p>
                                             </div>
@@ -306,13 +300,13 @@
                                                        type="button" readonly="readonly" value="查看详情"
                                                        style="margin: 0px 5px;">
                                             </a>
-                                            <input class="main-btn" data-v-612d7650 data-v-0265f772=""
+                                            <input data-id="${goods.id}" class="main-btn" data-v-612d7650 data-v-0265f772=""
                                                    type="button" readonly="readonly" value="加入购物车"
                                                    style="margin: 0px 5px;">
                                         </div>
                                         <p data-v-0265f772="">
                                             <span data-v-0265f772="" style="font-size: 14px;">￥</span>
-                                            ${goods.price}.00
+                                            ${goods.price}
                                         </p>
                                     </div>
                                 </div>

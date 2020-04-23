@@ -195,6 +195,13 @@
         display: block;
         width: 100px;
         height: 100px;
+        cursor: pointer;
+    }
+    #img-preview {
+        cursor: pointer;
+    }
+    #img-preview:hover {
+        color: #5683ea;
     }
     .edit-avatar .btn[data-v-2b6c3c9e] {
         width: 80px;
@@ -624,7 +631,8 @@
                                                 </div>
                                                 <div data-v-26571f4f="">
                                                     <div class="content" data-v-2b6c3c9e="" data-v-26571f4f="">
-                                                        <form>
+                                                        <form action="/user" method="post" enctype="multipart/form-data">
+                                                            <input type="hidden" name="id" value="${user.id}">
                                                             <div class="edit-l" data-v-2b6c3c9e="" data-v-26571f4f="">
                                                                 <div data-v-2b6c3c9e="" data-v-26571f4f="" style="width: 100px; height: 100px; border: 1px solid rgb(204,204,204); margin-bottom: 20px; overflow: hidden">
                                                                     <div data-v-2b6c3c9e="" data-v-26571f4f="">
@@ -634,7 +642,7 @@
                                                                 <div id="img-preview" data-v-2b6c3c9e="" data-v-26571f4f="" style="padding: 10px 0px;">头像预览</div>
                                                                 <div class="btn" data-v-2b6c3c9e="" data-v-26571f4f="">
                                                                     <a data-v-2b6c3c9e="" data-v-26571f4f="">重新选择</a>
-                                                                    <input data-v-2b6c3c9e="" data-v-26571f4f="" type="file" value="上传头像">
+                                                                    <input id="new-avatar" name="avatar" data-v-2b6c3c9e="" data-v-26571f4f="" type="file" value="上传头像">
                                                                 </div>
                                                             </div>
                                                             <div class="bootom-btn pa" data-v-2b6c3c9e="" data-v-26571f4f="">
@@ -760,6 +768,12 @@
                     });
                     $(document).on("click", "#delete-address", function () {
                     });
+                    let avatar = document.getElementById("img-preview");
+                    avatar.onclick = function () {
+                        let f = document.getElementById("new-avatar").files[0];
+                        let url = URL.createObjectURL(f);
+                        document.getElementById("avatar-img").src = url
+                    }
                 })
             </script>
             <!--  -->

@@ -3,6 +3,10 @@ package com.mmall.servlet;
 import com.mmall.entity.Users;
 import com.mmall.service.UsersService;
 import com.mmall.service.impl.UsersServiceImpl;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +14,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @WebServlet("/user")
 public class UsersServlet extends HttpServlet {
@@ -45,6 +53,44 @@ public class UsersServlet extends HttpServlet {
                     resp.getWriter().write("index.jsp");
                 } else {
                     resp.getWriter().write("用户名或密码错误！");
+                }
+                break;
+            case "updateAvatar":
+                DiskFileItemFactory factory = new DiskFileItemFactory();
+                ServletFileUpload upload = new ServletFileUpload(factory);
+                String fileName = null;
+                try {
+                    List<FileItem> fileItems = upload.parseRequest(req);
+                    for (FileItem fileItem : fileItems) {
+                        if (fileItem.isFormField()) {
+                            String fieldName = fileItem.getFieldName();
+                            String string = fileItem.getString("UTF-8");
+                            if (fieldName.equals("id")) {
+                                users.setId(Integer.parseInt(string));
+                            }
+                        } else {
+                            if (fileItem.getSize() > 0) {
+                                String name = fileItem.getName();
+                                String substring = name.substring(name.lastIndexOf("."));
+                                InputStream stream = fileItem.getInputStream();
+                                UUID uuid = UUID.randomUUID();
+                                fileName = uuid + substring;
+                                String file = req.getServletContext().getRealPath("image/avatar/" + fileName);
+                                FileOutputStream fileOutputStream = new FileOutputStream(file);
+                                int temp;
+                                while ((temp = stream.read()) != -1) {
+                                    fileOutputStream.write(temp);
+                                }
+                            }
+                        }
+                    }
+                    users.setAvatar("image/avatar/" + fileName);
+                    service.updateAvatar(users);
+                    Users byIdUsers = service.findByIdUsers(users.getId());
+                    session.setAttribute("user", byIdUsers);
+                    resp.sendRedirect("user.jsp");
+                } catch (FileUploadException e) {
+                    e.printStackTrace();
                 }
                 break;
 

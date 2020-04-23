@@ -21,4 +21,14 @@ public class UsersServiceImpl implements UsersService {
     public void updateLoginData(Users users) {
         usersDAO.updateLoginData(users);
     }
+
+    @Override
+    public void updateAvatar(Users users) {
+        usersDAO.updateAvatar(users);
+    }
+
+    @Override
+    public Users findByIdUsers(Integer id) {
+        return usersDAO.findByIdUsers(id);
+    }
 }

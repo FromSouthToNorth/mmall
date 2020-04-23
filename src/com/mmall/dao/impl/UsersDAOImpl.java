@@ -75,4 +75,51 @@ public class UsersDAOImpl implements UsersDAO {
             JDBCTools.release(connection, statement, null);
         }
     }
+
+    @Override
+    public void updateAvatar(Users users) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "update users set avatar = ? where id = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, users.getAvatar());
+            statement.setInt(2, users.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
+    }
+
+    @Override
+    public Users findByIdUsers(Integer id) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "select * from users where id = ?";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Users user = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user =  new Users(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getDate(6),
+                        resultSet.getDate(7)
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement ,resultSet);
+        }
+        return user;
+    }
 }

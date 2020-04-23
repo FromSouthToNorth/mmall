@@ -614,7 +614,7 @@
                                         <!--账户资料-->
                                         <div id="account-data-box" class="avatar-box" data-v-2b6c3c9e="" data-v-26571f4f="" style="display: none;">
                                             <div class="img-box" data-v-2b6c3c9e="" data-v-26571f4f="">
-                                                <img src="${user.avatar}" alt="" data-v-2b6c3c9e="" data-v-26571f4f="">
+                                                <img id="user-avatar" src="${user.avatar}" alt="" data-v-2b6c3c9e="" data-v-26571f4f="">
                                             </div>
                                             <div class="r-box" data-v-2b6c3c9e="" data-v-26571f4f="">
                                                 <h3 data-v-2b6c3c9e="" data-v-26571f4f="" style="margin-left: 13px;">修改头像</h3>
@@ -631,7 +631,7 @@
                                                 </div>
                                                 <div data-v-26571f4f="">
                                                     <div class="content" data-v-2b6c3c9e="" data-v-26571f4f="">
-                                                        <form action="/user" method="post" enctype="multipart/form-data">
+                                                        <form action="/user?method=updateAvatar" method="post" enctype="multipart/form-data">
                                                             <input type="hidden" name="id" value="${user.id}">
                                                             <div class="edit-l" data-v-2b6c3c9e="" data-v-26571f4f="">
                                                                 <div data-v-2b6c3c9e="" data-v-26571f4f="" style="width: 100px; height: 100px; border: 1px solid rgb(204,204,204); margin-bottom: 20px; overflow: hidden">
@@ -648,7 +648,7 @@
                                                             <div class="bootom-btn pa" data-v-2b6c3c9e="" data-v-26571f4f="">
                                                                 <input id="avatar-close" class="default-btn" type="button" data-v-612d7650="" data-v-2b6c3c9e="" data-v-26571f4f=""
                                                                        readonly="readonly" value="取消" style="width: 140px; height: 40px; line-height: 40px">
-                                                                <input class="ok-btn" data-v-612d7650="" data-v-2b6c3c9e="" data-v-26571f4f="" type="submit"
+                                                                <input id="update-avatar" class="ok-btn" data-v-612d7650="" data-v-2b6c3c9e="" data-v-26571f4f="" type="submit"
                                                                        readonly="readonly" value="确认" style="width: 140px; height: 40px; line-height: 40px">
                                                             </div>
                                                         </form>

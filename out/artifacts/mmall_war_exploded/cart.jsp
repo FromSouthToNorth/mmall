@@ -526,7 +526,7 @@
                                     <h5 class="shipping-tips ng-scope" data-v-e6523e26="">应付金额不含运费</h5>
                                 </div>
                             </div>
-                            <input class="big-main-btn main-btn" data-v-612d7650="" data-v-e6523e26="" type="button" readonly value="现在结算"
+                            <input class="big-main-btn cart-btn" data-v-612d7650="" data-v-e6523e26="" type="button" readonly value="现在结算"
                             style="margin: 0; width: 130px; height: 50px; line-height: 50px; font-size: 16px">
                         </div>
                     </div>

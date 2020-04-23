@@ -1157,7 +1157,8 @@ ul.box li img {
 }
 
 .main-btn[data-v-612d7650],
-.go-cart-btn[data-v-612d7650] {
+.go-cart-btn[data-v-612d7650],
+.cart-btn{
     border: 1px solid #5c81e3;
     border-radius: 4px;
     font-size: 12px;

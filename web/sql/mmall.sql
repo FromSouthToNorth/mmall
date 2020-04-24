@@ -1,0 +1,84 @@
+CREATE DATABASE mmall;
+
+use mmall;
+
+CREATE TABLE IF NOT EXISTS `users`(
+   id INT UNSIGNED AUTO_INCREMENT,
+   user_name VARCHAR(100) NOT NULL,
+   user_password VARCHAR(40) NOT NULL,
+	 avatar VARCHAR(268),
+	 user_type INT NOT NULL,
+   register_date DATE,
+	 login_date DATE,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `goods`(
+   id INT UNSIGNED AUTO_INCREMENT,
+   goods_name VARCHAR(100) NOT NULL,
+	 price DECIMAL(7,2) NOT NULL,
+   goods_title VARCHAR(360) NOT NULL,
+	 goods_img VARCHAR(1080) NOT NULL,
+	 goods_type INT NOT NULL,
+   register_date DATE,
+	 update_date DATE,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `goods_type`(
+   id INT UNSIGNED AUTO_INCREMENT,
+   type VARCHAR(160) NOT NULL,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `address`(
+   id INT UNSIGNED AUTO_INCREMENT,
+	 user_id INT NOT NULL,
+	 user_name VARCHAR(100) NOT NULL,
+   phone VARCHAR(100) NOT NULL,
+	 type INT NOT NULL,
+	 address VARCHAR(1380) NOT NULL,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `cart`(
+   id INT UNSIGNED AUTO_INCREMENT,
+	 user_id INT NOT NULL,
+   goods_id INT NOT NULL,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `order_form`(
+   id INT UNSIGNED AUTO_INCREMENT,
+	 order_form_id bigint not null,
+	 address_id INT NOT NULL,
+	 cart_id INT NOT NULL,
+	 state INT NOT NULL,
+   PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `slideshow`(
+   id INT UNSIGNED AUTO_INCREMENT,
+	 img VARCHAR(560) NOT NULL,
+	 PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `goods_info`(
+   id INT UNSIGNED AUTO_INCREMENT,
+	 goods_id INT NOT NULL,
+	 goods_info_img VARCHAR(560) NOT NULL,
+	 PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `goods_thumbnail`(
+   id INT UNSIGNED AUTO_INCREMENT,
+	 goods_id INT NOT NULL,
+	 goods_img VARCHAR(560) NOT NULL,
+	 PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -951,7 +951,6 @@
                         $("#update-type").val("update");
                         $("#address-id").val($(this).data("id"));
                         let id = $(this).data("id");
-                        alert(id);
                         $.get("/address",{"method":"findByIdAddress", "id":id},function(data) {
                             data = eval("("+data+")")
                             console.log(data);

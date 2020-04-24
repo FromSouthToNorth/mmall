@@ -74,14 +74,14 @@ public class AddressDAOImpl implements AddressDAO {
     public void updateByIdAddress(Address address) {
         Connection connection = JDBCTools.getConnection();
         PreparedStatement statement = null;
-        String sql = "update address set user_name = ? phone = ? address = ? `type` = ? where id = ?";
+        String sql = "update address set user_name = ?, phone = ?, address = ?, `type` = ? where id = ?";
         try {
             statement = connection.prepareStatement(sql);
             statement.setString(1, address.getUserName());
             statement.setString(2, address.getPhone());
             statement.setString(3, address.getAddress());
-            statement.setInt(4, address.getId());
-            statement.setInt(5, address.getType());
+            statement.setInt(4, address.getType());
+            statement.setInt(5, address.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -28,9 +28,16 @@ public class AddressServlet extends HttpServlet {
         Users users = (Users) session.getAttribute("user");
         if (users == null)
             return;
-        List<Address> byUserIdAddress = addressService.findByUserIdAddress(users.getId());
-        String json = JSON.toJSONStringWithDateFormat(byUserIdAddress, "yyyy-MM-dd");
-        resp.getWriter().write(json);
+        if ("all".equals(method)) {
+            List<Address> byUserIdAddress = addressService.findByUserIdAddress(users.getId());
+            String json = JSON.toJSONStringWithDateFormat(byUserIdAddress, "yyyy-MM-dd");
+            resp.getWriter().write(json);
+        }
+        if ("findByIdAddress".equals(method)) {
+            String id = req.getParameter("id");
+            Address byIdAddress = addressService.findByIdAddress(Integer.parseInt(id));
+            resp.getWriter().write(JSON.toJSONString(byIdAddress));
+        }
     }
 
     @Override
@@ -49,6 +56,17 @@ public class AddressServlet extends HttpServlet {
             addressService.deleteByIdAddress(Integer.parseInt(addressId));
         }
         if ("update".equals(method)) {
+            String name = req.getParameter("name");
+            String id = req.getParameter("id");
+            String address1 = req.getParameter("address");
+            String phone = req.getParameter("phone");
+            String addressType = req.getParameter("addressType");
+            address.setId(Integer.parseInt(id));
+            address.setAddress(address1);
+            address.setPhone(phone);
+            address.setUserName(name);
+            address.setType(Integer.parseInt(addressType));
+            address.setUserId(users.getId());
             addressService.updateByIdAddress(address);
         }
         if ("save".equals(method)) {
@@ -66,10 +84,6 @@ public class AddressServlet extends HttpServlet {
         List<Address> byUserIdAddress = addressService.findByUserIdAddress(users.getId());
         String json = JSON.toJSONStringWithDateFormat(byUserIdAddress, "yyyy-MM-dd");
         resp.getWriter().write(json);
-        if ("findByIdAddress".equals(method)) {
-            String id = req.getParameter("id");
-            Address byIdAddress = addressService.findByIdAddress(Integer.parseInt(id));
-            resp.getWriter().write(JSON.toJSONString(byIdAddress));
-        }
+
     }
 }

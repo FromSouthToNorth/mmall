@@ -734,14 +734,18 @@
                                             <span class="tel" data-v-26da3b24="" data-v-26571f4f="">电话</span>
                                         </div>
                                         <div id="address-list" data-v-26da3b24="" data-v-26571f4f="" style="display: none;">
-
-
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
                                         </div>
                                         <!-- 空收货地址 -->
                                         <div id="null-address" data-v-26da3b24="" data-v-26571f4f="" style="padding: 80px 0px; text-align: center; display: none;">
                                             <div data-v-26da3b24="" data-v-26571f4f="" style="font-size: 20px;text-align: center;">你还没有添加收货地址</div>
                                             <div data-v-26da3b24="" data-v-26571f4f="" style="margin: 20px">
                                                 <input class="default-btn add-the-address" data-v-612d7650="" data-v-26da3b24="" data-v-26571f4f="" type="button" readonly="readonly" value="添加收货地址">
+                                                <input id="null-address-show" type="hidden" value="0">
+                                                <input id="null-address-hide" type="hidden" value="0">
                                             </div>
                                         </div>
                                         <!-- /空收货地址 -->
@@ -808,12 +812,13 @@
                     $.ajax({
                         url:"/address",
                         type:"get",
+                        data:{"method":"all"},
                         dataType:"JSON",
                         success:function (data) {
                             if (data.length === 0) {
-                                $("#null-address").show();
+                                $("#null-address-show").val(1);
                             } else {
-                                $("#null-address").hide();
+                                $("#null-address-show").val(0);
                             }
                             let type;
                             for (let i = 0; i < data.length; i++) {
@@ -824,18 +829,19 @@
                                 }
                                 let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
                                                 '<div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
-                                        '         <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
-                                        '         <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
-                                        '         <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                                        '             <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
-                                        '         </div>\n' +
-                                        '         <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                                        '             <button class="m-button button--primary update-address button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
-                                        '             <button class="m-button button--danger delete-address button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
-                                        '         </div>' +
-                                                '</div>';
+                                                '<div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
+                                                '<div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
+                                                '<div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                                '    <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
+                                                '</div>\n' +
+                                                '<div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                                '    <button class="m-button button--primary update-address button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
+                                                '    <button class="m-button button--danger delete-address button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
+                                                '</div>' +
+                                            '</div>';
                                 $("#address-list").append(label);
                             }
+                            showAddress();
                         }
                     });
                     $(".account-nav li").click(function () {
@@ -848,6 +854,8 @@
                         $("#address-title").hide();
                         $("#address-list").hide();
                         $("#add-the-address").hide();
+                        $("#null-address-hide").val(0);
+                        showAddress();
                     });
                     $("#account-data").click(function () {
                         $("#title").text("我的资料");
@@ -856,14 +864,18 @@
                         $("#address-title").hide();
                         $("#address-list").hide();
                         $("#add-the-address").hide();
+                        $("#null-address-hide").val(0);
+                        showAddress();
                     });
                     $("#shipping-address").click(function () {
+                        $("#null-address-hide").val(1);
                         $("#title").text("收货地址");
                         $("#order-form").hide();
                         $("#account-data-box").hide();
                         $("#address-title").show();
                         $("#address-list").show();
                         $("#add-the-address").show();
+                        showAddress();
                     });
                     $("#avatar-btn").click(function () {
                         $("#edit-avatar").show();
@@ -878,61 +890,12 @@
                         alert($("#update-type").val());
                     });
                     $("#close").click(function () {
+                        $("#user-name").val("");
+                        $("#user-phone").val("");
+                        $("#address").val("");
                         $("#edit-the-address").hide();
                     });
-                    // 编辑地址按钮
-                    $(document).on("click", ".update-address", function () {
-                        $("#edit-the-address").show();
-                        $("#update-type").val("update");
-                        $("#address-id").val($(this).data("id"));
-                        let id = $(this).data("id");
-                        $.post("/address",{"method":"findByIdAddress", "id":id},function(data, status, request) {
-                            console.log(data.responseText);
-                            // $("#user-name").val(result.userName);
-                            // $("#user-phone").val(result.phone);
-                            // $("#address").val(result.address);
-                            // $(".m-checkbox__original").val(result.type);
-                        });
-                    });
-                    // 删除地址按钮
-                    $(document).on("click",".delete-address",function () {
-                        let id = $(this).data("id");
-                        $.ajax({
-                           url:"/address",
-                           type: "post",
-                           data:{"method":"delete","addressId":id},
-                           dataType: "json",
-                           success:function (data) {
-                               $("#address-list").empty();
-                               if (data.length === 0) {
-                                   $("#null-address").show();
-                               } else {
-                                   $("#null-address").hide();
-                               }
-                               let type;
-                               for (let i = 0; i < data.length; i++) {
-                                   if (data[i].type == 1) {
-                                       type = "(默认地址)";
-                                   } else {
-                                       type = "";
-                                   }
-                                   let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
-                                               '<div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
-                                               '         <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
-                                               '         <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
-                                               '         <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                                               '             <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
-                                               '         </div>\n' +
-                                               '         <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                                               '             <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
-                                               '             <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
-                                               '         </div>' +
-                                               '</div>';
-                                   $("#address-list").append(label);
-                               }
-                           }
-                        });
-                    });
+
                     // 地址保存按钮
                     $("#save").click(function () {
                         let name = $("#user-name").val();
@@ -940,17 +903,18 @@
                         let phone = $("#user-phone").val();
                         let addressType = $(".m-checkbox__original").val();
                         let method = $("#update-type").val();
+                        let id = $("#address-id").val();
                         $.ajax({
                             url:"/address",
                             type: "post",
-                            data:{"method":method,"name": name,"address":address, "phone": phone, "addressType": addressType},
+                            data:{"method":method,"name": name,"address":address, "phone": phone, "addressType": addressType,"id": id},
                             dataType: "json",
                             success:function (data) {
                                 $("#address-list").empty();
                                 if (data.length === 0) {
-                                    $("#null-address").show();
+                                    $("#null-address-show").val(1);
                                 } else {
-                                    $("#null-address").hide();
+                                    $("#null-address-show").val(0);
                                 }
                                 let type;
                                 for (let i = 0; i < data.length; i++) {
@@ -975,9 +939,67 @@
                                 }
                             }
                         });
+                        $("#user-name").val("");
+                        $("#user-phone").val("");
+                        $("#address").val("");
+                        $("#null-address").hide();
                         $("#edit-the-address").hide();
-                    })
-                    $(document).on("click", "#delete-address", function () {
+                    });
+                    // 编辑地址按钮
+                    $(document).on("click", ".update-address", function () {
+                        $("#edit-the-address").show();
+                        $("#update-type").val("update");
+                        $("#address-id").val($(this).data("id"));
+                        let id = $(this).data("id");
+                        $.get("/address",{"method":"findByIdAddress", "id":id},function(data) {
+                            data = eval("("+data+")")
+                            console.log(data);
+                            $("#user-name").val(data.userName);
+                            $("#user-phone").val(data.phone);
+                            $("#address").val(data.address);
+                            $(".m-checkbox__original").val(data.type);
+                            $("#address-id").val(id);
+                        });
+                    });
+                    // 删除地址按钮
+                    $(document).on("click",".delete-address",function () {
+                        let id = $(this).data("id");
+                        $.ajax({
+                            url:"/address",
+                            type: "post",
+                            data:{"method":"delete","addressId":id},
+                            dataType: "json",
+                            success:function (data) {
+                                $("#address-list").empty();
+                                if (data.length === 0) {
+                                    $("#null-address-show").val(1);
+                                } else {
+                                    $("#null-address-show").val(0);
+                                }
+                                let type;
+                                for (let i = 0; i < data.length; i++) {
+                                    if (data[i].type == 1) {
+                                        type = "(默认地址)";
+                                    } else {
+                                        type = "";
+                                    }
+                                    let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
+                                                '    <div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
+                                                '    <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
+                                                '    <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
+                                                '    <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                                '        <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
+                                                '    </div>\n' +
+                                                '    <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                                '        <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
+                                                '        <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
+                                                '  </div>' +
+                                                '</div>';
+                                    $("#address-list").append(label);
+                                }
+                                showAddress();
+                            }
+                        });
                     });
                     let avatar = document.getElementById("img-preview");
                     avatar.onclick = function () {
@@ -985,7 +1007,13 @@
                         let url = URL.createObjectURL(f);
                         document.getElementById("avatar-img").src = url
                     }
-
+                    function showAddress() {
+                        if ($("#null-address-hide").val() == 1 && $("#null-address-show").val() == 1) {
+                            $("#null-address").show();
+                        } else {
+                            $("#null-address").hide();
+                        }
+                    }
                 })
             </script>
             <!--  -->

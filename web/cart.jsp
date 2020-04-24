@@ -554,7 +554,6 @@
                                 let cartSize = 0;
                                 let totalPrice = 0;
                                 cartSize = data.length;
-                                console.log(data);
                                 if (data.length === 0) {
                                     $("#null-cart").css("display", "block");
                                     $("#cart-list").css("display", "none");
@@ -623,7 +622,6 @@
                                 data: {"method": "deleteCart", "cartId": cartId},
                                 dataType: "JSON",
                                 success: function (data) {
-                                    console.log(data);
                                     let cartSize = data.length;
                                     let totalPrice = 0;
                                     if (0 === cartSize) {
@@ -637,7 +635,6 @@
                                         $("#full-cart").css("display", "block");
                                     }
                                     for (let i = 0; i < data.length; i++) {
-                                        console.log(data);
                                         totalPrice += parseInt(data[i].goods.price);
                                         let label = '<li class="clearfix" data-v-7d15c3c3="">\n' +
                                             '           <div class="cart-item" data-v-7d15c3c3="">\n' +
@@ -677,7 +674,6 @@
                                     let cartSize = 0;
                                     let totalPrice = 0;
                                     cartSize = data.length;
-                                    console.log(data);
                                     if (data.length === 0) {
                                         $("#null-cart").css("display", "block");
                                         $("#cart-list").css("display", "none");

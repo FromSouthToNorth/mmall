@@ -455,6 +455,75 @@
     input[type="number"] {
         -moz-appearance: textfield;
     }
+    .m-checkbox {
+        color: #1f2d3d;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    .m-checkbox,
+    .m-checkbox__input {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        white-space: nowrap;
+    }
+    .m-checkbox__input {
+        color: #fff;
+        outline: 0;
+        line-height: 1;
+        vertical-align: middle;
+    }
+    .m-checkbox__inner::after {
+        box-sizing: content-box;
+        content: "";
+        border: 2px solid #fff;
+        border-left: 0;
+        border-top: 0;
+        height: 8px;
+        left: 5px;
+        position: absolute;
+        top: 1px;
+        -ms-transform: rotate(45deg) scaleY(0);
+        transform: rotate(45deg) scaleY(0);
+        width: 4px;
+        transition: transform .15s cubic-bezier(.71,-.46,.88,.6) .05s;
+        -ms-transform-origin: center;
+        transform-origin: center;
+    }
+    .m-checkbox__original {
+        opacity: 0;
+        outline: 0;
+        position: absolute;
+        margin: 0;
+        width: 0;
+        height: 0;
+        left: -999px;
+    }
+    .m-checkbox__input.is-checked .m-checkbox__inner::after {
+        -ms-transform: rotate(45deg) scaleY(1);
+        transform: rotate(45deg) scaleY(1);
+    }
+    .m-checkbox__inner {
+        display: inline-block;
+        font-size: 12px;
+        position: relative;
+        border: 1px solid #bfcbd9;
+        border-radius: 4px;
+        box-sizing: border-box;
+        width: 18px;
+        height: 18px;
+        background-color: #fff;
+        z-index: 1;
+        transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+    }
+    .m-checkbox__input.is-checked .m-checkbox__inner {
+        background-color: #20a0ff;
+        border-color: #0190fe;
+    }
+    .address-item + .address-item[data-v-26da3b24] {
+        border-top: 1px solid #cfcfcf;
+    }
 </style>
 <body>
 <div id="add">
@@ -600,7 +669,7 @@
                                 <h2 id="title" data-v-26571f4f="">我的订单</h2>
                                 <div data-v-26571f4f="">
                                     <span id="add-the-address" data-v-26da3b24="" data-v-26571f4f="" style="display:none;">
-                                        <input class="default-btn" data-v-26571f4f="" data-v-26da3b24="" data-v-612d7650=""
+                                        <input class="default-btn add-the-address" data-v-26571f4f="" data-v-26da3b24="" data-v-612d7650=""
                                         type="button" readonly="readonly" value="添加地址" style="margin: 0;">
                                     </span>
                                 </div>
@@ -665,19 +734,17 @@
                                             <span class="tel" data-v-26da3b24="" data-v-26571f4f="">电话</span>
                                         </div>
                                         <div id="address-list" data-v-26da3b24="" data-v-26571f4f="" style="display: none;">
-                                            <div class="address-item" data-v-26da3b24="" data-v-26571f4f="">
-                                                <div class="name" data-v-26da3b24="" data-v-26571f4f="">123</div>
-                                                <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">123</div>
-                                                <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">123</div>
-                                                <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">
-                                                    <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">（默认地址）</a>
-                                                </div>
-                                                <div class="operation" data-v-26da3b24="" data-v-26571f4f="">
-                                                    <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="">编辑</button>
-                                                    <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="">删除</button>
-                                                </div>
+
+
+                                        </div>
+                                        <!-- 空收货地址 -->
+                                        <div id="null-address" data-v-26da3b24="" data-v-26571f4f="" style="padding: 80px 0px; text-align: center; display: none;">
+                                            <div data-v-26da3b24="" data-v-26571f4f="" style="font-size: 20px;text-align: center;">你还没有添加收货地址</div>
+                                            <div data-v-26da3b24="" data-v-26571f4f="" style="margin: 20px">
+                                                <input class="default-btn add-the-address" data-v-612d7650="" data-v-26da3b24="" data-v-26571f4f="" type="button" readonly="readonly" value="添加收货地址">
                                             </div>
                                         </div>
+                                        <!-- /空收货地址 -->
                                         <!-- /收货地址 -->
                                         <!-- 编辑收货地址 -->
                                         <div id="edit-the-address" class="popup" data-v-d301be5e="" data-v-26da3b24="" style="display: none;">
@@ -692,16 +759,26 @@
                                                     <div class="s-content" data-v-d301be5e="">
                                                         <div class="md" data-v-26da3b24="" data-v-d301be5e="">
                                                             <div data-v-26da3b24="" data-v-d301be5e="">
-                                                                <input data-v-26da3b24="" data-v-d301be5e="" type="text" placeholder="收货人姓名">
+                                                                <input id="user-name" data-v-26da3b24="" data-v-d301be5e="" type="text" placeholder="收货人姓名">
                                                             </div>
                                                             <div data-v-26da3b24="" data-v-d301be5e="">
-                                                                <input data-v-26da3b24="" data-v-d301be5e="" type="number" placeholder="手机号码">
+                                                                <input id="user-phone" data-v-26da3b24="" data-v-d301be5e="" type="number" placeholder="手机号码">
                                                             </div>
                                                             <div data-v-26da3b24="" data-v-d301be5e="">
-                                                                <input data-v-26da3b24="" data-v-d301be5e="" type="text" placeholder="收货地址">
+                                                                <input id="address" data-v-26da3b24="" data-v-d301be5e="" type="text" placeholder="收货地址">
                                                             </div>
-                                                            <input class="btn save-btn" data-v-26da3b24="" data-v-d301be5e="" value="保存" type="button">
+                                                            <div data-v-26da3b24="" data-v-d301be5e="">
+                                                                <label class="m-checkbox auto-login" data-v-26da3b24="" data-v-d301be5e="">
+                                                                    <span class="m-checkbox__input is-clickable">
+                                                                        <span class="m-checkbox__inner"></span>
+                                                                        <input class="m-checkbox__original" type="hidden" value="0">
+                                                                    </span>
+                                                                    <span class="m-checkbox__label">设为默认</span>
+                                                                </label>
+                                                            </div>
+                                                            <input id="save" class="btn save-btn" data-v-26da3b24="" data-v-d301be5e="" value="保存" type="button">
                                                             <input id="update-type" type="hidden" value="">
+                                                            <input id="address-id" type="hidden" value="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -718,6 +795,47 @@
             <!--  -->
             <script>
                 $(function () {
+                    $(".m-checkbox__input").click(function () {
+                        let num = $(".m-checkbox__original").val();
+                        if (num == 0) {
+                            $(this).addClass("is-checked");
+                            $(".m-checkbox__original").val(1);
+                        } else {
+                            $(this).removeClass("is-checked");
+                            $(".m-checkbox__original").val(0);
+                        }
+                    });
+                    $.ajax({
+                        url:"/address",
+                        type:"get",
+                        dataType:"JSON",
+                        success:function (data) {
+                            if (data.length === 0) {
+                                $("#null-address").show();
+                            }
+                            let type;
+                            for (let i = 0; i < data.length; i++) {
+                                if (data[i].type == 1) {
+                                    type = "(默认地址)";
+                                } else {
+                                    type = "";
+                                }
+                                let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
+                                                '<div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
+                                        '         <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
+                                        '         <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
+                                        '         <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                        '             <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
+                                        '         </div>\n' +
+                                        '         <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                        '             <button class="m-button button--primary update-address button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
+                                        '             <button class="m-button button--danger delete-address button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
+                                        '         </div>' +
+                                                '</div>';
+                                $("#address-list").append(label);
+                            }
+                        }
+                    });
                     $(".account-nav li").click(function () {
                         $(this).addClass("current").siblings().removeClass("current");
                     });
@@ -752,7 +870,7 @@
                         $("#edit-avatar").hide();
                     });
                     // 添加地址按钮
-                    $("#add-the-address").click(function () {
+                    $(".add-the-address").click(function () {
                         $("#edit-the-address").show();
                         $("#update-type").val("save");
                         alert($("#update-type").val());
@@ -761,11 +879,98 @@
                         $("#edit-the-address").hide();
                     });
                     // 编辑地址按钮
-                    $(document).on("click", "#update-address", function () {
+                    $(document).on("click", ".update-address", function () {
                         $("#edit-the-address").show();
                         $("#update-type").val("update");
-                        alert($("#update-type").val());
+                        $("#address-id").val($(this).data("id"));
+                        let id = $(this).data("id");
+                        $.post("/address",{"method":"findByIdAddress", "id":id},function(data, status, request) {
+                            console.log(data.responseText);
+                            // $("#user-name").val(result.userName);
+                            // $("#user-phone").val(result.phone);
+                            // $("#address").val(result.address);
+                            // $(".m-checkbox__original").val(result.type);
+                        });
                     });
+                    // 删除地址按钮
+                    $(document).on("click",".delete-address",function () {
+                        let id = $(this).data("id");
+                        $.ajax({
+                           url:"/address",
+                           type: "post",
+                           data:{"method":"delete","addressId":id},
+                           dataType: "json",
+                           success:function (data) {
+                               $("#address-list").empty();
+                               if (data.length === 0) {
+                                   $("#null-address").show();
+                               }
+                               let type;
+                               for (let i = 0; i < data.length; i++) {
+                                   if (data[i].type == 1) {
+                                       type = "(默认地址)";
+                                   } else {
+                                       type = "";
+                                   }
+                                   let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
+                                               '<div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
+                                               '         <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
+                                               '         <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
+                                               '         <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                               '             <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
+                                               '         </div>\n' +
+                                               '         <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                               '             <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
+                                               '             <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
+                                               '         </div>' +
+                                               '</div>';
+                                   $("#address-list").append(label);
+                               }
+                           }
+                        });
+                    });
+                    // 地址保存按钮
+                    $("#save").click(function () {
+                        let name = $("#user-name").val();
+                        let address = $("#address").val();
+                        let phone = $("#user-phone").val();
+                        let addressType = $(".m-checkbox__original").val();
+                        let method = $("#update-type").val();
+                        $.ajax({
+                            url:"/address",
+                            type: "post",
+                            data:{"method":method,"name": name,"address":address, "phone": phone, "addressType": addressType},
+                            dataType: "json",
+                            success:function (data) {
+                                $("#address-list").empty();
+                                if (data.length === 0) {
+                                    $("#null-address").show();
+                                }
+                                let type;
+                                for (let i = 0; i < data.length; i++) {
+                                    if (data[i].type == 1) {
+                                        type = "(默认地址)";
+                                    } else {
+                                        type = "";
+                                    }
+                                    let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
+                                                ' <div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
+                                                '         <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
+                                                '         <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
+                                                '         <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                                '             <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
+                                                '         </div>\n' +
+                                                '         <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                                '             <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
+                                                '             <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
+                                                '         </div>' +
+                                                '</div>';
+                                    $("#address-list").append(label);
+                                }
+                            }
+                        });
+                        $("#edit-the-address").hide();
+                    })
                     $(document).on("click", "#delete-address", function () {
                     });
                     let avatar = document.getElementById("img-preview");
@@ -774,11 +979,7 @@
                         let url = URL.createObjectURL(f);
                         document.getElementById("avatar-img").src = url
                     }
-                    $("#update-avatar").click(function () {
-                        let f = document.getElementById("new-avatar").files[0];
-                        let url = URL.createObjectURL(f);
-                        document.getElementById("user-avatar").src = url
-                    });
+
                 })
             </script>
             <!--  -->

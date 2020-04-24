@@ -1,10 +1,10 @@
-package com.mmall.dao;
+package com.mmall.service;
 
 import com.mmall.entity.Address;
 
 import java.util.List;
 
-public interface AddressDAO {
+public interface AddressService {
     List<Address> findByUserIdAddress(Integer id);
     Address findByIdAddress(Integer id);
     void updateByIdAddress(Address address);

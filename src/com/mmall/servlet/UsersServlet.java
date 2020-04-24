@@ -3,6 +3,7 @@ package com.mmall.servlet;
 import com.mmall.entity.Users;
 import com.mmall.service.UsersService;
 import com.mmall.service.impl.UsersServiceImpl;
+import com.mmall.utils.GenerateNum;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -73,8 +74,8 @@ public class UsersServlet extends HttpServlet {
                                 String name = fileItem.getName();
                                 String substring = name.substring(name.lastIndexOf("."));
                                 InputStream stream = fileItem.getInputStream();
-                                UUID uuid = UUID.randomUUID();
-                                fileName = uuid + substring;
+                                String filName = GenerateNum.getInstance().GenerateOrder();
+                                fileName = filName + substring;
                                 String file = req.getServletContext().getRealPath("image/avatar/" + fileName);
                                 FileOutputStream fileOutputStream = new FileOutputStream(file);
                                 int temp;

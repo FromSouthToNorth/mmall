@@ -3,8 +3,18 @@ package com.mmall.entity;
 public class Address {
     private Integer id;
     private Integer userId;
+    private String userName;
     private String phone;
     private String address;
+    private Integer type;
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
     public Integer getId() {
         return id;
@@ -38,13 +48,23 @@ public class Address {
         this.address = address;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public Address() {
     }
 
-    public Address(Integer id, Integer userId, String phone, String address) {
+    public Address(Integer id, Integer userId, String userName, String phone, String address, Integer type) {
         this.id = id;
         this.userId = userId;
+        this.userName = userName;
         this.phone = phone;
         this.address = address;
+        this.type = type;
     }
 }

@@ -75,7 +75,6 @@ $(function () {
             data: {"method":"findByUserIdCart"},
             dataType:"JSON",
             success:function (data) {
-                console.log(data);
                 let cartSize = data.length;
                 let totalPrice = 0;
                 if (0 === cartSize) {
@@ -89,7 +88,6 @@ $(function () {
                     $("#full-cart").css("display","block");
                 }
                 for (let i = 0; i < data.length; i++) {
-                    console.log(data);
                     totalPrice += parseInt(data[i].goods.price);
                     let label = '<li class="clearfix" data-v-7d15c3c3="">\n' +
                         '           <div class="cart-item" data-v-7d15c3c3="">\n' +
@@ -135,7 +133,6 @@ $(function () {
                 window.location.href = "login.jsp";
             },
             success:function (data) {
-                console.log(data);
                 let cartSize = data.length;
                 let totalPrice = 0;
                 if (0 === cartSize) {
@@ -149,7 +146,6 @@ $(function () {
                     $("#full-cart").css("display","block");
                 }
                 for (let i = 0; i < data.length; i++) {
-                    console.log(data);
                     totalPrice += parseInt(data[i].goods.price);
                     let label = '<li class="clearfix" data-v-7d15c3c3="">\n' +
                         '           <div class="cart-item" data-v-7d15c3c3="">\n' +
@@ -195,7 +191,6 @@ $(function () {
             data: {"method": "deleteCart", "cartId": cartId},
             dataType: "JSON",
             success: function (data) {
-                console.log(data);
                 let cartSize = data.length;
                 let totalPrice = 0;
                 if (0 === cartSize) {
@@ -209,7 +204,6 @@ $(function () {
                     $("#full-cart").css("display", "block");
                 }
                 for (let i = 0; i < data.length; i++) {
-                    console.log(data);
                     totalPrice += parseInt(data[i].goods.price);
                     let label = '<li class="clearfix" data-v-7d15c3c3="">\n' +
                         '           <div class="cart-item" data-v-7d15c3c3="">\n' +

@@ -20,7 +20,7 @@
 
 </style>
 <body>
-<div id="add">
+<div id="app">
     <div class="main" data-v-c8a942a0="">
         <!-- 头部 -->
         <div class="header-box" data-v-7d15c3c3="" data-v-c8a942a0="">
@@ -227,7 +227,7 @@
                                             <span class="address" data-v-26da3b24="" data-v-26571f4f="">详细地址</span>
                                             <span class="tel" data-v-26da3b24="" data-v-26571f4f="">电话</span>
                                         </div>
-                                        <div id="address-list" data-v-26da3b24="" data-v-26571f4f="" style="display: none;">
+                                        <div id="address-list" v-for="item in list" :key="item.id" data-v-26da3b24="" data-v-26571f4f="" style="display: none;">
                                             <!---->
                                             <!---->
                                             <!---->
@@ -290,11 +290,7 @@
                     </div>
                 </div>
             </div>
-            <!--  -->
-            <script>
 
-            </script>
-            <!--  -->
         </div>
         <!-- 底部 -->
         <div class="footer" data-v-5be35fd1="" data-v-c8a942a0="">
@@ -397,5 +393,9 @@
     <!-- /底部 -->
     </div>
 </div>
+<!--  -->
+<script>
+</script>
+<!--  -->
 </body>
 </html>

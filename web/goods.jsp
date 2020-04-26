@@ -146,6 +146,18 @@
     .pager li:last-child {
         border-right: 1px solid #d1dbe5;
     }
+    .price-goods {
+        border: 1px solid #5c81e3;
+        border-radius: 4px;
+        font-size: 12px;
+        color: #fff;
+        background-color: #678ee7;
+        background-image: linear-gradient(180deg,#678ee7,#5078df);
+    }
+    .price-goods:hover {
+        background-color: #6c8cd4;
+        background-image: linear-gradient(180deg,#6c8cd4,#4769c2);
+    }
 </style>
 <body>
 <div id="add">
@@ -166,6 +178,7 @@
                         <input id="highPrice" data-v-9e9501ca="" type="number" placeholder="价格">
                         <input id="ok" class="price-goods" data-v-612d7650="" data-v-9e9501ca="" type="button" value="确定" style="margin-left: 10px">
                     </div>
+
                 </div>
             </div>
             <div data-v-9e9501ca="" class="" style="min-height: 35vw; position: static">

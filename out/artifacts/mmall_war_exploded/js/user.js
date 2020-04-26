@@ -124,17 +124,17 @@ $(function () {
                         type = "";
                     }
                     let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
-                        ' <div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
-                        '         <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
-                        '         <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
-                        '         <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                        '             <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
-                        '         </div>\n' +
-                        '         <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                        '             <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
-                        '             <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
-                        '         </div>' +
-                        '</div>';
+                                ' <div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
+                                '         <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
+                                '         <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
+                                '         <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                '             <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
+                                '         </div>\n' +
+                                '         <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                                '             <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
+                                '             <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
+                                '         </div>' +
+                                '</div>';
                     $("#address-list").append(label);
                 }
             }

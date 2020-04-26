@@ -47,4 +47,14 @@ public class GoodsServiceImpl implements GoodsService {
         goodsList.sort(Comparator.comparing(Goods::getPrice));
         return goodsList;
     }
+
+    @Override
+    public List<Goods> findByPriceGoods(Double lowPrice, Double highPrice) {
+        return goodsDAO.findByPriceGoods(lowPrice, highPrice);
+    }
+
+    @Override
+    public List<Goods> findByLikeNameGoods(String name) {
+        return goodsDAO.findByLikeNameGoods(name);
+    }
 }

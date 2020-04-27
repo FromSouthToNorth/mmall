@@ -83,11 +83,11 @@
                         url:'/user',
                         data:{'method':'login', 'userName': username, 'password' : password},
                         success:function (result) {
-                            if (result !== 'index.jsp') {
+                            if (result !== 'adminIndex.jsp') {
                                 alert(result);
                                 return;
                             }
-                            window.location.href = result
+                            window.location.href = result;
                         }
                     });
                 });

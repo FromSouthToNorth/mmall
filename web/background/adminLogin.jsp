@@ -59,22 +59,27 @@
     </div>
 </div>
 <script>
-$("#login").click(function () {
-    let name = $("#inputEmail").val();
-    let password = $("#inputPassword").val();
-    if (name!=="" && password!=="") {
-        $.ajax({
-            url:"/user",
-            type:"post",
-            data:{"method": "admin", "userName": name, "password": password},
-            success:function (result) {
-                console.log(result);
-            }
-        });
-    } else {
-        alert("请输入账户名，和密码！")
-    }
-})
+    $("#login").click(function () {
+        let name = $("#inputEmail").val();
+        let password = $("#inputPassword").val();
+        if (name!=="" && password!=="") {
+            $.ajax({
+                url:"/user",
+                type:"post",
+                data:{"method": "admin", "userName": name, "password": password},
+                success:function (result) {
+                    console.log(result);
+                    if (result !== "adminIndex.jsp") {
+                        alert("用户名或密码错误！")
+                    } else {
+                        window.location.href = result;
+                    }
+                }
+            });
+        } else {
+            alert("请输入账户名，和密码！")
+        }
+    })
 </script>
 </body>
 </html>

@@ -98,7 +98,7 @@ public class UsersServlet extends HttpServlet {
                 Users admin = service.findAdmin(users);
                 if (admin != null) {
                     session.setAttribute("admin", admin);
-                    resp.getWriter().write("登录成功！");
+                    resp.getWriter().write("adminIndex.jsp");
                 } else {
                     resp.getWriter().write("登陆失败！");
                 }

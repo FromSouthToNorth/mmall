@@ -8,4 +8,5 @@ public interface UsersService {
     void updateLoginData(Users users);
     void updateAvatar(Users users);
     Users findByIdUsers(Integer id);
+    Users findAdmin(Users users);
 }

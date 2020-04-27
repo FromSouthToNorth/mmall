@@ -122,4 +122,35 @@ public class UsersDAOImpl implements UsersDAO {
         }
         return user;
     }
+
+    @Override
+    public Users findAdmin(Users users) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "select * from users where user_name = ? and user_password = ? and user_type = 1";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Users user = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, users.getUserName());
+            statement.setString(2, users.getUserPassword());
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                user =  new Users(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getDate(6),
+                        resultSet.getDate(7)
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement ,resultSet);
+        }
+        return user;
+    }
 }

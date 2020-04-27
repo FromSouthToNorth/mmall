@@ -1,5 +1,6 @@
 package com.mmall.servlet;
 
+import com.alibaba.fastjson.JSON;
 import com.mmall.entity.Users;
 import com.mmall.service.UsersService;
 import com.mmall.service.impl.UsersServiceImpl;
@@ -20,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @WebServlet("/user")
 public class UsersServlet extends HttpServlet {
@@ -94,7 +94,14 @@ public class UsersServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
-
+            case "admin":
+                Users admin = service.findAdmin(users);
+                if (admin != null) {
+                    session.setAttribute("admin", admin);
+                    resp.getWriter().write("登录成功！");
+                } else {
+                    resp.getWriter().write("登陆失败！");
+                }
         }
     }
 

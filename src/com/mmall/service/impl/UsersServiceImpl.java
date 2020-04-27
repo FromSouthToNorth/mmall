@@ -31,4 +31,9 @@ public class UsersServiceImpl implements UsersService {
     public Users findByIdUsers(Integer id) {
         return usersDAO.findByIdUsers(id);
     }
+
+    @Override
+    public Users findAdmin(Users users) {
+        return usersDAO.findAdmin(users);
+    }
 }

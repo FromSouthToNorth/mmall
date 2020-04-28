@@ -52,7 +52,7 @@
     <div class="container">
         <form class="form-signin">
             <h2 class="form-signin-heading">Mmall 后台管理系统</h2>
-            <input type="text" id="inputEmail" class="form-control" placeholder="管理员邮箱">
+            <input type="text" id="inputEmail" class="form-control" placeholder="管理员名称">
             <input type="password" id="inputPassword" class="form-control" placeholder="密码">
             <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
         </form>
@@ -64,14 +64,14 @@
         let password = $("#inputPassword").val();
         if (name!=="" && password!=="") {
             $.ajax({
-                url:"/user",
+                url:"/admin",
                 type:"post",
                 data:{"method": "admin", "userName": name, "password": password},
                 success:function (result) {
                     console.log(result);
                     if (result !== "adminIndex.jsp") {
-                        alert("用户名或密码错误！")
-                    } else {
+                        alert(result);
+;                    } else {
                         window.location.href = result;
                     }
                 }

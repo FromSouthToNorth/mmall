@@ -83,7 +83,7 @@
                         url:'/user',
                         data:{'method':'login', 'userName': username, 'password' : password},
                         success:function (result) {
-                            if (result !== 'adminIndex.jsp') {
+                            if (result !== 'index.jsp') {
                                 alert(result);
                                 return;
                             }

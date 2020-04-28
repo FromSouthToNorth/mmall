@@ -94,14 +94,6 @@ public class UsersServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
-            case "admin":
-                Users admin = service.findAdmin(users);
-                if (admin != null) {
-                    session.setAttribute("admin", admin);
-                    resp.getWriter().write("adminIndex.jsp");
-                } else {
-                    resp.getWriter().write("登陆失败！");
-                }
         }
     }
 

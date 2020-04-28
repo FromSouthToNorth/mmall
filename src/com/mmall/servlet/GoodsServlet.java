@@ -143,18 +143,6 @@ public class GoodsServlet extends HttpServlet {
 
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html;charset=UTF-8");
-        req.setCharacterEncoding("UTF-8");
-        String method = req.getParameter("method");
-        HttpSession session = req.getSession();
-        if ("price".equals(method)) {
-
-        }
-    }
-
     private void getData(HttpServletResponse resp, HttpSession session, String sort, String term, int page, List<Goods> goodsList) throws IOException {
         int dataNum;
         assert goodsList != null;

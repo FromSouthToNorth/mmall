@@ -163,8 +163,9 @@
                     li = ' <li class="number"><a href="#">'+ i +'</a></li>';
                     $("#next").before(li);
                 }
-                let index = num;
-                dataDisplay(data, 0 ,index);
+                // let index = num;
+                let  index;
+                dataDisplay(data, 0 ,num);
                 $("#next").click(function () {
                     console.log("page=" + page);
                     console.log("now_page=" + now_page);
@@ -182,8 +183,8 @@
                     } else {
                         $("#previous").removeClass("disabled");
                     }
-                    $("#goodsList").empty();
-                    dataDisplay(data, index, index = index + num);
+                    index = num * now_page
+                    dataDisplay(data, index - num, index);
                 });
                 $("#previous").click(function () {
                     if (now_page - 1 < 1) {
@@ -200,39 +201,36 @@
                     } else {
                         $("#next").removeClass("disabled");
                     }
-                    $("#goodsList").empty();
-                    dataDisplay(data, index = index-2*num, index = index + num);
+                    index = num * now_page
+                    dataDisplay(data, index - num, index);
                 });
                 $(document).on("click", ".number", function () {
-                    $("#goodsList").empty();
                     $(this).addClass("active");
                     $(".number").not(this).removeClass("active");
-                    if ($(this).text()==1){
-                        $("#goodsList").empty();
-                        dataDisplay(data,  $(this).text() - 1, index = $(this).text() * num);
-                    } else {
-                        $("#goodsList").empty();
-                        dataDisplay(data,  index, index = $(this).text() * num);
-                    }
+                    now_page = parseInt($(this).text());
+                    console.log(now_page);
+                    let index = parseInt($(this).text()) * num;
+                    dataDisplay(data,  index - num,  index);
                 });
             }
         });
         function dataDisplay(data, begin, end) {
+            $("#goodsList").empty();
             let html = "";
             for (let i = begin; i < end; i++) {
                 html = '<tr>\n' +
-                    '     <td>'+ data[i].id +'</td>\n' +
-                    '     <td><img src="' + data[i].goodsImg + '" alt="..." class="img-rounded"></td>\n' +
-                    '     <td>'+ data[i].goodsName +'</td>\n' +
-                    '     <td>'+ data[i].goodsTitle +'</td>\n' +
-                    '     <td>'+ data[i].price +'</td>\n' +
-                    '     <td>'+ data[i].registerDate +'</td>\n' +
-                    '     <td>'+ data[i].updateDate +'</td>\n' +
-                    '     <td>\n' +
-                    '         <button type="button" class="btn btn-primary btn-sm" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>\n' +
-                    '         <button type="button" class="btn btn-danger btn-sm" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>\n' +
-                    '     </td>\n' +
-                    ' </tr>';
+                            '<td>'+ data[i].id +'</td>\n' +
+                            '<td><img src="' + data[i].goodsImg + '" alt="..." class="img-rounded"></td>\n' +
+                            '<td>'+ data[i].goodsName +'</td>\n' +
+                            '<td>'+ data[i].goodsTitle +'</td>\n' +
+                            '<td>'+ data[i].price +'</td>\n' +
+                            '<td>'+ data[i].registerDate +'</td>\n' +
+                            '<td>'+ data[i].updateDate +'</td>\n' +
+                            '<td>\n' +
+                            '    <button type="button" class="btn btn-primary btn-sm" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>\n' +
+                            '    <button type="button" class="btn btn-danger btn-sm" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>\n' +
+                            '</td>\n' +
+                        ' </tr>';
                 $("#goodsList").append(html);
             }
         }

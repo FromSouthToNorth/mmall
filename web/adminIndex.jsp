@@ -15,14 +15,13 @@
     <script src="/js/bootstrap.js"></script>
 </head>
 <style>
-    tbody td img {
+    tbody tr td img {
         width: 60px;
         height: auto;
     }
     table tbody td {
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
     }
     td button + button {
         margin-left: 6px;
@@ -33,6 +32,10 @@
     th, td {
         font-size: 12px;
         text-align: center;
+    }
+    .table th,
+    .table td {
+        word-break: break-all;
     }
     @-moz-document url-prefix() {
         fieldset { display: table-cell; }
@@ -94,38 +97,35 @@
                 </form>
                 <nav class="navbar navbar-default">
                     <button style="margin-left: 10px" type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加商品</button>
-                    <p style="padding-right: 30px" class="navbar-text navbar-right">共有数据： <a href="#" class="navbar-link">Mark Otto</a> 条</p>
+                    <p style="padding-right: 30px" class="navbar-text navbar-right">共有数据： <a href="#" id="total" class="navbar-link"></a> 条</p>
                 </nav>
-                <div style="margin-top: 20px; margin-bottom: 70px">
+                <div style="margin-top: 20px;">
                    <table class="table table-bordered table-hover table-condensed">
                        <thead>
                        <tr>
-                           <th>id</th>
-                           <th>略缩图</th>
+                           <th style="min-width: 28px;">id</th>
+                           <th style="min-width: 110px">略缩图</th>
                            <th>商品名称</th>
                            <th>描述</th>
-                           <th>单价</th>
-                           <th>创建时间</th>
-                           <th>更新时间</th>
-                           <th>操作</th>
+                           <th style="min-width: 50px;">单价</th>
+                           <th style="min-width: 74px;">创建时间</th>
+                           <th style="min-width: 74px;">更新时间</th>
+                           <th style="min-width: 112px;">操作</th>
                        </tr>
                        </thead>
+                       <tbody id="goodsList">
+                       </tbody>
                    </table>
                 </div>
-                <nav aria-label="Page navigation">
+                <nav id="paging" aria-label="Page navigation">
                     <ul class="pagination pull-right">
-                        <li>
+                        <li id="previous">
                             <a href="#" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
+                        <li id="next">
+                            <a href="#"  aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
@@ -141,20 +141,102 @@
 </div>
 <script>
     $(function () {
+        let num = 6;//每页显示多少条数据，暂定设为6.
+        let page;//总页数
+        let now_page = 1;//当前页数
         $.ajax({
             type:"post",
             url:"/adminGoods",
             data:{"method":"allGoods"},
             dataType:"json",
             success:function (data) {
+                $("#total").text(data.length);
+                $("#goodsList").empty();
                 console.log(data);
-                // let html = "";
-                // for (let i = 0; i < data.length; i++) {
-                //     html = '';
-                //
-                // }
+                if (data.length % num === 0) {
+                    page = data.length / num;
+                } else {
+                    page = Math.ceil(data.length / num + 1);
+                }
+                let li = "";
+                for (let i = 1; i < page; i++) {
+                    li = ' <li class="number"><a href="#">'+ i +'</a></li>';
+                    $("#next").before(li);
+                }
+                let index = num;
+                dataDisplay(data, 0 ,index);
+                $("#next").click(function () {
+                    console.log("page=" + page);
+                    console.log("now_page=" + now_page);
+                    if (now_page + 1 === page) {
+                        $(this).addClass("disabled");
+                        return;
+                    } else {
+                        now_page ++;
+                        $(".pagination.pull-right li").eq(now_page).addClass("active").siblings().removeClass("active");
+                        $(this).removeClass("disabled");
+                    }
+                    if (now_page - 1 < 1) {
+                        $("#previous").addClass("disabled");
+                        return;
+                    } else {
+                        $("#previous").removeClass("disabled");
+                    }
+                    $("#goodsList").empty();
+                    dataDisplay(data, index, index = index + num);
+                });
+                $("#previous").click(function () {
+                    if (now_page - 1 < 1) {
+                        $(this).addClass("disabled");
+                        return;
+                    } else {
+                        now_page --;
+                        $(".pagination.pull-right li").eq(now_page).addClass("active").siblings().removeClass("active");
+                        $(this).removeClass("disabled");
+                    }
+                    if (now_page + 1 > page) {
+                        $("#next").addClass("disabled");
+                        return;
+                    } else {
+                        $("#next").removeClass("disabled");
+                    }
+                    $("#goodsList").empty();
+                    dataDisplay(data, index = index-2*num, index = index + num);
+                });
+                $(document).on("click", ".number", function () {
+                    $("#goodsList").empty();
+                    $(this).addClass("active");
+                    $(".number").not(this).removeClass("active");
+                    if ($(this).text()==1){
+                        $("#goodsList").empty();
+                        dataDisplay(data,  $(this).text() - 1, index = $(this).text() * num);
+                    } else {
+                        $("#goodsList").empty();
+                        dataDisplay(data,  index, index = $(this).text() * num);
+                    }
+                });
             }
-        })
+        });
+        function dataDisplay(data, begin, end) {
+            let html = "";
+            for (let i = begin; i < end; i++) {
+                html = '<tr>\n' +
+                    '     <td>'+ data[i].id +'</td>\n' +
+                    '     <td><img src="' + data[i].goodsImg + '" alt="..." class="img-rounded"></td>\n' +
+                    '     <td>'+ data[i].goodsName +'</td>\n' +
+                    '     <td>'+ data[i].goodsTitle +'</td>\n' +
+                    '     <td>'+ data[i].price +'</td>\n' +
+                    '     <td>'+ data[i].registerDate +'</td>\n' +
+                    '     <td>'+ data[i].updateDate +'</td>\n' +
+                    '     <td>\n' +
+                    '         <button type="button" class="btn btn-primary btn-sm" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>\n' +
+                    '         <button type="button" class="btn btn-danger btn-sm" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>\n' +
+                    '     </td>\n' +
+                    ' </tr>';
+                $("#goodsList").append(html);
+            }
+        }
+
     })
 </script>
 </body>

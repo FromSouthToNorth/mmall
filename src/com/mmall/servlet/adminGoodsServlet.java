@@ -22,10 +22,17 @@ public class adminGoodsServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
         String method = req.getParameter("method");
+        List<Goods> allGoods = null;
         if ("allGoods".equals(method)) {
-            List<Goods> allGoods = goodsService.findAllGoods();
-            String json = JSON.toJSONStringWithDateFormat(allGoods, "yyyy-MM-dd");
-            resp.getWriter().write(json);
+            allGoods = goodsService.findAllGoods();
         }
+        if ("findByMinDateAndMaxDateAndLikeNameGoods".equals(method)) {
+            String minDate = req.getParameter("minDate");
+            String maxDate = req.getParameter("maxDate");
+            String goodsName = req.getParameter("goodsName");
+            allGoods = goodsService.findByDateAndLikeNameGoods(minDate, maxDate, goodsName);
+        }
+        String json = JSON.toJSONStringWithDateFormat(allGoods, "yyyy-MM-dd");
+        resp.getWriter().write(json);
     }
 }

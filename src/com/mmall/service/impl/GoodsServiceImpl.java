@@ -57,4 +57,9 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> findByLikeNameGoods(String name) {
         return goodsDAO.findByLikeNameGoods(name);
     }
+
+    @Override
+    public List<Goods> findByDateAndLikeNameGoods(String minData, String maxData, String name) {
+        return goodsDAO.findByDateAndLikeNameGoods(minData, maxData, name);
+    }
 }

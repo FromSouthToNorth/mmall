@@ -88,15 +88,59 @@
                 <form id="form-search" class="form-inline" novalidate="novalidate">
                     <div class="text-c">
                         日期范围：
-                        <input class="form-control" id="minData" name="minData" type="date" style="width: 140px;">
+                        <input class="form-control" id="minDate" name="minData" type="date" style="width: 140px;">
                         -
-                        <input class="form-control" id="maxData" name="maxData" type="date" style="width: 140px;">
-                        <input class="form-control" type="text" name="goodsName" placeholder="商品名称" style="width: 250px;">
-                        <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+                        <input class="form-control" id="maxDate" name="maxData" type="date" style="width: 140px;">
+                        <input class="form-control" id="goodsName" type="text" name="goodsName" placeholder="商品名称" style="width: 250px;">
+                        <button id="goods-search" class="btn btn-success" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+                        <button id="refresh" class="btn btn-warning pull-right btn-sm" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                     </div>
                 </form>
                 <nav class="navbar navbar-default">
-                    <button style="margin-left: 10px" type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加商品</button>
+                    <button style="margin-left: 10px" data-toggle="modal" data-target="#save-goods" type="button" class="btn btn-primary navbar-btn btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加商品</button>
+                    <div id="save-goods" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title">添加商品</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label>商品封面</label>
+                                            <input type="file" id="exampleInputFile">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>商品名称</label>
+                                            <input type="test" class="form-control" id="exampleInputEmail1" placeholder="商品名称">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">商品价格</label>
+                                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="商品价格">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>商品描述</label>
+                                            <textarea class="form-control" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary">提交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <p style="padding-right: 30px" class="navbar-text navbar-right">共有数据： <a href="#" id="total" class="navbar-link"></a> 条</p>
                 </nav>
                 <div style="margin-top: 20px;">
@@ -119,16 +163,6 @@
                 </div>
                 <nav id="paging" aria-label="Page navigation">
                     <ul class="pagination pull-right">
-                        <li id="previous">
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li id="next">
-                            <a href="#"  aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -141,78 +175,46 @@
 </div>
 <script>
     $(function () {
+        // $("#save-goods").modal(options);
         let num = 6;//每页显示多少条数据，暂定设为6.
         let page;//总页数
         let now_page = 1;//当前页数
-        $.ajax({
-            type:"post",
-            url:"/adminGoods",
-            data:{"method":"allGoods"},
-            dataType:"json",
-            success:function (data) {
-                $("#total").text(data.length);
-                $("#goodsList").empty();
-                console.log(data);
-                if (data.length % num === 0) {
-                    page = data.length / num;
-                } else {
-                    page = Math.ceil(data.length / num + 1);
+        function defaultData() {
+            $.ajax({
+                type:"post",
+                url:"/adminGoods",
+                data:{"method":"allGoods"},
+                dataType:"json",
+                success:function (data) {
+                    getData(data);
                 }
-                let li = "";
-                for (let i = 1; i < page; i++) {
-                    li = ' <li class="number"><a href="#">'+ i +'</a></li>';
-                    $("#next").before(li);
-                }
-                // let index = num;
-                let  index;
-                dataDisplay(data, 0 ,num);
-                $("#next").click(function () {
-                    console.log("page=" + page);
-                    console.log("now_page=" + now_page);
-                    if (now_page + 1 === page) {
-                        $(this).addClass("disabled");
-                        return;
-                    } else {
-                        now_page ++;
-                        $(".pagination.pull-right li").eq(now_page).addClass("active").siblings().removeClass("active");
-                        $(this).removeClass("disabled");
-                    }
-                    if (now_page - 1 < 1) {
-                        $("#previous").addClass("disabled");
-                        return;
-                    } else {
-                        $("#previous").removeClass("disabled");
-                    }
-                    index = num * now_page
-                    dataDisplay(data, index - num, index);
-                });
-                $("#previous").click(function () {
-                    if (now_page - 1 < 1) {
-                        $(this).addClass("disabled");
-                        return;
-                    } else {
-                        now_page --;
-                        $(".pagination.pull-right li").eq(now_page).addClass("active").siblings().removeClass("active");
-                        $(this).removeClass("disabled");
-                    }
-                    if (now_page + 1 > page) {
-                        $("#next").addClass("disabled");
-                        return;
-                    } else {
-                        $("#next").removeClass("disabled");
-                    }
-                    index = num * now_page
-                    dataDisplay(data, index - num, index);
-                });
-                $(document).on("click", ".number", function () {
-                    $(this).addClass("active");
-                    $(".number").not(this).removeClass("active");
-                    now_page = parseInt($(this).text());
-                    console.log(now_page);
-                    let index = parseInt($(this).text()) * num;
-                    dataDisplay(data,  index - num,  index);
-                });
-            }
+            });
+        }
+        defaultData();
+        $("#refresh").click(function () {
+            defaultData();
+        });
+        $("#goods-search").click(function () {
+             let minDate = $("#minDate").val();
+             let maxDate = $("#maxDate").val();
+             let goodsName = $("#goodsName").val();
+             if (minDate!==""&&maxDate!==""&&goodsName!==""){
+                 $.ajax({
+                     url:"/adminGoods",
+                     type: "post",
+                     data:{"method":"findByMinDateAndMaxDateAndLikeNameGoods","minDate":minDate,"maxDate":maxDate,"goodsName":goodsName},
+                     dataType: "json",
+                     success:function (data) {
+                         if (data.length !== 0) {
+                             getData(data);
+                         } else {
+                             alert("没有检索到数据！");
+                         }
+                     }
+                 })
+             } else {
+                 alert("请输入需要检索的商品信息！")
+             }
         });
         function dataDisplay(data, begin, end) {
             $("#goodsList").empty();
@@ -234,7 +236,78 @@
                 $("#goodsList").append(html);
             }
         }
-
+        function getData(data) {
+            $("#total").text(data.length);
+            $("#goodsList").empty();
+            if (data.length % num === 0) {
+                page = data.length / num;
+            } else {
+                page = Math.ceil(data.length / num + 1);
+            }
+            let li = "<li id=\"previous\">\n" +
+                "<a href=\"#\" aria-label=\"Previous\">\n" +
+                "    <span aria-hidden=\"true\">&laquo;</span>\n" +
+                "</a>\n" +
+                "</li>";
+            for (let i = 1; i < page; i++) {
+                li += ' <li class="number"><a href="#">'+ i +'</a></li>';
+            }
+            $(".pagination.pull-right").empty();
+            $(".pagination.pull-right").append(li + "<li id=\"next\">\n" +
+                "    <a href=\"#\"  aria-label=\"Next\">\n" +
+                "        <span aria-hidden=\"true\">&raquo;</span>\n" +
+                "    </a>\n" +
+                "</li>");
+            let index;
+            dataDisplay(data, 0 ,num);
+            $(".pagination.pull-right li").eq(now_page).addClass("active");
+            $(document).on("click","#next", function () {
+                console.log("page=" + page);
+                console.log("now_page=" + now_page);
+                if (now_page + 1 === page) {
+                    $(this).addClass("disabled");
+                    return;
+                } else {
+                    now_page ++;
+                    $(".pagination.pull-right li").eq(now_page).addClass("active").siblings().removeClass("active");
+                    $(this).removeClass("disabled");
+                }
+                if (now_page - 1 < 1) {
+                    $("#previous").addClass("disabled");
+                    return;
+                } else {
+                    $("#previous").removeClass("disabled");
+                }
+                index = num * now_page
+                dataDisplay(data, index - num, index);
+            });
+            $(document).on("click","#previous", function () {
+                if (now_page - 1 < 1) {
+                    $(this).addClass("disabled");
+                    return;
+                } else {
+                    now_page --;
+                    $(".pagination.pull-right li").eq(now_page).addClass("active").siblings().removeClass("active");
+                    $(this).removeClass("disabled");
+                }
+                if (now_page + 1 > page) {
+                    $("#next").addClass("disabled");
+                    return;
+                } else {
+                    $("#next").removeClass("disabled");
+                }
+                index = num * now_page
+                dataDisplay(data, index - num, index);
+            });
+            $(document).on("click", ".number", function () {
+                $(this).addClass("active");
+                $(".number").not(this).removeClass("active");
+                now_page = parseInt($(this).text());
+                console.log(now_page);
+                let index = parseInt($(this).text()) * num;
+                dataDisplay(data,  index - num,  index);
+            });
+        }
     })
 </script>
 </body>

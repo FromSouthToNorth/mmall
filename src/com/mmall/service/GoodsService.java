@@ -13,4 +13,5 @@ public interface GoodsService {
     List<Goods> ascendingGoods(List<Goods> goodsList);
     List<Goods> findByPriceGoods(Double lowPrice, Double highPrice);
     List<Goods> findByLikeNameGoods(String name);
+    List<Goods> findByDateAndLikeNameGoods(String minData, String maxData, String name);
 }

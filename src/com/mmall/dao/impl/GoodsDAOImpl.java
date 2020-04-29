@@ -180,4 +180,42 @@ public class GoodsDAOImpl implements GoodsDAO {
         }
         return goods;
     }
+
+    @Override
+    public List<Goods> findByDateAndLikeNameGoods(String minData, String maxData, String name) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "SELECT * FROM goods inner join goods_type on goods_type.id = goods.goods_type WHERE register_date BETWEEN ? AND ? and goods_name like ?";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Goods> goods = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, minData);
+            statement.setString(2, maxData);
+            statement.setString(3,"%" + name + "%");
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                goods.add(
+                        new Goods(
+                                resultSet.getInt(1),
+                                resultSet.getString(2),
+                                resultSet.getDouble(3),
+                                resultSet.getString(4),
+                                resultSet.getString(5),
+                                new GoodsType(
+                                        resultSet.getInt(9),
+                                        resultSet.getString(10)
+                                ),
+                                resultSet.getDate(7),
+                                resultSet.getDate(8)
+                        )
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, resultSet);
+        }
+        return goods;
+    }
 }

@@ -260,4 +260,20 @@ public class GoodsDAOImpl implements GoodsDAO {
             JDBCTools.release(connection, statement, null);
         }
     }
+
+    @Override
+    public void findByIdDeleteGoods(Integer id) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "delete from goods where id = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
+    }
 }

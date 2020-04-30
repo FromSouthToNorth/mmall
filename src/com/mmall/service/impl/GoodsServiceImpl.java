@@ -72,4 +72,9 @@ public class GoodsServiceImpl implements GoodsService {
     public void updateGoods(Goods goods) {
         goodsDAO.updateGoods(goods);
     }
+
+    @Override
+    public void findByIdDeleteGoods(Integer id) {
+        goodsDAO.findByIdDeleteGoods(id);
+    }
 }

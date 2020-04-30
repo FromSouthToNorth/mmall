@@ -18,4 +18,9 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
     public List<GoodsType> findByAllGoodsType() {
         return goodsTypeDAO.findByAllGoodsType();
     }
+
+    @Override
+    public void saveGoodsType(GoodsType goodsType) {
+        goodsTypeDAO.saveGoodsType(goodsType);
+    }
 }

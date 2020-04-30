@@ -43,7 +43,7 @@
     .form-group img {
         display: block;
         margin-bottom: 5px;
-        width: 80px;
+        width: 90px;
         height: auto;
     }
 </style>
@@ -52,7 +52,6 @@
     <div class="container">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -62,16 +61,12 @@
                     </button>
                     <a class="navbar-brand" href="#">Mmall 后台管理系统</a>
                 </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${admin.userName} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">退出登录</a></li>
+                                <li><a href="/adminLogin.jsp">退出登录</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -81,15 +76,13 @@
     </div>
     <div class="container">
         <div class="col-md-2 col-sm-2">
-            <!-- Nav tabs -->
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" class="active"><a href="#goods" aria-controls="goods" role="tab" data-toggle="tab">商品</a></li>
-                <li role="presentation"><a href="#cart" aria-controls="cart" role="tab" data-toggle="tab">购物车</a></li>
                 <li role="presentation"><a href="#user" aria-controls="user" role="tab" data-toggle="tab">用户</a></li>
             </ul>
         </div>
-        <!-- 商品 -->
         <div class="tab-content col-md-10 col-sm-10">
+            <!-- 商品 -->
             <div role="tabpanel" class="tab-pane fade active in" id="goods">
                 <form id="form-search" class="form-inline" novalidate="novalidate">
                     <div class="text-c">
@@ -98,12 +91,13 @@
                         -
                         <input class="form-control" id="maxDate" name="maxData" type="date" style="width: 140px;">
                         <input class="form-control" id="goodsName" type="text" name="goodsName" placeholder="商品名称" style="width: 250px;">
-                        <button id="goods-search" class="btn btn-success" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
+                        <button id="goods-search" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索</button>
                         <button id="refresh" class="btn btn-warning pull-right btn-sm" type="button"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                     </div>
                 </form>
                 <nav class="navbar navbar-default">
                     <button id="add-goods" style="margin-left: 10px" data-toggle="modal" data-target="#save-goods" type="button" class="btn btn-primary navbar-btn btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加商品</button>
+                    <button style="margin-left: 10px" data-toggle="modal" data-target="#add-goods-type" type="button" class="btn btn-primary navbar-btn btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加商品类型</button>
                     <p style="padding-right: 30px" class="navbar-text navbar-right">共有数据： <a href="#" id="total" class="navbar-link"></a> 条</p>
                 </nav>
                 <div style="margin-top: 20px;">
@@ -128,7 +122,7 @@
                     <ul class="pagination pull-right">
                     </ul>
                 </nav>
-                <div id="save-goods" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+                <div id="save-goods" class="modal fade fade bs-example-modal-sm" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -138,30 +132,26 @@
                             <div class="modal-body">
                                 <form>
                                     <div class="form-group">
-                                        <label>商品封面</label>
+                                        <label for="img-file">商品封面</label>
                                         <img id="s-goods-img" src="..." alt="未选择封面" class="img-rounded">
-                                        <input id="img-file" onchange="updateImg(this)" name="goodsImg" type="file" id="exampleInputFile">
-<%--                                        <button id="s-img-show" class="btn btn-info btn-sm" type="button" style="margin-top: 5px">显示封面</button>--%>
+                                        <input id="img-file" onchange="updateImg(this)" name="goodsImg" type="file">
                                     </div>
                                     <div class="form-group">
-                                        <label>商品名称</label>
-                                        <input id="s-goods-name" name="goodsName" type="test" class="form-control" id="exampleInputEmail1" placeholder="商品名称">
+                                        <label for="s-goods-name">商品名称</label>
+                                        <input id="s-goods-name" name="goodsName" type="text" class="form-control" placeholder="商品名称">
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputPassword1">商品价格</label>
-                                        <input id="s-goods-price" name="goodsPrice" type="number" class="form-control" id="exampleInputPassword1" placeholder="商品价格">
+                                        <label for="s-goods-price">商品价格</label>
+                                        <input id="s-goods-price" name="goodsPrice" type="number" class="form-control" placeholder="商品价格">
                                     </div>
                                     <div class="form-group">
-                                        <label>商品描述</label>
+                                        <label for="s-goods-title">商品描述</label>
                                         <textarea id="s-goods-title" name="goodsTitle" class="form-control" rows="3"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>商品类型: </label>
-                                        </select>
-                                        <!-- Split button -->
+                                        <label for="s-goods-type">商品类型: </label>
                                         <div class="btn-group">
-                                            <input type="button" id="s-goods-type" name="goodsType" type="button" class="btn btn-sm btn-default" value="选择类型">
-<%--                                            <button id="s-goods-type" name="goodsType" type="button" class="btn btn-sm btn-default">选择类型</button>--%>
+                                            <input type="button" id="s-goods-type" name="goodsType" class="btn btn-sm btn-default" value="选择类型">
                                             <button type="button" class="btn  btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="caret"></span>
                                                 <span class="sr-only">Toggle Dropdown</span>
@@ -173,7 +163,7 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                                 <button type="button" id="push-goods" class="btn btn-primary">提交</button>
                                 <input type="hidden" id="operation-type" value="">
                                 <input type="hidden" id="goods-id" value="">
@@ -181,9 +171,29 @@
                         </div>
                     </div>
                 </div>
+                <div id="add-goods-type" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">添加商品类型</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="goods-type">类型</label>
+                                        <input type="text" class="form-control" id="goods-type" placeholder="商品类型">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" id="push-goods-type" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- 购物车 -->
-            <div role="tabpanel" class="tab-pane fade" id="cart">购物车</div>
             <!-- 用户 -->
             <div role="tabpanel" class="tab-pane fade" id="user">用户</div>
         </div>
@@ -340,11 +350,25 @@
             getAllGoodsType();
             getGoods($(this).data("id"));
         });
+        // 删除商品按钮
+        $(document).on("click", "#delete-goods", function () {
+            deleteGoods($(this).data("id"));
+            setTimeout(function () {
+                location.reload();
+            }, 600);
+        });
+        function deleteGoods(id) {
+            $.ajax({
+                url:"/adminGoods",
+                type:"post",
+                data:{"method": "deleteGoods","id": id}
+            })
+        }
         function getGoods(id) {
             $.ajax({
                 url:"/adminGoods",
                 type:"post",
-                data:{"method": "findByIdGoods","id" :id},
+                data:{"method": "findByIdGoods","id": id},
                 success:function (data) {
                     data = eval("("+data+")");
                     console.log(data);
@@ -412,6 +436,22 @@
                 processData: false,
                 contentType: false
             });
+        }
+        $("#push-goods-type").click(function () {
+            let type = $("#goods-type").val()
+            if (type === "") {
+                alert("请输入类型！");
+            } else {
+                pushGoodsType(type);
+                location.reload();
+            }
+        })
+        function pushGoodsType(type) {
+            $.ajax({
+                url:"/adminGoods",
+                type:"post",
+                data:{"method": "saveGoodsType", "type": type}
+            })
         }
     })
     function updateImg(obj) {

@@ -26,6 +26,7 @@ public class adminGoodsServlet extends HttpServlet {
         resp.setContentType("text/html;charset=UTF-8");
         req.setCharacterEncoding("UTF-8");
         String method = req.getParameter("method");
+        String id = req.getParameter("id");
         List<Goods> allGoods;
         if ("allGoods".equals(method)) {
             allGoods = goodsService.findAllGoods();
@@ -41,9 +42,15 @@ public class adminGoodsServlet extends HttpServlet {
             resp.getWriter().write(json);
         }
         if ("findByIdGoods".equals(method)) {
-            String id = req.getParameter("id");
             Goods byIdGoods = goodsService.findByIdGoods(Integer.parseInt(id));
             resp.getWriter().write(JSON.toJSONString(byIdGoods));
+        }
+        if ("deleteGoods".equals(method)) {
+            goodsService.findByIdDeleteGoods(Integer.parseInt(id));
+        }
+        if ("saveGoodsType".equals(method)) {
+            String type = req.getParameter("type");
+            goodsTypeService.saveGoodsType(new GoodsType(null, type));
         }
     }
 

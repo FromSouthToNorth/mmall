@@ -58,4 +58,20 @@ public class GoodsTypeDAOImpl implements GoodsTypeDAO {
         }
         return goodsTypes;
     }
+
+    @Override
+    public void saveGoodsType(GoodsType goodsType) {
+        Connection connection = JDBCTools.getConnection();
+        PreparedStatement statement = null;
+        String sql = "insert into goods_type (type) values (?)";
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, goodsType.getType());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
+    }
 }

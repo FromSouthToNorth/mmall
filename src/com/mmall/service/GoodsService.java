@@ -16,4 +16,5 @@ public interface GoodsService {
     List<Goods> findByDateAndLikeNameGoods(String minData, String maxData, String name);
     void saveGoods(Goods goods);
     void updateGoods(Goods goods);
+    void findByIdDeleteGoods(Integer id);
 }

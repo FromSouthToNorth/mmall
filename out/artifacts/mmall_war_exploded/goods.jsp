@@ -172,13 +172,12 @@
                     <a id="synthesize" class="" href="/goods?method=goods&term=${term}" data-v-9e9501ca="">综合排序</a>
                     <a id="descending" class="" href="/goods?method=goods&term=${term}&sort=descending" data-v-9e9501ca="">价格从高到底</a>
                     <a id="ascending" class="" href="/goods?method=goods&term=${term}&sort=ascending" data-v-9e9501ca="">价格从低到高</a>
-                    <div class="price-interval" data-v-9e9501ca="">
-                        <input id="lowPrice" class="input" data-v-9e9501ca="" type="number" placeholder="价格">
-                        <span data-v-9e9501ca="" style="margin: 0 5px">-</span>
-                        <input id="highPrice" data-v-9e9501ca="" type="number" placeholder="价格">
-                        <input id="ok" class="price-goods" data-v-612d7650="" data-v-9e9501ca="" type="button" value="确定" style="margin-left: 10px">
-                    </div>
-
+<%--                    <div class="price-interval" data-v-9e9501ca="">--%>
+<%--                        <input id="lowPrice" class="input" data-v-9e9501ca="" type="number" placeholder="价格">--%>
+<%--                        <span data-v-9e9501ca="" style="margin: 0 5px">-</span>--%>
+<%--                        <input id="highPrice" data-v-9e9501ca="" type="number" placeholder="价格">--%>
+<%--                        <input id="ok" class="price-goods" data-v-612d7650="" data-v-9e9501ca="" type="button" value="确定" style="margin-left: 10px">--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <div data-v-9e9501ca="" class="" style="min-height: 35vw; position: static">

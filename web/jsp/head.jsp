@@ -23,17 +23,17 @@
                 </div>
                 <div class="right-box" data-v-7d15c3c3="">
                     <div class="nav-list" data-v-7d15c3c3="">
-                        <div class="el-autocomplete" data-v-7d15c3c3="" minlength="1" maxlength="100">
-                            <div class="el-input" props="[object Object]"
-                                 fetchsuggestions="function() { [native code] }" triggeronfocus="true">
-                                <!---->
-                                <i class="el-input__icon el-icon-search is-clickable"></i>
-                                <input class="el-input__inner" autocomplete="off" placeholder="请输入商品信息"
-                                       icon="search" type="text" rows="2" validateevent="true">
-                                <!---->
-                                <!---->
-                            </div>
-                        </div>
+<%--                        <div class="el-autocomplete" data-v-7d15c3c3="" minlength="1" maxlength="100">--%>
+<%--                            <div class="el-input" props="[object Object]"--%>
+<%--                                 fetchsuggestions="function() { [native code] }" triggeronfocus="true">--%>
+<%--                                <!---->--%>
+<%--                                <i class="el-input__icon el-icon-search is-clickable"></i>--%>
+<%--                                <input class="el-input__inner" autocomplete="off" placeholder="请输入商品信息"--%>
+<%--                                       icon="search" type="text" rows="2" validateevent="true">--%>
+<%--                                <!---->--%>
+<%--                                <!---->--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                         <a class="" data-v-7d15c3c3="" href="/goods?method=goods&term=all"><object><a
                                 data-v-7d15c3c3="">全部商品</a></object></a>
                     </div>

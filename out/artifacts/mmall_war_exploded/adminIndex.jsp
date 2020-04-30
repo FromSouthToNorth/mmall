@@ -40,6 +40,12 @@
     @-moz-document url-prefix() {
         fieldset { display: table-cell; }
     }
+    .form-group img {
+        display: block;
+        margin-bottom: 5px;
+        width: 80px;
+        height: auto;
+    }
 </style>
 <body>
 <div>
@@ -97,50 +103,7 @@
                     </div>
                 </form>
                 <nav class="navbar navbar-default">
-                    <button style="margin-left: 10px" data-toggle="modal" data-target="#save-goods" type="button" class="btn btn-primary navbar-btn btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加商品</button>
-                    <div id="save-goods" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title">添加商品</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label>商品封面</label>
-                                            <input type="file" id="exampleInputFile">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>商品名称</label>
-                                            <input type="test" class="form-control" id="exampleInputEmail1" placeholder="商品名称">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">商品价格</label>
-                                            <input type="number" class="form-control" id="exampleInputPassword1" placeholder="商品价格">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>商品描述</label>
-                                            <textarea class="form-control" rows="3"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <<select class="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            </select>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary">提交</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <button id="add-goods" style="margin-left: 10px" data-toggle="modal" data-target="#save-goods" type="button" class="btn btn-primary navbar-btn btn-sm"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加商品</button>
                     <p style="padding-right: 30px" class="navbar-text navbar-right">共有数据： <a href="#" id="total" class="navbar-link"></a> 条</p>
                 </nav>
                 <div style="margin-top: 20px;">
@@ -165,6 +128,59 @@
                     <ul class="pagination pull-right">
                     </ul>
                 </nav>
+                <div id="save-goods" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">添加商品</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label>商品封面</label>
+                                        <img id="s-goods-img" src="..." alt="未选择封面" class="img-rounded">
+                                        <input id="img-file" onchange="updateImg(this)" name="goodsImg" type="file" id="exampleInputFile">
+<%--                                        <button id="s-img-show" class="btn btn-info btn-sm" type="button" style="margin-top: 5px">显示封面</button>--%>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>商品名称</label>
+                                        <input id="s-goods-name" name="goodsName" type="test" class="form-control" id="exampleInputEmail1" placeholder="商品名称">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">商品价格</label>
+                                        <input id="s-goods-price" name="goodsPrice" type="number" class="form-control" id="exampleInputPassword1" placeholder="商品价格">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>商品描述</label>
+                                        <textarea id="s-goods-title" name="goodsTitle" class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>商品类型: </label>
+                                        </select>
+                                        <!-- Split button -->
+                                        <div class="btn-group">
+                                            <input type="button" id="s-goods-type" name="goodsType" type="button" class="btn btn-sm btn-default" value="选择类型">
+<%--                                            <button id="s-goods-type" name="goodsType" type="button" class="btn btn-sm btn-default">选择类型</button>--%>
+                                            <button type="button" class="btn  btn-sm btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul id="goods-type-list" class="dropdown-menu">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" id="push-goods" class="btn btn-primary">提交</button>
+                                <input type="hidden" id="operation-type" value="">
+                                <input type="hidden" id="goods-id" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- 购物车 -->
             <div role="tabpanel" class="tab-pane fade" id="cart">购物车</div>
@@ -175,7 +191,6 @@
 </div>
 <script>
     $(function () {
-        // $("#save-goods").modal(options);
         let num = 6;//每页显示多少条数据，暂定设为6.
         let page;//总页数
         let now_page = 1;//当前页数
@@ -186,13 +201,14 @@
                 data:{"method":"allGoods"},
                 dataType:"json",
                 success:function (data) {
+                    console.log(data);
                     getData(data);
                 }
             });
         }
         defaultData();
         $("#refresh").click(function () {
-            defaultData();
+            location.reload();
         });
         $("#goods-search").click(function () {
              let minDate = $("#minDate").val();
@@ -229,8 +245,8 @@
                             '<td>'+ data[i].registerDate +'</td>\n' +
                             '<td>'+ data[i].updateDate +'</td>\n' +
                             '<td>\n' +
-                            '    <button type="button" class="btn btn-primary btn-sm" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>\n' +
-                            '    <button type="button" class="btn btn-danger btn-sm" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>\n' +
+                            '    <button type="button" id="update-goods" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#save-goods" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>\n' +
+                            '    <button type="button" id="delete-goods" class="btn btn-danger btn-sm" data-id="'+ data[i].id +'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>\n' +
                             '</td>\n' +
                         ' </tr>';
                 $("#goodsList").append(html);
@@ -242,14 +258,14 @@
             if (data.length % num === 0) {
                 page = data.length / num;
             } else {
-                page = Math.ceil(data.length / num + 1);
+                page = Math.ceil(data.length / num );
             }
             let li = "<li id=\"previous\">\n" +
                 "<a href=\"#\" aria-label=\"Previous\">\n" +
                 "    <span aria-hidden=\"true\">&laquo;</span>\n" +
                 "</a>\n" +
                 "</li>";
-            for (let i = 1; i < page; i++) {
+            for (let i = 1; i <= page; i++) {
                 li += ' <li class="number"><a href="#">'+ i +'</a></li>';
             }
             $(".pagination.pull-right").empty();
@@ -264,7 +280,7 @@
             $(document).on("click","#next", function () {
                 console.log("page=" + page);
                 console.log("now_page=" + now_page);
-                if (now_page + 1 === page) {
+                if (now_page + 1 > page) {
                     $(this).addClass("disabled");
                     return;
                 } else {
@@ -308,7 +324,105 @@
                 dataDisplay(data,  index - num,  index);
             });
         }
+        $("#add-goods").click(function () {
+            $("#operation-type").val("addGoods");
+            $("#s-goods-img").attr("src","");
+            $("#s-goods-name").val("");
+            $("#s-goods-title").val("");
+            $("#s-goods-price").val("");
+            $("#s-goods-type").val("选择类型");
+            getAllGoodsType();
+        });
+        // 编辑商品按钮
+        $(document).on("click","#update-goods", function () {
+            $("#operation-type").val("updateGoods");
+            $("#goods-id").val($(this).data("id"));
+            getAllGoodsType();
+            getGoods($(this).data("id"));
+        });
+        function getGoods(id) {
+            $.ajax({
+                url:"/adminGoods",
+                type:"post",
+                data:{"method": "findByIdGoods","id" :id},
+                success:function (data) {
+                    data = eval("("+data+")");
+                    console.log(data);
+                    $("#s-goods-img").attr("src",data.goodsImg);
+                    $("#s-goods-name").val(data.goodsName);
+                    $("#s-goods-title").val(data.goodsTitle);
+                    $("#s-goods-price").val(data.price);
+                    $("#s-goods-type").val(data.goodsType.type);
+                }
+            })
+        }
+        function getAllGoodsType() {
+            $.ajax({
+               url:"/adminGoods",
+               type:"get",
+               dataType:"json",
+               data:{"method": "findByGoodsType"},
+               success:function (data) {
+                   showAllGoodsType(data);
+               }
+            });
+        }
+        function showAllGoodsType(data) {
+            $("#goods-type-list").empty();
+            let html = "";
+            for (let i = 0; i < data.length; i++) {
+                html = ' <li><a href="#">'+ data[i].type +'</a></li>';
+                $("#goods-type-list").append(html);
+            }
+        }
+        $(document).on("click","#goods-type-list li", function () {
+            $("#s-goods-type").val($(this).text());
+        });
+        $("#push-goods").click(function () {
+            if ($("#s-goods-type").val() === "选择类型") {
+                alert("请选择商品类型！")
+                return;
+            }
+            pushData();
+            setTimeout(function () {
+                location.reload();
+            }, 3800);
+        });
+        function pushData() {
+            let id = $("#goods-id").val();
+            if (id === "") {
+                id = 0;
+            }
+            console.log(id);
+            let files = $("#img-file").prop("files");
+            let formData = new FormData();
+            formData.append("img-file", files[0]);
+            formData.append("goodsName", $("#s-goods-name").val());
+            formData.append("goodsTitle", $("#s-goods-title").val());
+            formData.append("goodsPrice", $("#s-goods-price").val());
+            formData.append("goodsType", $("#s-goods-type").val());
+            formData.append("method", $("#operation-type").val());
+            formData.append("goodsId", id);
+            console.log(formData);
+            $.ajax({
+                type: "post",
+                url: "/files",
+                cache: false,
+                data: formData,
+                processData: false,
+                contentType: false
+            });
+        }
     })
+    function updateImg(obj) {
+        let img = document.getElementById("s-goods-img");
+        let file = obj.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            img.setAttribute("src", this.result);
+        }
+    }
 </script>
 </body>
 </html>

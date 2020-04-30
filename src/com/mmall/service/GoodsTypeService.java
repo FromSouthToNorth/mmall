@@ -1,10 +1,10 @@
-package com.mmall.dao;
+package com.mmall.service;
 
 import com.mmall.entity.GoodsType;
 
 import java.util.List;
 
-public interface GoodsTypeDAO {
+public interface GoodsTypeService {
     Integer findByTypeId(String type);
     List<GoodsType> findByAllGoodsType();
 }

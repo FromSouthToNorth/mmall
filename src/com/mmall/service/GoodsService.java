@@ -14,4 +14,6 @@ public interface GoodsService {
     List<Goods> findByPriceGoods(Double lowPrice, Double highPrice);
     List<Goods> findByLikeNameGoods(String name);
     List<Goods> findByDateAndLikeNameGoods(String minData, String maxData, String name);
+    void saveGoods(Goods goods);
+    void updateGoods(Goods goods);
 }

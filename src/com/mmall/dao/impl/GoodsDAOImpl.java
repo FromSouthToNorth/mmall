@@ -5,10 +5,7 @@ import com.mmall.entity.Goods;
 import com.mmall.entity.GoodsType;
 import com.mmall.utils.JDBCTools;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -217,5 +214,50 @@ public class GoodsDAOImpl implements GoodsDAO {
             JDBCTools.release(connection, statement, resultSet);
         }
         return goods;
+    }
+
+    @Override
+    public void saveGoods(Goods goods) {
+        Connection connection = JDBCTools.getConnection();
+        PreparedStatement statement = null;
+        String sql = "insert into goods (goods_name, price, goods_title, goods_img, goods_type, register_date) values (?, ?, ?, ?, ?, ?)";
+        Date date = new Date(goods.getRegisterDate().getTime());
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, goods.getGoodsName());
+            statement.setDouble(2, goods.getPrice());
+            statement.setString(3, goods.getGoodsTitle());
+            statement.setString(4, goods.getGoodsImg());
+            statement.setInt(5, goods.getGoodsType().getId());
+            statement.setDate(6, date);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
+    }
+
+    @Override
+    public void updateGoods(Goods goods) {
+        Connection connection = JDBCTools.getConnection();
+        PreparedStatement statement = null;
+        String sql = "update goods set goods_name = ?, price = ?, goods_title = ?, goods_img = ?, goods_type = ?, update_date = ? where id = ?";
+        Date date = new Date(goods.getUpdateDate().getTime());
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, goods.getGoodsName());
+            statement.setDouble(2, goods.getPrice());
+            statement.setString(3, goods.getGoodsTitle());
+            statement.setString(4, goods.getGoodsImg());
+            statement.setInt(5, goods.getGoodsType().getId());
+            statement.setDate(6, date);
+            statement.setInt(7, goods.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
     }
 }

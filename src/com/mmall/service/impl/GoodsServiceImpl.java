@@ -62,4 +62,14 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> findByDateAndLikeNameGoods(String minData, String maxData, String name) {
         return goodsDAO.findByDateAndLikeNameGoods(minData, maxData, name);
     }
+
+    @Override
+    public void saveGoods(Goods goods) {
+        goodsDAO.saveGoods(goods);
+    }
+
+    @Override
+    public void updateGoods(Goods goods) {
+        goodsDAO.updateGoods(goods);
+    }
 }

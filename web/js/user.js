@@ -152,8 +152,7 @@ $(function () {
         $("#address-id").val($(this).data("id"));
         let id = $(this).data("id");
         $.get("/address",{"method":"findByIdAddress", "id":id},function(data) {
-            data = eval("("+data+")")
-            console.log(data);
+            data = eval("("+data+")");
             $("#user-name").val(data.userName);
             $("#user-phone").val(data.phone);
             $("#address").val(data.address);

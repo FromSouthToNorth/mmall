@@ -68,11 +68,10 @@
                 type:"post",
                 data:{"method": "admin", "userName": name, "password": password},
                 success:function (result) {
-                    console.log(result);
-                    if (result !== "adminIndex.jsp") {
-                        alert(result);
-;                    } else {
+                    if (result === "adminIndex.jsp") {
                         window.location.href = result;
+;                    } else {
+                       alert(result);
                     }
                 }
             });

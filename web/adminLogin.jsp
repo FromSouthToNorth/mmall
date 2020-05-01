@@ -68,7 +68,6 @@
                 type:"post",
                 data:{"method": "admin", "userName": name, "password": password},
                 success:function (result) {
-                    console.log(result);
                     if (result === "adminIndex.jsp") {
                         window.location.href = result;
 ;                    } else {

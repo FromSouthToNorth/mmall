@@ -78,7 +78,7 @@
         <div class="col-md-2 col-sm-2">
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" class="active"><a href="#goods" aria-controls="goods" role="tab" data-toggle="tab">商品</a></li>
-                <li role="presentation"><a href="#user" aria-controls="user" role="tab" data-toggle="tab">用户</a></li>
+                <li role="presentation"><a href="#user" aria-controls="user" role="tab" data-toggle="tab">用户 </a></li>
             </ul>
         </div>
         <div class="tab-content col-md-10 col-sm-10">

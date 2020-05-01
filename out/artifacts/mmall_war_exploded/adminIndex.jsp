@@ -78,7 +78,24 @@
         <div class="col-md-2 col-sm-2">
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" class="active"><a href="#goods" aria-controls="goods" role="tab" data-toggle="tab">商品</a></li>
-                <li role="presentation"><a href="#user" aria-controls="user" role="tab" data-toggle="tab">用户</a></li>
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        用户 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" role="tab" id="user-vip" data-toggle="tab" aria-controls="vip">会员</a></li>
+                        <li><<a href="#" role="tab" id="admin" data-toggle="tab" aria-colcount="admins">管理员</a></li>
+                    </ul>
+                </li>
+<%--                <li role="presentation">--%>
+<%--                    <a href="#user" id="users" aria-controls="user" role="tab" data-toggle="tab">--%>
+<%--                        <span class="caret"></span>--%>
+<%--                    </a>--%>
+<%--                    <ul class="dropdown-menu" aria-labelledby="users" id="users-list">--%>
+<%--                        <li><a href="#" role="tab" id="user-vip" data-toggle="tab" aria-controls="vip">会员</a></li>--%>
+<%--                        <li><<a href="#" role="tab" id="admin" data-toggle="tab" aria-colcount="admins">会员</a>/li>--%>
+<%--                    </ul>--%>
+<%--                </li>--%>
             </ul>
         </div>
         <div class="tab-content col-md-10 col-sm-10">
@@ -195,7 +212,8 @@
                 </div>
             </div>
             <!-- 用户 -->
-            <div role="tabpanel" class="tab-pane fade" id="user">用户</div>
+            <div role="tabpanel" class="tab-pane fade" id="vip">用户</div>
+            <div role="tabpanel" class="tab-pane fade" id="admins">管理员</div>
         </div>
     </div>
 </div>

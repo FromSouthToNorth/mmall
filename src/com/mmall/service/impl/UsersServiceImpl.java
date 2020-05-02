@@ -5,6 +5,8 @@ import com.mmall.dao.impl.UsersDAOImpl;
 import com.mmall.entity.Users;
 import com.mmall.service.UsersService;
 
+import java.util.List;
+
 public class UsersServiceImpl implements UsersService {
     private final UsersDAO usersDAO = new UsersDAOImpl();
     @Override
@@ -35,5 +37,20 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public Users findAdmin(Users users) {
         return usersDAO.findAdmin(users);
+    }
+
+    @Override
+    public List<Users> findAllUsers() {
+        return usersDAO.findAllUsers();
+    }
+
+    @Override
+    public void findByIdUpdateUsers(Users users) {
+        usersDAO.findByIdUpdateUsers(users);
+    }
+
+    @Override
+    public void findByIdUpdatePassword(Users users) {
+        usersDAO.findByIdUpdatePassword(users);
     }
 }

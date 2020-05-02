@@ -5,6 +5,8 @@ import com.mmall.entity.Users;
 import com.mmall.utils.JDBCTools;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsersDAOImpl implements UsersDAO {
     @Override
@@ -152,5 +154,69 @@ public class UsersDAOImpl implements UsersDAO {
             JDBCTools.release(connection, statement ,resultSet);
         }
         return user;
+    }
+
+    @Override
+    public List<Users> findAllUsers() {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "select * from users";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Users> users = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                users.add(new Users(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getInt(5),
+                        resultSet.getDate(6),
+                        resultSet.getDate(7)
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, resultSet);
+        }
+        return users;
+    }
+
+    @Override
+    public void findByIdUpdateUsers(Users users) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "update users set user_name = ? avatar = ? where id = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, users.getUserName());
+            statement.setString(2, users.getAvatar());
+            statement.setInt(3, users.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
+    }
+
+    @Override
+    public void findByIdUpdatePassword(Users users) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "update users set user_password = ? where id = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, users.getUserPassword());
+            statement.setInt(2, users.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
     }
 }

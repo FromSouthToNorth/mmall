@@ -30,12 +30,13 @@
         transition: all .15s ease-out;
     }
 
-    body{
-        font-family: PingFang SC,Helvetica Neue,Helvetica,Arial,Hiragino Sans GB,Microsoft Yahei,\5FAE软雅黑,STHeiti,\534E文细黑,sans-serif;
+    body {
+        font-family: PingFang SC, Helvetica Neue, Helvetica, Arial, Hiragino Sans GB, Microsoft Yahei, \5FAE软雅黑, STHeiti, \534E文细黑, sans-serif;
         color: #666;
         font-size: 14px;
     }
-    .register h4{
+
+    .register h4 {
         padding: 0;
         text-align: center;
         color: #666;
@@ -73,7 +74,8 @@
                             </li>
                         </ul>
                         <div style="margin-top: 25px;">
-                            <input class="main-btn" id="register" type="button" value="注册" style="margin: 0px; width: 100%; height: 48px; font-size: 18px; line-height: 48px">
+                            <input class="main-btn" id="register" type="button" value="注册"
+                                   style="margin: 0px; width: 100%; height: 48px; font-size: 18px; line-height: 48px">
                         </div>
                     </div>
                 </div>
@@ -86,10 +88,10 @@
                     let password = $("#password").val();
                     let passwordOk = $("#passwordOk").val();
                     $.ajax({
-                        type:'post',
-                        url:'/user',
-                        data:{'method':'register', 'userName': username, 'password' : passwordOk},
-                        success:function (url) {
+                        type: 'post',
+                        url: '/user',
+                        data: {'method': 'register', 'userName': username, 'password': passwordOk},
+                        success: function (url) {
                             window.location.href = url
                         }
                     });

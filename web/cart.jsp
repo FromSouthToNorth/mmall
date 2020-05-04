@@ -20,7 +20,7 @@
 <div id="app">
     <div class="main" data-v-c8a942a0="">
         <!-- 头部 -->
-        <%@include file="jsp/head.jsp"%>
+        <%@include file="jsp/head.jsp" %>
         <!-- /头部 -->
         <!--  -->
         <div class="store-content page-cart" data-v-e6523e26="">
@@ -77,19 +77,21 @@
                                     <h5 class="shipping-tips ng-scope" data-v-e6523e26="">应付金额不含运费</h5>
                                 </div>
                             </div>
-                            <input class="big-main-btn cart-btn" data-v-612d7650="" data-v-e6523e26="" type="button" readonly value="现在结算"
-                            style="margin: 0; width: 130px; height: 50px; line-height: 50px; font-size: 16px">
+                            <input class="big-main-btn cart-btn" data-v-612d7650="" data-v-e6523e26="" type="button"
+                                   readonly value="现在结算"
+                                   style="margin: 0; width: 130px; height: 50px; line-height: 50px; font-size: 16px">
                         </div>
                     </div>
                 </div>
                 <!---->
                 <div id="null-cart" data-v-e6523e26="" style="padding: 50px;">
                     <div class="cart-e" data-v-e6523e26=""></div>
-                    <p data-v-e6523e26="" style="text-align: center; padding: 20px; color: rgb(141, 141, 141)">你的购物车空空如也</p>
-                    <div  data-v-e6523e26="" style="text-align: center;">
+                    <p data-v-e6523e26="" style="text-align: center; padding: 20px; color: rgb(141, 141, 141)">
+                        你的购物车空空如也</p>
+                    <div data-v-e6523e26="" style="text-align: center;">
                         <a class="" data-v-e6523e26="" href="/goods?method=goods&term=all">
                             <input class="default-btn" data-v-e6523e26="" data-v-612d7650="" type="button" value="现在去购买"
-                            style="width: 150px; height: 40px; line-height: 38px; color: rgb(141, 141, 141);">
+                                   style="width: 150px; height: 40px; line-height: 38px; color: rgb(141, 141, 141);">
                         </a>
                     </div>
                 </div>
@@ -101,10 +103,10 @@
         </div>
         <!--  -->
         <!-- 底部 -->
-        <%@include file="jsp/bottom.jsp"%>
+        <%@include file="jsp/bottom.jsp" %>
         <!-- /底部 -->
-        </div>
     </div>
+</div>
 </div>
 </body>
 </html>

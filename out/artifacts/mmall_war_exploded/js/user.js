@@ -10,37 +10,12 @@ $(function () {
         }
     });
     $.ajax({
-        url:"/address",
-        type:"get",
-        data:{"method":"all"},
-        dataType:"JSON",
-        success:function (data) {
-            if (data.length === 0) {
-                $("#null-address-show").val(1);
-            } else {
-                $("#null-address-show").val(0);
-            }
-            let type;
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].type == 1) {
-                    type = "(默认地址)";
-                } else {
-                    type = "";
-                }
-                let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
-                    '<div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
-                    '<div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
-                    '<div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
-                    '<div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                    '    <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
-                    '</div>\n' +
-                    '<div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                    '    <button class="m-button button--primary update-address button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
-                    '    <button class="m-button button--danger delete-address button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
-                    '</div>' +
-                    '</div>';
-                $("#address-list").append(label);
-            }
+        url: "/address",
+        type: "get",
+        data: {"method": "all"},
+        dataType: "JSON",
+        success: function (data) {
+            getData(data);
             showAddress();
         }
     });
@@ -105,38 +80,19 @@ $(function () {
         let method = $("#update-type").val();
         let id = $("#address-id").val();
         $.ajax({
-            url:"/address",
+            url: "/address",
             type: "post",
-            data:{"method":method,"name": name,"address":address, "phone": phone, "addressType": addressType,"id": id},
+            data: {
+                "method": method,
+                "name": name,
+                "address": address,
+                "phone": phone,
+                "addressType": addressType,
+                "id": id
+            },
             dataType: "json",
-            success:function (data) {
-                $("#address-list").empty();
-                if (data.length === 0) {
-                    $("#null-address-show").val(1);
-                } else {
-                    $("#null-address-show").val(0);
-                }
-                let type;
-                for (let i = 0; i < data.length; i++) {
-                    if (data[i].type == 1) {
-                        type = "(默认地址)";
-                    } else {
-                        type = "";
-                    }
-                    let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
-                                ' <div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
-                                '         <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
-                                '         <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
-                                '         <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                                '             <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
-                                '         </div>\n' +
-                                '         <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                                '             <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
-                                '             <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
-                                '         </div>' +
-                                '</div>';
-                    $("#address-list").append(label);
-                }
+            success: function (data) {
+                getData(data);
             }
         });
         $("#user-name").val("");
@@ -151,8 +107,8 @@ $(function () {
         $("#update-type").val("update");
         $("#address-id").val($(this).data("id"));
         let id = $(this).data("id");
-        $.get("/address",{"method":"findByIdAddress", "id":id},function(data) {
-            data = eval("("+data+")");
+        $.get("/address", {"method": "findByIdAddress", "id": id}, function (data) {
+            data = eval("(" + data + ")");
             $("#user-name").val(data.userName);
             $("#user-phone").val(data.phone);
             $("#address").val(data.address);
@@ -161,51 +117,57 @@ $(function () {
         });
     });
     // 删除地址按钮
-    $(document).on("click",".delete-address",function () {
+    $(document).on("click", ".delete-address", function () {
         let id = $(this).data("id");
         $.ajax({
-            url:"/address",
+            url: "/address",
             type: "post",
-            data:{"method":"delete","addressId":id},
+            data: {"method": "delete", "addressId": id},
             dataType: "json",
-            success:function (data) {
-                $("#address-list").empty();
-                if (data.length === 0) {
-                    $("#null-address-show").val(1);
-                } else {
-                    $("#null-address-show").val(0);
-                }
-                let type;
-                for (let i = 0; i < data.length; i++) {
-                    if (data[i].type == 1) {
-                        type = "(默认地址)";
-                    } else {
-                        type = "";
-                    }
-                    let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
-                        '    <div class="name" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].userName +'</div>\n' +
-                        '    <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].address +'</div>\n' +
-                        '    <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">'+ data[i].phone +'</div>\n' +
-                        '    <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                        '        <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">'+ type +'</a>\n' +
-                        '    </div>\n' +
-                        '    <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
-                        '        <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">编辑</button>\n' +
-                        '        <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="'+ data[i].id +'">删除</button>\n' +
-                        '  </div>' +
-                        '</div>';
-                    $("#address-list").append(label);
-                }
+            success: function (data) {
+                getData(data);
                 showAddress();
             }
         });
     });
-    let avatar = document.getElementById("img-preview");
-    avatar.onclick = function () {
-        let f = document.getElementById("new-avatar").files[0];
-        let url = URL.createObjectURL(f);
-        document.getElementById("avatar-img").src = url
+
+    function getData(data) {
+        $("#address-list").empty();
+        if (data.length === 0) {
+            $("#null-address-show").val(1);
+        } else {
+            $("#null-address-show").val(0);
+        }
+        let type;
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].type == 1) {
+                type = "(默认地址)";
+            } else {
+                type = "";
+            }
+            let label = '<div class="address-item" data-v-26da3b24="" data-v-26571f4f="">' +
+                '    <div class="name" data-v-26da3b24="" data-v-26571f4f="">' + data[i].userName + '</div>\n' +
+                '    <div class="address-msg" data-v-26da3b24="" data-v-26571f4f="">' + data[i].address + '</div>\n' +
+                '    <div class="telephone" data-v-26da3b24="" data-v-26571f4f="">' + data[i].phone + '</div>\n' +
+                '    <div class="defalut" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                '        <a class="defalut-address" data-v-26da3b24="" data-v-26571f4f="">' + type + '</a>\n' +
+                '    </div>\n' +
+                '    <div class="operation" data-v-26da3b24="" data-v-26571f4f="">\n' +
+                '        <button id="update-address" class="m-button button--primary button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="' + data[i].id + '">编辑</button>\n' +
+                '        <button id="delete-address" class="m-button button--danger button--small" type="button" data-v-26da3b24="" data-v-26571f4f="" data-id="' + data[i].id + '">删除</button>\n' +
+                '  </div>' +
+                '</div>';
+            $("#address-list").append(label);
+        }
     }
+
+    // let avatar = document.getElementById("img-preview");
+    // avatar.onclick = function () {
+    //     let f = document.getElementById("new-avatar").files[0];
+    //     let url = URL.createObjectURL(f);
+    //     document.getElementById("avatar-img").src = url
+    // }
+
     function showAddress() {
         if ($("#null-address-hide").val() == 1 && $("#null-address-show").val() == 1) {
             $("#null-address").show();
@@ -213,4 +175,14 @@ $(function () {
             $("#null-address").hide();
         }
     }
-})
+
+});
+function updateImg(obj) {
+    let img = document.getElementById("avatar-img");
+    let file = obj.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        img.setAttribute("src", this.result);
+    }
+}

@@ -19,18 +19,22 @@
         padding-bottom: 40px;
         background-color: #eee;
     }
+
     .form-signin {
         max-width: 330px;
         padding: 15px;
         margin: 0 auto;
     }
+
     .form-signin .form-signin-heading,
     .form-signin {
         margin-bottom: 20px;
     }
+
     .form-signin {
         font-weight: normal;
     }
+
     .form-signin {
         position: relative;
         height: auto;
@@ -61,12 +65,12 @@
         $("#login").click(function () {
             let name = $("#inputEmail").val();
             let password = $("#inputPassword").val();
-            if (name!=="" && password!=="") {
+            if (name !== "" && password !== "") {
                 $.ajax({
-                    url:"/admin",
-                    type:"post",
-                    data:{"method": "admin", "userName": name, "password": password},
-                    success:function (result) {
+                    url: "/admin",
+                    type: "post",
+                    data: {"method": "admin", "userName": name, "password": password},
+                    success: function (result) {
                         if (result === "adminIndex.jsp") {
                             window.location.href = result;
                         } else {

@@ -105,12 +105,12 @@
                                                                              alt="">
                                                                     </div>
                                                                 </div>
-                                                                <div id="img-preview" data-v-2b6c3c9e=""
-                                                                     data-v-26571f4f="" style="padding: 10px 0px;">头像预览
-                                                                </div>
+<%--                                                                <div id="img-preview" data-v-2b6c3c9e=""--%>
+<%--                                                                     data-v-26571f4f="" style="padding: 10px 0px;">头像预览--%>
+<%--                                                                </div>--%>
                                                                 <div class="btn" data-v-2b6c3c9e="" data-v-26571f4f="">
                                                                     <a data-v-2b6c3c9e="" data-v-26571f4f="">重新选择</a>
-                                                                    <input id="new-avatar" name="avatar"
+                                                                    <input id="new-avatar" name="avatar" onchange="updateImg(this)"
                                                                            data-v-2b6c3c9e="" data-v-26571f4f=""
                                                                            type="file" value="上传头像">
                                                                 </div>

@@ -1,69 +1,11 @@
 $(function () {
     $.ajax({
-        type:"get",
+        type: "get",
         url: "/cart",
-        data: {"method":"findByUserIdCart"},
-        dataType:"JSON",
-        success:function (data) {
-            let cartSize = 0;
-            let totalPrice = 0;
-            cartSize = data.length;
-            if (data.length === 0) {
-                $("#null-cart").css("display", "block");
-                $("#cart-list").css("display", "none");
-                $("#cart-bottom").css("display", "none");
-                $(".shipping-total.shipping-num h4 i").text(0);
-                $(".shipping-total.shipping-num h5 i").text(0);
-                $(".shipping-total.shipping-price h4 i").text(0);
-            } else {
-                $("#null-cart").css("display", "none");
-                $("#cart-list").css("display", "block");
-                $("#cart-bottom").css("display", "block");
-            }
-            for (let i = 0; i < data.length; i++) {
-                totalPrice += parseInt(data[i].goods.price);
-                let label = '<div class="cart-table" data-v-e6523e26="">\n' +
-                    '             <div class="cart-group divide pr" data-v-e6523e26="">\n' +
-                    '                 <div class="cart-top-items" data-v-e6523e26="">\n' +
-                    '                     <div class="cart-items clearfix" data-v-e6523e26="">\n' +
-                    '                         <div class="items-choose" data-v-e6523e26="">\n' +
-                    '                             <span class="blue-checkbox-new checkbox-on" data-v-e6523e26=""></span>\n' +
-                    '                         </div>\n' +
-                    '                         <div class="items-thumb fl" data-v-e6523e26="">\n' +
-                    '                             <img data-v-e6523e26="" src="'+ data[i].goods.goodsImg +'" alt="">\n' +
-                    '                             <a data-v-e6523e26="" title="'+ data[i].goods.goodsName +'" target="_blank"></a>\n' +
-                    '                         </div>\n' +
-                    '                         <div class="name hide-row fl" data-v-e6523e26="">\n' +
-                    '                             <div class="name-table" data-v-e6523e26="">\n' +
-                    '                                 <a data-v-e6523e26="" title="'+ data[i].goods.goodsName +'" target="_blank">'+ data[i].goods.goodsName +'</a>\n' +
-                    '                             </div>\n' +
-                    '                         </div>\n' +
-                    '                         <div class="operation" data-v-e6523e26="">\n' +
-                    '                             <a id="delete-btn" class="items-delete-btn" data-id="'+ data[i].id +'" data-v-e6523e26=""></a>\n' +
-                    '                         </div>\n' +
-                    '                         <div data-v-e6523e26="">\n' +
-                    '                             <div class="subtotal" data-v-e6523e26="" style="font-size: 14px">￥ '+ data[i].goods.price +'</div>\n' +
-                    '                         </div>\n' +
-                    '                         <div class="item-cols-num clearfix" data-v-e6523e26="" data-v-d10cb02a=""\n' +
-                    '                         style="height: 140px; display: flex;align-items: center;justify-content: center;">\n' +
-                    '                             <div class="select" data-v-d10cb02a="">\n' +
-                    '                                 <span class="down down-disabled" data-v-d10cb02a="">-</span>\n' +
-                    '                                 <span class="num" data-v-d10cb02a="">\n' +
-                    '                                     <input class="show" data-v-d10cb02a="" readonly="readonly" value="1" maxlength="2" type="text">\n' +
-                    '                                 </span>\n' +
-                    '                                 <span class="up" data-v-d10cb02a="">+</span>\n' +
-                    '                             </div>\n' +
-                    '                         </div>\n' +
-                    '                         <div class="price1" data-v-e6523e26="">￥ '+ data[i].goods.price +'</div>\n' +
-                    '                     </div>\n' +
-                    '                 </div>\n' +
-                    '             </div>\n' +
-                    '         </div>';
-                $("#cart-data").append(label);
-            }
-            $(".shipping-total.shipping-num h4 i").text(cartSize);
-            $(".shipping-total.shipping-num h5 i").text(cartSize);
-            $(".shipping-total.shipping-price h4 i").text(totalPrice);
+        data: {"method": "findByUserIdCart"},
+        dataType: "JSON",
+        success: function (data) {
+            getData(data);
         }
     });
     $(document).on("click", "#delete-btn", function () {
@@ -124,67 +66,70 @@ $(function () {
             url: "/cart",
             data: {"method": "deleteCart", "cartId": cartId},
             dataType: "JSON",
-            success:function (data) {
-                let cartSize = 0;
-                let totalPrice = 0;
-                cartSize = data.length;
-                if (data.length === 0) {
-                    $("#null-cart").css("display", "block");
-                    $("#cart-list").css("display", "none");
-                    $("#cart-bottom").css("display", "none");
-                    $(".shipping-total.shipping-num h4 i").text(0);
-                    $(".shipping-total.shipping-num h5 i").text(0);
-                    $(".shipping-total.shipping-price h4 i").text(0);
-                } else {
-                    $("#null-cart").css("display", "none");
-                    $("#cart-list").css("display", "block");
-                    $("#cart-bottom").css("display", "block");
-                }
-                for (let i = 0; i < data.length; i++) {
-                    totalPrice += parseInt(data[i].goods.price);
-                    let label = '<div class="cart-table" data-v-e6523e26="">\n' +
-                        '             <div class="cart-group divide pr" data-v-e6523e26="">\n' +
-                        '                 <div class="cart-top-items" data-v-e6523e26="">\n' +
-                        '                     <div class="cart-items clearfix" data-v-e6523e26="">\n' +
-                        '                         <div class="items-choose" data-v-e6523e26="">\n' +
-                        '                             <span class="blue-checkbox-new checkbox-on" data-v-e6523e26=""></span>\n' +
-                        '                         </div>\n' +
-                        '                         <div class="items-thumb fl" data-v-e6523e26="">\n' +
-                        '                             <img data-v-e6523e26="" src="'+ data[i].goods.goodsImg +'" alt="">\n' +
-                        '                             <a data-v-e6523e26="" title="'+ data[i].goods.goodsName +'" target="_blank"></a>\n' +
-                        '                         </div>\n' +
-                        '                         <div class="name hide-row fl" data-v-e6523e26="">\n' +
-                        '                             <div class="name-table" data-v-e6523e26="">\n' +
-                        '                                 <a data-v-e6523e26="" title="'+ data[i].goods.goodsName +'" target="_blank">'+ data[i].goods.goodsName +'</a>\n' +
-                        '                             </div>\n' +
-                        '                         </div>\n' +
-                        '                         <div class="operation" data-v-e6523e26="">\n' +
-                        '                             <a id="delete-btn" class="items-delete-btn" data-id="'+ data[i].id +'" data-v-e6523e26=""></a>\n' +
-                        '                         </div>\n' +
-                        '                         <div data-v-e6523e26="">\n' +
-                        '                             <div class="subtotal" data-v-e6523e26="" style="font-size: 14px">￥ '+ data[i].goods.price +'</div>\n' +
-                        '                         </div>\n' +
-                        '                         <div class="item-cols-num clearfix" data-v-e6523e26="" data-v-d10cb02a=""\n' +
-                        '                         style="height: 140px; display: flex;align-items: center;justify-content: center;">\n' +
-                        '                             <div class="select" data-v-d10cb02a="">\n' +
-                        '                                 <span class="down down-disabled" data-v-d10cb02a="">-</span>\n' +
-                        '                                 <span class="num" data-v-d10cb02a="">\n' +
-                        '                                     <input class="show" data-v-d10cb02a="" readonly="readonly" value="1" maxlength="2" type="text">\n' +
-                        '                                 </span>\n' +
-                        '                                 <span class="up" data-v-d10cb02a="">+</span>\n' +
-                        '                             </div>\n' +
-                        '                         </div>\n' +
-                        '                         <div class="price1" data-v-e6523e26="">￥ '+ data[i].goods.price +'</div>\n' +
-                        '                     </div>\n' +
-                        '                 </div>\n' +
-                        '             </div>\n' +
-                        '         </div>';
-                    $("#cart-data").append(label);
-                }
-                $(".shipping-total.shipping-num h4 i").text(cartSize);
-                $(".shipping-total.shipping-num h5 i").text(cartSize);
-                $(".shipping-total.shipping-price h4 i").text(totalPrice);
+            success: function (data) {
+               getData(data);
             }
         })
-    })
+    });
+    function getData(data) {
+        let cartSize;
+        let totalPrice = 0;
+        cartSize = data.length;
+        if (data.length === 0) {
+            $("#null-cart").css("display", "block");
+            $("#cart-list").css("display", "none");
+            $("#cart-bottom").css("display", "none");
+            $(".shipping-total.shipping-num h4 i").text(0);
+            $(".shipping-total.shipping-num h5 i").text(0);
+            $(".shipping-total.shipping-price h4 i").text(0);
+        } else {
+            $("#null-cart").css("display", "none");
+            $("#cart-list").css("display", "block");
+            $("#cart-bottom").css("display", "block");
+        }
+        for (let i = 0; i < data.length; i++) {
+            totalPrice += parseInt(data[i].goods.price);
+            let label = '<div class="cart-table" data-v-e6523e26="">\n' +
+                '             <div class="cart-group divide pr" data-v-e6523e26="">\n' +
+                '                 <div class="cart-top-items" data-v-e6523e26="">\n' +
+                '                     <div class="cart-items clearfix" data-v-e6523e26="">\n' +
+                '                         <div class="items-choose" data-v-e6523e26="">\n' +
+                '                             <span class="blue-checkbox-new checkbox-on" data-v-e6523e26=""></span>\n' +
+                '                         </div>\n' +
+                '                         <div class="items-thumb fl" data-v-e6523e26="">\n' +
+                '                             <img data-v-e6523e26="" src="' + data[i].goods.goodsImg + '" alt="">\n' +
+                '                             <a data-v-e6523e26="" title="' + data[i].goods.goodsName + '" target="_blank"></a>\n' +
+                '                         </div>\n' +
+                '                         <div class="name hide-row fl" data-v-e6523e26="">\n' +
+                '                             <div class="name-table" data-v-e6523e26="">\n' +
+                '                                 <a data-v-e6523e26="" title="' + data[i].goods.goodsName + '" target="_blank">' + data[i].goods.goodsName + '</a>\n' +
+                '                             </div>\n' +
+                '                         </div>\n' +
+                '                         <div class="operation" data-v-e6523e26="">\n' +
+                '                             <a id="delete-btn" class="items-delete-btn" data-id="' + data[i].id + '" data-v-e6523e26=""></a>\n' +
+                '                         </div>\n' +
+                '                         <div data-v-e6523e26="">\n' +
+                '                             <div class="subtotal" data-v-e6523e26="" style="font-size: 14px">￥ ' + data[i].goods.price + '</div>\n' +
+                '                         </div>\n' +
+                '                         <div class="item-cols-num clearfix" data-v-e6523e26="" data-v-d10cb02a=""\n' +
+                '                         style="height: 140px; display: flex;align-items: center;justify-content: center;">\n' +
+                '                             <div class="select" data-v-d10cb02a="">\n' +
+                '                                 <span class="down down-disabled" data-v-d10cb02a="">-</span>\n' +
+                '                                 <span class="num" data-v-d10cb02a="">\n' +
+                '                                     <input class="show" data-v-d10cb02a="" readonly="readonly" value="1" maxlength="2" type="text">\n' +
+                '                                 </span>\n' +
+                '                                 <span class="up" data-v-d10cb02a="">+</span>\n' +
+                '                             </div>\n' +
+                '                         </div>\n' +
+                '                         <div class="price1" data-v-e6523e26="">￥ ' + data[i].goods.price + '</div>\n' +
+                '                     </div>\n' +
+                '                 </div>\n' +
+                '             </div>\n' +
+                '         </div>';
+            $("#cart-data").append(label);
+        }
+        $(".shipping-total.shipping-num h4 i").text(cartSize);
+        $(".shipping-total.shipping-num h5 i").text(cartSize);
+        $(".shipping-total.shipping-price h4 i").text(totalPrice);
+    }
 })

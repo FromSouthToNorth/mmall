@@ -19,24 +19,29 @@
         height: 60px;
         line-height: 60px;
     }
+
     .nav > div[data-v-9e9501ca] {
         display: -ms-flexbox;
         display: flex;
         -ms-flex-align: center;
         align-items: center;
     }
+
     .nav > div a.active[data-v-9e9501ca] {
         color: #6683ea;
     }
+
     .nav > div a[data-v-9e9501ca] {
         padding: 0 15px;
         height: 100%;
         font-size: 12px;
         color: #999;
     }
+
     .nav .price-interval[data-v-9e9501ca] {
         padding: 0 15px;
     }
+
     .nav .price-interval[data-v-9e9501ca],
     .nav > div a[data-v-9e9501ca] {
         display: -ms-flexbox;
@@ -46,31 +51,37 @@
         -ms-flex-pack: center;
         justify-content: center;
     }
+
     .nav .price-interval input[type="number"][data-v-9e9501ca] {
         border: 1px solid #ccc;
         text-align: center;
         background: none;
         border-radius: 5px;
     }
+
     .nav > div input[data-v-9e9501ca] {
         width: 80px;
         height: 30px;
         border: 1px solid #ccc;
     }
+
     input[type="number"],
     textarea {
         -moz-appearance: textfield;
     }
+
     .img-item[data-v-9e9501ca] {
         display: -ms-flexbox;
         display: flex;
         -ms-flex-direction: column;
         flex-direction: column;
     }
+
     .goods-box > div[data-v-9e9501ca] {
         float: left;
         border: 1px solid #efefef;
     }
+
     .paging {
         margin: 3vw 10vw 2vw;
         align-self: flex-end;
@@ -78,6 +89,7 @@
         white-space: nowrap;
         font-size: 0;
     }
+
     .paging span,
     .paging button,
     .paging p,
@@ -91,19 +103,23 @@
         vertical-align: top;
         box-sizing: border-box;
     }
+
     .goods .paging .total {
         min-width: 10px;
         padding-right: 3px;
         text-align: center;
     }
+
     .paging p {
         margin: 0 10px;
     }
+
     .pager {
         list-style: none;
         font-size: 0;
         padding: 0;
     }
+
     .pager li,
     .btn-prev,
     .btn-next {
@@ -113,71 +129,83 @@
         text-align: center;
         cursor: pointer;
     }
+
     .pager li.active {
         border-color: #20a0ff;
         background-color: #20a0ff;
         color: #fff;
         cursor: default;
     }
+
     .pager li.active:hover {
         color: #fff;
     }
+
     .paging button:hover,
     .pager li:hover {
         color: #20a0ff;
     }
+
     .paging .btn-prev,
     .paging .btn-next {
         color: #bebebe;
         font-size: 14px;
     }
+
     .paging .btn-prev {
         border-radius: 2px 0 0 2px;
         border-right: 0;
     }
+
     .paging .btn-next {
         border-radius: 0 2px 2px 0;
         border-left: 0;
     }
+
     .pager li.active + li {
         border-left: 0;
         padding-left: 5px;
     }
+
     .pager li:last-child {
         border-right: 1px solid #d1dbe5;
     }
+
     .price-goods {
         border: 1px solid #5c81e3;
         border-radius: 4px;
         font-size: 12px;
         color: #fff;
         background-color: #678ee7;
-        background-image: linear-gradient(180deg,#678ee7,#5078df);
+        background-image: linear-gradient(180deg, #678ee7, #5078df);
     }
+
     .price-goods:hover {
         background-color: #6c8cd4;
-        background-image: linear-gradient(180deg,#6c8cd4,#4769c2);
+        background-image: linear-gradient(180deg, #6c8cd4, #4769c2);
     }
 </style>
 <body>
 <div id="add">
     <div class="main" data-v-c8a942a0="">
         <!-- 头部 -->
-        <%@include file="jsp/head.jsp"%>
+        <%@include file="jsp/head.jsp" %>
         <!-- /头部 -->
         <!---->
         <div class="goods main" data-v-9e9501ca="" data-v-c8a942a0="">
             <div class="nav" data-v-9e9501ca="">
                 <div class="w" data-v-9e9501ca="">
                     <a id="synthesize" class="" href="/goods?method=goods&term=${term}" data-v-9e9501ca="">综合排序</a>
-                    <a id="descending" class="" href="/goods?method=goods&term=${term}&sort=descending" data-v-9e9501ca="">价格从高到底</a>
-                    <a id="ascending" class="" href="/goods?method=goods&term=${term}&sort=ascending" data-v-9e9501ca="">价格从低到高</a>
-<%--                    <div class="price-interval" data-v-9e9501ca="">--%>
-<%--                        <input id="lowPrice" class="input" data-v-9e9501ca="" type="number" placeholder="价格">--%>
-<%--                        <span data-v-9e9501ca="" style="margin: 0 5px">-</span>--%>
-<%--                        <input id="highPrice" data-v-9e9501ca="" type="number" placeholder="价格">--%>
-<%--                        <input id="ok" class="price-goods" data-v-612d7650="" data-v-9e9501ca="" type="button" value="确定" style="margin-left: 10px">--%>
-<%--                    </div>--%>
+                    <a id="descending" class="" href="/goods?method=goods&term=${term}&sort=descending"
+                       data-v-9e9501ca="">价格从高到底</a>
+                    <a id="ascending" class="" href="/goods?method=goods&term=${term}&sort=ascending"
+                       data-v-9e9501ca="">价格从低到高</a>
+                    <%--                    <div class="price-interval" data-v-9e9501ca="">--%>
+                    <%--                        <input id="lowPrice" class="input" data-v-9e9501ca="" type="number" placeholder="价格">--%>
+                    <%--                        <span data-v-9e9501ca="" style="margin: 0 5px">-</span>--%>
+                    <%--                        <input id="highPrice" data-v-9e9501ca="" type="number" placeholder="价格">--%>
+                    <%--                        <input id="ok" class="price-goods" data-v-612d7650="" data-v-9e9501ca="" type="button" value="确定" style="margin-left: 10px">--%>
+                    <%--                    </div>--%>
                 </div>
             </div>
             <div data-v-9e9501ca="" class="" style="min-height: 35vw; position: static">
@@ -198,13 +226,14 @@
                                                        type="button" readonly="readonly" value="查看详情"
                                                        style="margin: 0px 5px;">
                                             </a>
-                                            <input data-id="${goods.id}" class="main-btn" data-v-612d7650 data-v-0265f772=""
+                                            <input data-id="${goods.id}" class="main-btn" data-v-612d7650
+                                                   data-v-0265f772=""
                                                    type="button" readonly="readonly" value="加入购物车"
                                                    style="margin: 0px 5px;">
                                         </div>
                                         <p data-v-0265f772="">
                                             <span data-v-0265f772="" style="font-size: 14px;">￥</span>
-                                            ${goods.price}
+                                                ${goods.price}
                                         </p>
                                     </div>
                                 </div>
@@ -251,14 +280,14 @@
                         $(".btn-next").click(function () {
                             if (page === pageCount)
                                 return;
-                            page ++;
+                            page++;
                             location.href = "/goods?method=goods&page=" + page + "&term=" + term + "&sort=" + sort;
                         });
                         // 上一页
                         $(".btn-prev").click(function () {
                             if (page === 1)
                                 return;
-                            page --;
+                            page--;
                             location.href = "/goods?method=goods&page=" + page + "&term=" + term + "&sort=" + sort;
                         });
                     })
@@ -268,7 +297,7 @@
         <!---->
         <!---->
         <!-- 底部 -->
-        <%@include file="jsp/bottom.jsp"%>
+        <%@include file="jsp/bottom.jsp" %>
         <!-- /底部 -->
     </div>
 </div>

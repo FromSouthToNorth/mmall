@@ -16,31 +16,32 @@
     <script src="js/index.js"></script>
 </head>
 <style>
- .gray-box[data-v-f85ff452] {
+    .gray-box[data-v-f85ff452] {
         display: -ms-flexbox;
         display: flex;
         padding: 60px;
         margin: 20px 0;
- }
- .down.down-disabled[data-v-d10cb02a] {
-     background-position: 0 -300px;
-     cursor: not-allowed;
- }
+    }
 
- .select .down[data-v-d10cb02a] {
-     background-position: 0 -60px;
- }
+    .down.down-disabled[data-v-d10cb02a] {
+        background-position: 0 -300px;
+        cursor: not-allowed;
+    }
 
- .item-info .gray-box[data-v-f85ff452] {
-     padding: 0;
-     display: block;
- }
+    .select .down[data-v-d10cb02a] {
+        background-position: 0 -60px;
+    }
+
+    .item-info .gray-box[data-v-f85ff452] {
+        padding: 0;
+        display: block;
+    }
 </style>
 <body>
 <div id="add">
     <div class="main" data-v-c8a942a0="">
         <!-- 头部 -->
-        <%@include file="jsp/head.jsp"%>
+        <%@include file="jsp/head.jsp" %>
         <!-- /头部 -->
         <!---->
         <!---->
@@ -51,7 +52,7 @@
                         <div class="thumbnail" data-v-f85ff452="">
                             <ul data-v-f85ff452="">
                                 <c:forEach items="${goodsThumb}" var="thumb">
-                                    <li class=""  data-v-f85ff452="">
+                                    <li class="" data-v-f85ff452="">
                                         <img src="${thumb.goodsImg}" alt="" data-v-f85ff452="">
                                     </li>
                                 </c:forEach>
@@ -81,16 +82,20 @@
                             <div class="select" data-v-d10cb02a="">
                                 <span class="down down-disabled" data-v-d10cb02a="">-</span>
                                 <span class="number" data-v-d10cb02a="">
-                                    <input class="show" data-v-d10cb02a="" readonly="readonly" value="1" maxlength="2" type="text">
-                                    <ul data-v-d10cb02a="" style="z-index: 1; transition: all 0s ease 0s; transform: translateY(-36px);"></ul>
+                                    <input class="show" data-v-d10cb02a="" readonly="readonly" value="1" maxlength="2"
+                                           type="text">
+                                    <ul data-v-d10cb02a=""
+                                        style="z-index: 1; transition: all 0s ease 0s; transform: translateY(-36px);"></ul>
                                 </span>
                                 <span class="up" data-v-d10cb02a="">+</span>
                             </div>
                         </div>
                     </div>
                     <div class="buy" data-v-f85ff452="">
-                        <input class="main-btn" data-id="${goods.id}" data-v-612d7650="" data-v-f85ff452="" type="button" value="加入购物车" style="width: 145px; height: 50px; line-height: 48px">
-                        <input class="default-btn" data-v-612d7650="" data-v-f85ff452="" type="button" value="现在购买" style="width: 145px; height: 50px; margin-left: 10px">
+                        <input class="main-btn" data-id="${goods.id}" data-v-612d7650="" data-v-f85ff452=""
+                               type="button" value="加入购物车" style="width: 145px; height: 50px; line-height: 48px">
+                        <input class="default-btn" data-v-612d7650="" data-v-f85ff452="" type="button" value="现在购买"
+                               style="width: 145px; height: 50px; margin-left: 10px">
                     </div>
                 </div>
             </div>
@@ -122,13 +127,13 @@
                 $(".thumbnail ul li").click(function () {
                     $(this).addClass("on").siblings().removeClass("on");
                     let path = $(this).children("img")[0].src;
-                    $(".big img").attr("src",path);
+                    $(".big img").attr("src", path);
                 })
             })
         </script>
         <!---->
         <!-- 底部 -->
-        <%@include file="jsp/bottom.jsp"%>
+        <%@include file="jsp/bottom.jsp" %>
         <!-- /底部 -->
     </div>
 </div>

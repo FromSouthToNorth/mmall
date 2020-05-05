@@ -1,6 +1,5 @@
 package com.mmall.servlet;
 
-import com.alibaba.fastjson.JSON;
 import com.mmall.entity.Goods;
 import com.mmall.entity.GoodsType;
 import com.mmall.service.GoodsService;
@@ -28,6 +27,7 @@ import java.util.List;
 public class FileServlet extends HttpServlet {
     private final GoodsTypeService goodsTypeService = new GoodsTypeServiceImpl();
     private final GoodsService goodsService = new GoodsServiceImpl();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
@@ -45,7 +45,7 @@ public class FileServlet extends HttpServlet {
                 if (fileItem.isFormField()) {
                     String fieldName = fileItem.getFieldName();
                     String string = fileItem.getString("UTF-8");
-                    if ("goodsName".equals(fieldName)){
+                    if ("goodsName".equals(fieldName)) {
                         goods.setGoodsName(string);
                     }
                     if ("goodsTitle".equals(fieldName)) {

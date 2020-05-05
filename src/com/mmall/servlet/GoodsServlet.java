@@ -26,6 +26,7 @@ public class GoodsServlet extends HttpServlet {
     private final GoodsService goodsService = new GoodsServiceImpl();
     private final GoodsInfoService goodsInfoService = new GoodsInfoServiceImpl();
     private final GoodsThumbService goodsThumbService = new GoodsThumbServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
@@ -83,19 +84,19 @@ public class GoodsServlet extends HttpServlet {
                     switch (term) {
                         case "all":
                             goodsList = goodsService.descendingGoods(goodsService.findAllGoods());
-                            getData(resp, session,"descending", term, page, goodsList);
+                            getData(resp, session, "descending", term, page, goodsList);
                             break;
                         case "phone":
                             goodsList = goodsService.descendingGoods(goodsService.findByTypeGoods(4));
-                            getData(resp, session,"descending", term, page, goodsList);
+                            getData(resp, session, "descending", term, page, goodsList);
                             break;
                         case "costume":
                             goodsList = goodsService.descendingGoods(goodsService.findByTypeGoods(1));
-                            getData(resp, session,"descending", term, page, goodsList);
+                            getData(resp, session, "descending", term, page, goodsList);
                             break;
                         case "goodsCity":
                             goodsList = goodsService.descendingGoods(goodsService.findByTypeGoods(2));
-                            getData(resp, session,"descending", term, page, goodsList);
+                            getData(resp, session, "descending", term, page, goodsList);
                             break;
                     }
                     return;
@@ -104,19 +105,19 @@ public class GoodsServlet extends HttpServlet {
                     switch (term) {
                         case "all":
                             goodsList = goodsService.ascendingGoods(goodsService.findAllGoods());
-                            getData(resp, session,"ascending", term, page, goodsList);
+                            getData(resp, session, "ascending", term, page, goodsList);
                             break;
                         case "phone":
                             goodsList = goodsService.ascendingGoods(goodsService.findByTypeGoods(4));
-                            getData(resp, session,"ascending", term, page, goodsList);
+                            getData(resp, session, "ascending", term, page, goodsList);
                             break;
                         case "costume":
                             goodsList = goodsService.ascendingGoods(goodsService.findByTypeGoods(1));
-                            getData(resp, session,"ascending", term, page, goodsList);
+                            getData(resp, session, "ascending", term, page, goodsList);
                             break;
                         case "goodsCity":
                             goodsList = goodsService.ascendingGoods(goodsService.findByTypeGoods(2));
-                            getData(resp, session,"ascending", term, page, goodsList);
+                            getData(resp, session, "ascending", term, page, goodsList);
                             break;
                     }
                     return;

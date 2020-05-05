@@ -20,6 +20,7 @@ import java.util.List;
 public class adminGoodsServlet extends HttpServlet {
     private final GoodsService goodsService = new GoodsServiceImpl();
     private final GoodsTypeService goodsTypeService = new GoodsTypeServiceImpl();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");

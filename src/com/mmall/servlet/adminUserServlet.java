@@ -16,6 +16,7 @@ import java.util.List;
 @WebServlet("/adminUser")
 public class adminUserServlet extends HttpServlet {
     private final UsersService usersService = new UsersServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");

@@ -18,6 +18,7 @@ import java.util.List;
 @WebServlet("/address")
 public class AddressServlet extends HttpServlet {
     private final AddressService addressService = new AddressServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");

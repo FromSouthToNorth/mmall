@@ -19,6 +19,7 @@ import java.util.List;
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
     private final CartService cartService = new CartServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
@@ -28,7 +29,7 @@ public class CartServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Users users = (Users) session.getAttribute("user");
         if ("goCart".equals(method)) {
-            if (users != null){
+            if (users != null) {
                 resp.getWriter().write("cart.jsp");
             } else {
                 resp.getWriter().write("login.jsp");

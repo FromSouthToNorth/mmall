@@ -1,6 +1,5 @@
 package com.mmall.servlet;
 
-import com.alibaba.fastjson.JSON;
 import com.mmall.entity.Users;
 import com.mmall.service.UsersService;
 import com.mmall.service.impl.UsersServiceImpl;

@@ -10,7 +10,11 @@ import java.sql.Statement;
 
 public class JDBCTools {
     private static DataSource dataSource;
-    static { dataSource = new ComboPooledDataSource("c3p0"); }
+
+    static {
+        dataSource = new ComboPooledDataSource("c3p0");
+    }
+
     public static Connection getConnection() {
         Connection connection = null;
         try {
@@ -20,6 +24,7 @@ public class JDBCTools {
         }
         return connection;
     }
+
     public static void release(Connection connection, Statement statement, ResultSet resultSet) {
         try {
             if (connection != null)

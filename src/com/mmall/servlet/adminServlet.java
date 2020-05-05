@@ -15,6 +15,7 @@ import java.io.IOException;
 @WebServlet("/admin")
 public class adminServlet extends HttpServlet {
     private final UsersService usersService = new UsersServiceImpl();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");

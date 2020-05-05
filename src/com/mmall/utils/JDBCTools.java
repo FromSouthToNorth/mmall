@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JDBCTools {
-    private static DataSource dataSource;
+    private static final DataSource dataSource;
 
     static {
         dataSource = new ComboPooledDataSource("c3p0");

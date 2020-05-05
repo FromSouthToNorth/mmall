@@ -21,7 +21,7 @@ public class GenerateNum {
 
     private static int count = 0;
     private static final int total = 9999;
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSS");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmssSS");
 
     private static String getNowDateStr() {
         return dateFormat.format(new Date());
@@ -38,11 +38,11 @@ public class GenerateNum {
             now = dateStr;
         }
         int countInteger = String.valueOf(total).length() - String.valueOf(count).length();
-        String bu = "";
+        StringBuilder bu = new StringBuilder();
         for (int i = 0; i < countInteger; i++) {
-            bu += "0";
+            bu.append("0");
         }
-        bu += String.valueOf(count);
+        bu.append(count);
         if (count >= total) {
             count = 0;
         }

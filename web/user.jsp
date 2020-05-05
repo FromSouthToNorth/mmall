@@ -16,9 +16,6 @@
     <script src="js/index.js"></script>
     <script src="js/user.js"></script>
 </head>
-<style>
-
-</style>
 <body>
 <div id="app">
     <div class="main" data-v-c8a942a0="">

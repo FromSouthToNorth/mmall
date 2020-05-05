@@ -7,11 +7,14 @@ public class GenerateNum {
     private GenerateNum() {
     }
 
-    private static GenerateNum generateNum = null;
+    private static volatile GenerateNum generateNum = null;
 
-    public static synchronized GenerateNum getInstance() {
+    public static GenerateNum getInstance() {
         if (generateNum == null) {
-            generateNum = new GenerateNum();
+            synchronized (GenerateNum.class) {
+                if (generateNum == null)
+                    generateNum = new GenerateNum();
+            }
         }
         return generateNum;
     }

@@ -24,68 +24,16 @@
         <div class="home main" data-v-4af9704d="">
             <div data-v-4af9704d="" style="min-height: 35vw; position: static;">
                 <!--轮播图-->
-                <div class="banner" data-v-4af9704d="">
-                    <div class="bg" data-v-4af9704d="">
-                        <div data-v-4af9704d="" class="">
-                            <img class="img1" data-v-4af9704d=""
-                                 src="https://i.loli.net/2019/09/30/CAZ6QrXPBoh5aIT.png">
-                            <img class="img2 a" data-v-4af9704d=""
-                                 src="https://i.loli.net/2019/09/30/9Y5MHc8sfhJLk3u.png">
-                            <img class="img3 b" data-v-4af9704d=""
-                                 src="https://i.loli.net/2019/09/30/lLv8xp3IWqa7Oz6.png">
-                        </div>
-                        <div data-v-4af9704d="" class="">
-                            <img class="img1" data-v-4af9704d=""
-                                 src="https://i.loli.net/2018/11/04/5bdeba4028e90.png">
-                            <img class="img2 a" data-v-4af9704d=""
-                                 src="https://i.loli.net/2018/11/04/5bdebb109a29a.png">
-                            <img class="img3 b" data-v-4af9704d=""
-                                 src="https://i.loli.net/2018/11/04/5bdeba6753403.png">
-                        </div>
-                        <div data-v-4af9704d="" class="">
-                            <img class="img1" data-v-4af9704d=""
-                                 src="https://resource.smartisan.com/resource/f1cc61461e08141debf520be50ab362f.png?x-oss-process=image/resize,w_1525/quality,Q_100">
-                        </div>
-                        <div data-v-4af9704d="" class="">
-                            <img class="img1" data-v-4af9704d=""
-                                 src="https://resource.smartisan.com/resource/130e1b36391d9a13ec19d4659abe70a7.png?x-oss-process=image/resize,w_1525/quality,Q_100">
-                        </div>
-                    </div>
-                    <div class="page" data-v-4af9704d="">
-                        <ul class="dots" data-v-4af9704d="">
-                            <li class="dot-active" data-v-4af9704d=""></li>
-                            <li class="dot-active dot" data-v-4af9704d=""></li>
-                            <li class="dot-active dot" data-v-4af9704d=""></li>
-                            <li class="dot-active dot" data-v-4af9704d=""></li>
-                        </ul>
-                    </div>
-                </div>
+                <%@include file="jsp/marquee.jsp" %>
                 <!--/轮播图-->
                 <div data-v-4af9704d="">
                     <!---->
                     <!---->
                     <!---->
                 </div>
-                <div class="" data-v-4af9704d="">
-                    <div class="activity-panel" data-v-4af9704d="">
-                        <ul class="box" data-v-4af9704d="">
-                            <li class="content" data-v-4af9704d=""><img class="i" data-v-4af9704d=""
-                                                                        src="https://resource.smartisan.com/resource/6/610400xinpinpeijian.jpg"><a
-                                    class="cover-link" data-v-4af9704d=""></a></li>
-                            <li class="content" data-v-4af9704d=""><img class="i" data-v-4af9704d=""
-                                                                        src="https://resource.smartisan.com/resource/fe2f969d1f297e1a1eec6eb8e9f77277.jpg?x-oss-process=image/resize,w_750"><a
-                                    class="cover-link" data-v-4af9704d=""></a></li>
-                            <li class="content" data-v-4af9704d=""><img class="i" data-v-4af9704d=""
-                                                                        src="https://resource.smartisan.com/resource/4/489673079577637073.png"><a
-                                    class="cover-link" data-v-4af9704d=""></a></li>
-                            <li class="content" data-v-4af9704d=""><img class="i" data-v-4af9704d=""
-                                                                        src="https://resource.smartisan.com/resource/fdc4370d1ce14a67fadc35d74209ac0f.jpg?x-oss-process=image/resize,w_750"><a
-                                    class="cover-link" data-v-4af9704d=""></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!---->
-                <!---->
+                <!-- 顶部推荐 -->
+                <%@include file="jsp/topRecommend.jsp" %>
+                <!-- /顶部推荐 -->
                 <div data-v-4af9704d="">
                     <!---->
                     <section class="w mt30 clearfix" data-v-4af9704d="">
@@ -152,7 +100,6 @@
                     </div>
                 </section>
             </div>
-
             <div class="" data-v-4af9704d="">
                 <!---->
                 <!---->
@@ -177,30 +124,9 @@
                     </div>
                 </section>
             </div>
-            <div data-v-4af9704d="">
-                <div class="activity-panel" data-v-4af9704d="">
-                    <ul class="box" data-v-4af9704d="">
-                        <li class="content" data-v-4af9704d=""><img class="i" data-v-4af9704d=""
-                                                                    src="https://resource.smartisan.com/resource/33ea4bfa05068e0741b7278fec9da8a6.jpg?x-oss-process=image/resize,w_750"
-                                                                    alt=""><a class="cover-link" data-v-4af9704d=""></a>
-                        </li>
-                        <li class="content" data-v-4af9704d=""><img class="i" data-v-4af9704d=""
-                                                                    src="https://resource.smartisan.com/resource/5ea6f0905535d7b11258e9a0f9b1abeb.jpg"
-                                                                    alt=""><a class="cover-link" data-v-4af9704d=""></a>
-                        </li>
-                        <li class="content" data-v-4af9704d=""><img class="i" data-v-4af9704d=""
-                                                                    src="https://resource.smartisan.com/resource/c245ada282824a4a15e68bec80502ad4.jpg"
-                                                                    alt=""><a class="cover-link" data-v-4af9704d=""></a>
-                        </li>
-                        <li class="content" data-v-4af9704d=""><img class="i" data-v-4af9704d=""
-                                                                    src="https://resource.smartisan.com/resource/m/minibanner_03.jpg"
-                                                                    alt=""><a
-                                class="cover-link" data-v-4af9704d=""></a></li>
-                    </ul>
-                </div>
-                <!---->
-                <!---->
-            </div>
+            <!-- 底部推荐 -->
+            <%@include file="jsp/bottomRecommend.jsp" %>
+            <!-- /底部推荐 -->
         </div>
         <script>
             $(function () {
@@ -228,123 +154,48 @@
                                 hot.push(data[i]);
                             }
                         }
-                        for (let i = 0; i < phone.length; i++) {
-                            if (i === 6)
-                                break;
-                            let label = '<div class="good-item" data-v-0265f772="" data-v-4af9704d="">\n' +
-                                '                    <div data-v-0265f772="">\n' +
-                                '                      <div class="good-img" data-v-0265f772="">\n' +
-                                '                        <a data-v-0265f772=""><img data-v-0265f772="" src=' + phone[i].goodsImg + '></a>\n' +
-                                '                      </div>\n' +
-                                '                      <h6 class="good-title" data-v-0265f772="">' + phone[i].goodsName + '</h6>\n' +
-                                '                      <h3 class="sub-title ellipsis" data-v-0265f772="">' + phone[i].goodsTitle + '</h3>\n' +
-                                '                      <div class="good-price pr" data-v-0265f772="">\n' +
-                                '                        <div class="ds pa" data-v-0265f772="">\n' +
-                                '                          <a href="/goods?method=info&goodsId=' + phone[i].id + '" data-v-0265f772="">\n' +
-                                '                            <input class="default-btn" data-v-612d7650="" data-v-0265f772=""\n' +
-                                '                                   type="button" readonly="readonly" value="查看详情"\n' +
-                                '                                   style="margin: 0px 5px;">\n' +
-                                '                          </a>\n' +
-                                '                          <input data-id=' + phone[i].id + ' class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
-                                '                                 type="button" readonly="readonly" value="加入购物车"\n' +
-                                '                                 style="margin: 0px 5px;">\n' +
-                                '                        </div>\n' +
-                                '                        <p data-v-0265f772="">\n' +
-                                '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + phone[i].price + '</p>\n' +
-                                '                      </div>\n' +
-                                '                    </div>\n' +
-                                '                  </div>';
-                            $("#phone").append(label);
-                        }
-                        for (let i = 0; i < clothing.length; i++) {
-                            if (i === 6) {
-                                break;
-                            }
-                            let label = '<div class="good-item" data-v-0265f772="" data-v-4af9704d="">\n' +
-                                '                    <div data-v-0265f772="">\n' +
-                                '                      <div class="good-img" data-v-0265f772="">\n' +
-                                '                        <a data-v-0265f772=""><img data-v-0265f772="" src=' + clothing[i].goodsImg + '></a>\n' +
-                                '                      </div>\n' +
-                                '                      <h6 class="good-title" data-v-0265f772="">' + clothing[i].goodsName + '</h6>\n' +
-                                '                      <h3 class="sub-title ellipsis" data-v-0265f772="">' + clothing[i].goodsTitle + '</h3>\n' +
-                                '                      <div class="good-price pr" data-v-0265f772="">\n' +
-                                '                        <div class="ds pa" data-v-0265f772="">\n' +
-                                '                          <a href="/goods?method=info&method=info&goodsId=' + clothing[i].id + '" data-v-0265f772="">\n' +
-                                '                            <input class="default-btn" data-v-612d7650="" data-v-0265f772=""\n' +
-                                '                                   type="button" readonly="readonly" value="查看详情"\n' +
-                                '                                   style="margin: 0px 5px;">\n' +
-                                '                          </a>\n' +
-                                '                          <input data-id=' + clothing[i].id + ' class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
-                                '                                 type="button" readonly="readonly" value="加入购物车"\n' +
-                                '                                 style="margin: 0px 5px;">\n' +
-                                '                        </div>\n' +
-                                '                        <p data-v-0265f772="">\n' +
-                                '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + clothing[i].price + '</p>\n' +
-                                '                      </div>\n' +
-                                '                    </div>\n' +
-                                '                  </div>';
-                            $("#clothing").append(label);
-                        }
-                        for (let i = 0; i < parts.length; i++) {
-                            if (i === 6) {
-                                break;
-                            }
-                            let label = '<div class="good-item" data-v-0265f772="" data-v-4af9704d="">\n' +
-                                '                    <div data-v-0265f772="">\n' +
-                                '                      <div class="good-img" data-v-0265f772="">\n' +
-                                '                        <a data-v-0265f772=""><img data-v-0265f772="" src=' + parts[i].goodsImg + '></a>\n' +
-                                '                      </div>\n' +
-                                '                      <h6 class="good-title" data-v-0265f772="">' + parts[i].goodsName + '</h6>\n' +
-                                '                      <h3 class="sub-title ellipsis" data-v-0265f772="">' + parts[i].goodsTitle + '</h3>\n' +
-                                '                      <div class="good-price pr" data-v-0265f772="">\n' +
-                                '                        <div class="ds pa" data-v-0265f772="">\n' +
-                                '                          <a href="/goods?method=info&goodsId=' + parts[i].id + '" data-v-0265f772="">\n' +
-                                '                            <input class="default-btn" data-v-612d7650="" data-v-0265f772=""\n' +
-                                '                                   type="button" readonly="readonly" value="查看详情"\n' +
-                                '                                   style="margin: 0px 5px;">\n' +
-                                '                          </a>\n' +
-                                '                          <input data-id=' + parts[i].id + ' class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
-                                '                                 type="button" readonly="readonly" value="加入购物车"\n' +
-                                '                                 style="margin: 0px 5px;">\n' +
-                                '                        </div>\n' +
-                                '                        <p data-v-0265f772="">\n' +
-                                '                          <span data-v-0265f772="" style="font-size: 14px;">￥</span> ' + parts[i].price + '</p>\n' +
-                                '                      </div>\n' +
-                                '                    </div>\n' +
-                                '                  </div>';
-                            $("#parts").append(label);
-                        }
-                        for (let i = 0; i < hot.length; i++) {
-                            if (i == 2) {
-                                break;
-                            }
-                            let label = '<div class="good-item" data-v-0265f772="" data-v-4af9704d="" data-v-26571f4f="">\n' +
-                                '                      <div data-v-0265f772="">\n' +
-                                '                        <div class="good-img" data-v-0265f772="">\n' +
-                                '                          <a data-v-0265f772=""><img src=' + hot[i].goodsImg + ' data-v-0265f772="" alt="支付测试商品 IPhone 11 Pro Max 4G手机 双卡双待"></a>\n' +
-                                '                        </div>\n' +
-                                '                        <h6 class="good-title" data-v-0265f772="">' + hot[i].goodsName + '</h6>\n' +
-                                '                        <h3 class="sub-title ellipsis" data-v-0265f772="">' + hot[i].goodsTitle + '</h3>\n' +
-                                '                        <div class="good-price pr" data-v-0265f772="1">\n' +
-                                '                          <div class="ds pa" data-v-0265f772="">\n' +
-                                '                            <a href="/goods?method=info&goodsId=' + hot[i].id + '" data-v-0265f772="">\n' +
-                                '                              <input class="default-btn" data-v-612d7650=""\n' +
-                                '                                     data-v-0265f772="" type="button" readonly="readonly"\n' +
-                                '                                     value="查看详情" style="margin: 0px 5px;">\n' +
-                                '                            </a>\n' +
-                                '                            <input data-id=' + hot[i].id + ' class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
-                                '                                   type="button" readonly="readonly" value="加入购物车"\n' +
-                                '                                   style="margin: 0px 5px;">\n' +
-                                '                          </div>\n' +
-                                '                          <p data-v-0265f772="">\n' +
-                                '                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>' + hot[i].price + '</p>\n' +
-                                '                        </div>\n' +
-                                '                      </div>\n' +
-                                '                    </div>';
-                            $("#hot").append(label);
-                        }
+                        let phoneHtml = $("#phone");
+                        getData(phone, phoneHtml, 6);
+                        let clothingHtml = $("#clothing");
+                        getData(clothing, clothingHtml, 6)
+                        let partsHtml = $("#parts");
+                        getData(parts, partsHtml, 6)
+                        let hotHtml = $("#hot");
+                        getData(hot, hotHtml, 2)
                     }
                 });
+
+                function getData(data, dom, number) {
+                    for (let i = 0; i < data.length; i++) {
+                        if (i === number) {
+                            break;
+                        }
+                        let label = '<div class="good-item" data-v-0265f772="" data-v-4af9704d="" data-v-26571f4f="">\n' +
+                            '                      <div data-v-0265f772="">\n' +
+                            '                        <div class="good-img" data-v-0265f772="">\n' +
+                            '                          <a data-v-0265f772=""><img src=' + data[i].goodsImg + ' data-v-0265f772="" alt="支付测试商品 IPhone 11 Pro Max 4G手机 双卡双待"></a>\n' +
+                            '                        </div>\n' +
+                            '                        <h6 class="good-title" data-v-0265f772="">' + data[i].goodsName + '</h6>\n' +
+                            '                        <h3 class="sub-title ellipsis" data-v-0265f772="">' + data[i].goodsTitle + '</h3>\n' +
+                            '                        <div class="good-price pr" data-v-0265f772="1">\n' +
+                            '                          <div class="ds pa" data-v-0265f772="">\n' +
+                            '                            <a href="/goods?method=info&goodsId=' + data[i].id + '" data-v-0265f772="">\n' +
+                            '                              <input class="default-btn" data-v-612d7650=""\n' +
+                            '                                     data-v-0265f772="" type="button" readonly="readonly"\n' +
+                            '                                     value="查看详情" style="margin: 0px 5px;">\n' +
+                            '                            </a>\n' +
+                            '                            <input data-id=' + data[i].id + ' class="main-btn" data-v-612d7650 data-v-0265f772=""\n' +
+                            '                                   type="button" readonly="readonly" value="加入购物车"\n' +
+                            '                                   style="margin: 0px 5px;">\n' +
+                            '                          </div>\n' +
+                            '                          <p data-v-0265f772="">\n' +
+                            '                            <span data-v-0265f772="" style="font-size: 14px;">￥</span>' + data[i].price + '</p>\n' +
+                            '                        </div>\n' +
+                            '                      </div>\n' +
+                            '                    </div>';
+                        $(dom).append(label);
+                    }
+                }
             });
         </script>
         <!-- 底部 -->

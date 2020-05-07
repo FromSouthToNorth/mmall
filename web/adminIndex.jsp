@@ -374,7 +374,50 @@
                             <h4 id="u-title" class="modal-title"></h4>
                         </div>
                         <div class="modal-body">
-                            <p>One fine body&hellip;</p>
+                            <form>
+                                <div class="form-group">
+                                    <label for="user-avatar">头像</label>
+                                    <img id="user-avatar-show" src="" alt="未选择头像" class="img-rounded">
+                                    <input id="user-avatar" onchange="updateAvatar(this)" type="file">
+                                </div>
+                                <div class="form-group">
+                                    <label for="user-name">登录名称</label>
+                                    <input id="name" type="text" class="form-control"
+                                           placeholder="名称">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">密码</label>
+                                    <input id="password" type="password" class="form-control"
+                                           placeholder="密码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone-call">电话号码</label>
+                                    <input id="phone-call" type="number" class="form-control"
+                                           placeholder="电话">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">邮件</label>
+                                    <input id="email" type="email" class="form-control"
+                                           placeholder="邮件">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sex">性别</label>
+                                    <div class="btn-group">
+                                        <input type="button" id="sex" name="goodsType"
+                                               class="btn btn-sm btn-default" value="性别">
+                                        <button type="button" class="btn  btn-sm btn-default dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul id="sex-list" class="dropdown-menu">
+                                            <li><a href="#">男</a></li>
+                                            <li><a href="#">女</a></li>
+                                            <li><a href="#">保密</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -735,7 +778,19 @@
                 $("#add-admin").click(function () {
                     $("#u-title").text("添加管理员")
                 });
+                $("#sex-list li a").click(function () {
+                    $("#sex").val($(this).text())
+                });
             });
+            function updateAvatar(obj) {
+                let img = document.getElementById("user-avatar-show");
+                let file = obj.files[0];
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    img.setAttribute("src", this.result);
+                }
+            }
         </script>
     </div>
 </div>

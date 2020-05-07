@@ -41,6 +41,10 @@ public class UsersServlet extends HttpServlet {
                 Date date = new Date();
                 users.setUserType(0);
                 users.setRegisterDate(date);
+                users.setAvatar("无");
+                users.setMail("无");
+                users.setSex("保密");
+                users.setState(1);
                 service.saveUsers(users);
                 resp.getWriter().write("login.jsp");
                 break;

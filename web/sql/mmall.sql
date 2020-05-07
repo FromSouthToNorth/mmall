@@ -6,12 +6,17 @@ CREATE TABLE IF NOT EXISTS `users`(
    id INT UNSIGNED AUTO_INCREMENT,
    user_name VARCHAR(100) NOT NULL,
    user_password VARCHAR(40) NOT NULL,
-	 avatar VARCHAR(268),
+	 sex VARCHAR(255) DEFAULT '保密',
+	 phone_call VARCHAR(255) DEFAULT '无',
+	 mail VARCHAR(255) DEFAULT '无',
+	 avatar VARCHAR(268 ) DEFAULT '无',
 	 user_type INT NOT NULL,
+	 state INT NOT NULL DEFAULT 1,
    register_date DATE,
 	 login_date DATE,
    PRIMARY KEY ( `id` )
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE IF NOT EXISTS `goods`(
    id INT UNSIGNED AUTO_INCREMENT,

@@ -12,7 +12,7 @@ public class UsersDAOImpl implements UsersDAO {
     @Override
     public void saveUsers(Users users) {
         Connection connection = JDBCTools.getConnection();
-        String sql = "insert into users (user_name, user_password, user_type, register_date) values(?, ?, ?, ?)";
+        String sql = "insert into users (user_name, user_password, user_type, state ,register_date) values(?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
         try {
             Date date = new Date(users.getRegisterDate().getTime());
@@ -20,7 +20,8 @@ public class UsersDAOImpl implements UsersDAO {
             statement.setString(1, users.getUserName());
             statement.setString(2, users.getUserPassword());
             statement.setInt(3, users.getUserType());
-            statement.setDate(4, date);
+            statement.setInt(4, users.getState());
+            statement.setDate(5, date);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -32,7 +33,7 @@ public class UsersDAOImpl implements UsersDAO {
     @Override
     public Users findUsers(Users users) {
         Connection connection = JDBCTools.getConnection();
-        String sql = "select * from users where user_name = ? and user_password = ?";
+        String sql = "select * from users where user_name = ? and user_password = ? and state = 1";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         Users user = null;
@@ -47,9 +48,13 @@ public class UsersDAOImpl implements UsersDAO {
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getInt(5),
-                        resultSet.getDate(6),
-                        resultSet.getDate(7)
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getInt(8),
+                        resultSet.getInt(9),
+                        resultSet.getDate(10),
+                        resultSet.getDate(11)
                 );
             }
         } catch (SQLException e) {
@@ -112,9 +117,13 @@ public class UsersDAOImpl implements UsersDAO {
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getInt(5),
-                        resultSet.getDate(6),
-                        resultSet.getDate(7)
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getInt(8),
+                        resultSet.getInt(9),
+                        resultSet.getDate(10),
+                        resultSet.getDate(11)
                 );
             }
         } catch (SQLException e) {
@@ -128,7 +137,7 @@ public class UsersDAOImpl implements UsersDAO {
     @Override
     public Users findAdmin(Users users) {
         Connection connection = JDBCTools.getConnection();
-        String sql = "select * from users where user_name = ? and user_password = ? and user_type = 1";
+        String sql = "select * from users where user_name = ? and user_password = ? and user_type = 1 and state = 1";
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         Users user = null;
@@ -143,9 +152,13 @@ public class UsersDAOImpl implements UsersDAO {
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getInt(5),
-                        resultSet.getDate(6),
-                        resultSet.getDate(7)
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getInt(8),
+                        resultSet.getInt(9),
+                        resultSet.getDate(10),
+                        resultSet.getDate(11)
                 );
             }
         } catch (SQLException e) {
@@ -172,9 +185,13 @@ public class UsersDAOImpl implements UsersDAO {
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getInt(5),
-                        resultSet.getDate(6),
-                        resultSet.getDate(7)
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getInt(8),
+                        resultSet.getInt(9),
+                        resultSet.getDate(10),
+                        resultSet.getDate(11)
                 ));
             }
         } catch (SQLException e) {

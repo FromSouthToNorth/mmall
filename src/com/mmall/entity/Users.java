@@ -6,10 +6,46 @@ public class Users {
     private Integer id;
     private String userName;
     private String userPassword;
+    private String sex;
+    private String phoneCall;
+    private String mail;
     private String avatar;
     private Integer userType;
+    private Integer state;
     private Date registerDate;
     private Date loginDate;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getPhoneCall() {
+        return phoneCall;
+    }
+
+    public void setPhoneCall(String phoneCall) {
+        this.phoneCall = phoneCall;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
 
     public Integer getId() {
         return id;
@@ -70,12 +106,16 @@ public class Users {
     public Users() {
     }
 
-    public Users(Integer id, String userName, String userPassword, String avatar, Integer userType, Date registerDate, Date loginDate) {
+    public Users(Integer id, String userName, String userPassword, String sex, String phoneCall, String mail, String avatar, Integer userType, Integer state, Date registerDate, Date loginDate) {
         this.id = id;
         this.userName = userName;
         this.userPassword = userPassword;
+        this.sex = sex;
+        this.phoneCall = phoneCall;
+        this.mail = mail;
         this.avatar = avatar;
         this.userType = userType;
+        this.state = state;
         this.registerDate = registerDate;
         this.loginDate = loginDate;
     }

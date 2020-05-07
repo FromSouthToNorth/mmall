@@ -51,22 +51,26 @@ public class CartDAOImpl implements CartDAO {
                                 resultSet.getString(5),
                                 resultSet.getString(6),
                                 resultSet.getString(7),
-                                resultSet.getInt(8),
-                                resultSet.getDate(9),
-                                resultSet.getDate(10)
+                                resultSet.getString(8),
+                                resultSet.getString(9),
+                                resultSet.getString(10),
+                                resultSet.getInt(11),
+                                resultSet.getInt(12),
+                                resultSet.getDate(13),
+                                resultSet.getDate(14)
                         ),
                         new Goods(
-                               resultSet.getInt(11),
-                               resultSet.getString(12),
-                                resultSet.getDouble(13),
-                                resultSet.getString(14),
-                                resultSet.getString(15),
+                               resultSet.getInt(15),
+                               resultSet.getString(16),
+                                resultSet.getDouble(17),
+                                resultSet.getString(18),
+                                resultSet.getString(19),
                                 new GoodsType(
-                                       resultSet.getInt(19),
-                                       resultSet.getString(20)
+                                       resultSet.getInt(23),
+                                       resultSet.getString(24)
                                 ),
-                                resultSet.getDate(17),
-                                resultSet.getDate(18)
+                                resultSet.getDate(21),
+                                resultSet.getDate(22)
                         )
                 ));
             }

@@ -25,7 +25,7 @@ public class adminUserServlet extends HttpServlet {
         String method = req.getParameter("method");
         if ("findByAllUser".equals(method)) {
             List<Users> allUsers = usersService.findAllUsers();
-            String json = JSON.toJSONStringWithDateFormat(usersService, "yyyy-MM-dd");
+            String json = JSON.toJSONStringWithDateFormat(allUsers, "yyyy-MM-dd");
             resp.getWriter().write(json);
         }
     }

@@ -55,6 +55,16 @@
         width: 90px;
         height: auto;
     }
+    tbody td a {
+        color: #000;
+        display: inline-block;
+    }
+    .ml-5 {
+        margin-left: 6px;
+    }
+    .label {
+        display: inline-block;
+    }
 </style>
 <body>
 <div>
@@ -143,8 +153,8 @@
                         </tbody>
                     </table>
                 </div>
-                <nav id="paging" aria-label="Page navigation">
-                    <ul class="pagination pull-right">
+                <nav aria-label="Page navigation">
+                    <ul id="goods-paging" class="pagination pull-right">
                     </ul>
                 </nav>
                 <div id="save-goods" class="modal fade fade bs-example-modal-sm" tabindex="-1" role="dialog">
@@ -159,7 +169,7 @@
                                 <form>
                                     <div class="form-group">
                                         <label for="img-file">商品封面</label>
-                                        <img id="s-goods-img" src="..." alt="未选择封面" class="img-rounded">
+                                        <img id="s-goods-img" src="" alt="未选择封面" class="img-rounded">
                                         <input id="img-file" onchange="updateImg(this)" name="goodsImg" type="file">
                                     </div>
                                     <div class="form-group">
@@ -238,7 +248,8 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane fade in active" id="user-vip">
+                    <!---->
+                    <div role="tabpanel" class="tab-pane fade in active" id="user-vip"  style="margin-top: 20px">
                         <form id="u-form-search" class="form-inline" novalidate="novalidate">
                             <div class="text-c">
                                 日期范围：
@@ -248,7 +259,7 @@
                                 <input class="form-control" id="u-maxDate" name="maxData" type="date"
                                        style="width: 140px;">
                                 <input class="form-control" id="user-name" type="text" name="goodsName"
-                                       placeholder="商品名称"
+                                       placeholder="用户名称"
                                        style="width: 250px;">
                                 <button id="user-search" class="btn btn-primary" type="button"><span
                                         class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
@@ -259,9 +270,9 @@
                         </form>
                         <nav class="navbar navbar-default">
                             <button id="add-user" style="margin-left: 10px" data-toggle="modal"
-                                    data-target="#save-goods"
+                                    data-target="#save-user"
                                     type="button" class="btn btn-primary navbar-btn btn-sm"><span
-                                    class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加商品
+                                    class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加用户
                             </button>
                             <p style="padding-right: 30px" class="navbar-text navbar-right">共有数据： <a href="#"
                                                                                                      id="u-total"
@@ -273,27 +284,29 @@
                             <table class="table table-bordered table-hover table-condensed">
                                 <thead>
                                 <tr>
-                                    <th style="min-width: 28px;">id</th>
-                                    <th style="min-width: 110px">略缩图</th>
-                                    <th>商品名称</th>
-                                    <th>描述</th>
-                                    <th style="min-width: 50px;">单价</th>
-                                    <th style="min-width: 74px;">创建时间</th>
-                                    <th style="min-width: 74px;">更新时间</th>
-                                    <th style="min-width: 112px;">操作</th>
+                                    <th>id</th>
+                                    <th>登录名</th>
+                                    <th>性别</th>
+                                    <th>手机</th>
+                                    <th>邮件</th>
+                                    <th>创建时间</th>
+                                    <th>最后登陆时间</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody id="userList">
                                 </tbody>
                             </table>
                         </div>
-                        <nav id="u-paging" aria-label="Page navigation">
-                            <ul class="pagination pull-right">
-                            </ul>
-                        </nav>
-
+<%--                        <nav aria-label="Page navigation">--%>
+<%--                            <ul id="u-paging" class="pagination pull-right">--%>
+<%--                            </ul>--%>
+<%--                        </nav>--%>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="admin">
+                    <!---->
+                    <!---->
+                    <div role="tabpanel" class="tab-pane fade" id="admin" style="margin-top: 20px">
                         <form id="a-form-search" class="form-inline" novalidate="novalidate">
                             <div class="text-c">
                                 日期范围：
@@ -303,7 +316,7 @@
                                 <input class="form-control" id="a-maxDate" name="maxData" type="date"
                                        style="width: 140px;">
                                 <input class="form-control" id="admin-name" type="text" name="goodsName"
-                                       placeholder="商品名称"
+                                       placeholder="管理员名称"
                                        style="width: 250px;">
                                 <button id="admin-search" class="btn btn-primary" type="button"><span
                                         class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
@@ -314,9 +327,9 @@
                         </form>
                         <nav class="navbar navbar-default">
                             <button id="add-admin" style="margin-left: 10px" data-toggle="modal"
-                                    data-target="#save-goods"
+                                    data-target="#save-user"
                                     type="button" class="btn btn-primary navbar-btn btn-sm"><span
-                                    class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加商品
+                                    class="glyphicon glyphicon-plus" aria-hidden="true"></span> 添加管理员
                             </button>
                             <p style="padding-right: 30px" class="navbar-text navbar-right">共有数据： <a href="#"
                                                                                                      id="admin-total"
@@ -328,27 +341,48 @@
                             <table class="table table-bordered table-hover table-condensed">
                                 <thead>
                                 <tr>
-                                    <th style="min-width: 28px;">id</th>
-                                    <th style="min-width: 110px">略缩图</th>
-                                    <th>商品名称</th>
-                                    <th>描述</th>
-                                    <th style="min-width: 50px;">单价</th>
-                                    <th style="min-width: 74px;">创建时间</th>
-                                    <th style="min-width: 74px;">更新时间</th>
-                                    <th style="min-width: 112px;">操作</th>
+                                <tr>
+                                    <th>id</th>
+                                    <th>登录名</th>
+                                    <th>性别</th>
+                                    <th>手机</th>
+                                    <th>邮件</th>
+                                    <th>创建时间</th>
+                                    <th>最后登陆时间</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
                                 </tr>
                                 </thead>
                                 <tbody id="adminList">
                                 </tbody>
                             </table>
                         </div>
-                        <nav id="admin-paging" aria-label="Page navigation">
-                            <ul class="pagination pull-right">
-                            </ul>
-                        </nav>
+<%--                        <nav aria-label="Page navigation">--%>
+<%--                            <ul id="admin-paging" class="pagination pull-right">--%>
+<%--                            </ul>--%>
+<%--                        </nav>--%>
                     </div>
+                    <!---->
                 </div>
             </div>
+            <div class="modal fade" id="save-user" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 id="u-title" class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>One fine body&hellip;</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary">提交</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         </div>
         <script>
             $(function () {
@@ -429,16 +463,16 @@
                     } else {
                         page = Math.ceil(data.length / num);
                     }
-                    let li = "<li id=\"previous\">\n" +
+                    let li = "<li id=\"g-previous\">\n" +
                         "<a href=\"#\" aria-label=\"Previous\">\n" +
                         "    <span aria-hidden=\"true\">&laquo;</span>\n" +
                         "</a>\n" +
                         "</li>";
                     for (let i = 1; i <= page; i++) {
-                        li += ' <li class="number"><a href="#">' + i + '</a></li>';
+                        li += ' <li class="g-number"><a href="#">' + i + '</a></li>';
                     }
-                    $(".pagination.pull-right").empty();
-                    $(".pagination.pull-right").append(li + "<li id=\"next\">\n" +
+                    $("#goods-paging.pagination.pull-right").empty();
+                    $("#goods-paging.pagination.pull-right").append(li + "<li id=\"g-next\">\n" +
                         "    <a href=\"#\"  aria-label=\"Next\">\n" +
                         "        <span aria-hidden=\"true\">&raquo;</span>\n" +
                         "    </a>\n" +
@@ -446,7 +480,7 @@
                     let index;
                     dataDisplay(data, 0, num);
                     $(".pagination.pull-right li").eq(now_page).addClass("active");
-                    $(document).on("click", "#next", function () {
+                    $(document).on("click", "#g-next", function () {
                         console.log("page=" + page);
                         console.log("now_page=" + now_page);
                         if (now_page + 1 > page) {
@@ -466,7 +500,7 @@
                         index = num * now_page
                         dataDisplay(data, index - num, index);
                     });
-                    $(document).on("click", "#previous", function () {
+                    $(document).on("click", "#g-previous", function () {
                         if (now_page - 1 < 1) {
                             $(this).addClass("disabled");
                             return;
@@ -484,9 +518,9 @@
                         index = num * now_page
                         dataDisplay(data, index - num, index);
                     });
-                    $(document).on("click", ".number", function () {
+                    $(document).on("click", ".g-number", function () {
                         $(this).addClass("active");
-                        $(".number").not(this).removeClass("active");
+                        $(".g-number").not(this).removeClass("active");
                         now_page = parseInt($(this).text());
                         console.log(now_page);
                         let index = parseInt($(this).text()) * num;
@@ -633,5 +667,77 @@
                 }
             }
         </script>
+        <script>
+            $(function () {
+                let vip = [];
+                let admin = [];
+                $.ajax({
+                    url:"/adminUser",
+                    type: "get",
+                    data:{"method":"findByAllUser"},
+                    dataType:"json",
+                    success:function (data) {
+                        classifyUser(data);
+                    }
+                });
+                function classifyUser(data) {
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i].userType === 0) {
+                            vip.push(data[i]);
+                        } else {
+                            admin.push(data[i]);
+                        }
+                    }
+                    $("#u-total").text(vip.length);
+                    $("#admin-total").text(admin.length);
+                    showData(admin,$("#adminList"), $("#u-paging"));
+                    showData(vip,$("#userList"),$("#admin-paging"));
+                }
+                function showData(data, dom,) {
+                    let html = "";
+                    let user_state = "";
+                    $(dom).empty();
+                    for (let i = 0; i < data.length; i ++) {
+                        if (data[i].state === 1) {
+                            user_state = '<span class="label label-success">已启用</span>';
+                        } else {
+                            user_state = '<span class="label label-danger">已停用</span>';
+                        }
+                        html = '<tr>' +
+                            '<td>'+ data[i].id +'</td>' +
+                            '<td>'+ data[i].userName +'</td>' +
+                            '<td>'+ data[i].sex +'</td>' +
+                            '<td>'+ data[i].phoneCall +'</td>' +
+                            '<td>'+ data[i].mail +'</td>' +
+                            '<td>'+ data[i].registerDate +'</td>' +
+                            '<td>'+ data[i].loginDate +'</td>' +
+                            '<td>'+ user_state +'</td>' +
+                            '<td>' +
+                            '<a data-toggle="tooltip" data-pacement="bottom" title="停用" href="#state">' +
+                            '<span class="glyphicon glyphicon-off" aria-hidden="true"></span>' +
+                            '</a>' +
+                            '<a data-toggle="tooltip" data-pacement="bottom" title="编辑" class="ml-5" href="#update">' +
+                            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>' +
+                            '<a data-toggle="tooltip" data-pacement="bottom" title="修改密码" class="ml-5" href="#passowrd">' +
+                            '<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>' +
+                            '</a>' +
+                            '<a data-toggle="tooltip" data-pacement="bottom" title="删除用户" class="ml-5" href="#delete">' +
+                            '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>' +
+                            '</a>' +
+                            '</td>' +
+                            '</tr>';
+                        $(dom).append(html);
+                    }
+                }
+                $("#add-user").click(function () {
+                    $("#u-title").text("添加用户");
+                });
+                $("#add-admin").click(function () {
+                    $("#u-title").text("添加管理员")
+                });
+            });
+        </script>
+    </div>
+</div>
 </body>
 </html>

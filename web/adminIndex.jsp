@@ -163,7 +163,7 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                         aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title">添加商品</h4>
+                                <h4 id="goods-title" class="modal-title">添加商品</h4>
                             </div>
                             <div class="modal-body">
                                 <form>
@@ -374,18 +374,18 @@
                             <h4 id="u-title" class="modal-title"></h4>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form id="user-from">
                                 <div class="form-group">
                                     <label for="user-avatar">头像</label>
                                     <img id="user-avatar-show" src="" alt="未选择头像" class="img-rounded">
                                     <input id="user-avatar" onchange="updateAvatar(this)" type="file">
                                 </div>
                                 <div class="form-group">
-                                    <label for="user-name">登录名称</label>
+                                    <label for="name">登录名称</label>
                                     <input id="name" type="text" class="form-control"
                                            placeholder="名称">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="user-password">
                                     <label for="password">密码</label>
                                     <input id="password" type="password" class="form-control"
                                            placeholder="密码">
@@ -417,15 +417,18 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <input type="hidden" id="user-id" value="">
+                                <input type="hidden" id="user-type" value="">
+                                <input type="hidden" id="u-method" value="">
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="button" class="btn btn-primary">提交</button>
+                            <button id="push-user" type="button" class="btn btn-primary">提交</button>
                         </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
+                    </div>
+                </div>
+            </div>
         </div>
         <script>
             $(function () {
@@ -439,7 +442,6 @@
                         data: {"method": "allGoods"},
                         dataType: "json",
                         success: function (data) {
-                            console.log(data);
                             getData(data);
                         }
                     });
@@ -582,6 +584,7 @@
                 });
                 // 编辑商品按钮
                 $(document).on("click", "#update-goods", function () {
+                    $("#goods-title").text("编辑商品");
                     $("#operation-type").val("updateGoods");
                     $("#goods-id").val($(this).data("id"));
                     getAllGoodsType();
@@ -610,7 +613,6 @@
                         data: {"method": "findByIdGoods", "id": id},
                         success: function (data) {
                             data = eval("(" + data + ")");
-                            console.log(data);
                             $("#s-goods-img").attr("src", data.goodsImg);
                             $("#s-goods-name").val(data.goodsName);
                             $("#s-goods-title").val(data.goodsTitle);
@@ -660,7 +662,6 @@
                     if (id === "") {
                         id = 0;
                     }
-                    console.log(id);
                     let files = $("#img-file").prop("files");
                     let formData = new FormData();
                     formData.append("img-file", files[0]);
@@ -670,7 +671,6 @@
                     formData.append("goodsType", $("#s-goods-type").val());
                     formData.append("method", $("#operation-type").val());
                     formData.append("goodsId", id);
-                    console.log(formData);
                     $.ajax({
                         type: "post",
                         url: "/files",
@@ -714,15 +714,18 @@
             $(function () {
                 let vip = [];
                 let admin = [];
-                $.ajax({
-                    url:"/adminUser",
-                    type: "get",
-                    data:{"method":"findByAllUser"},
-                    dataType:"json",
-                    success:function (data) {
-                        classifyUser(data);
-                    }
-                });
+                function getData() {
+                    $.ajax({
+                        url:"/adminUser",
+                        type: "get",
+                        data:{"method":"findByAllUser"},
+                        dataType:"json",
+                        success:function (data) {
+                            classifyUser(data);
+                        }
+                    });
+                }
+                getData();
                 function classifyUser(data) {
                     for (let i = 0; i < data.length; i++) {
                         if (data[i].userType === 0) {
@@ -756,17 +759,18 @@
                             '<td>'+ data[i].loginDate +'</td>' +
                             '<td>'+ user_state +'</td>' +
                             '<td>' +
-                            '<a data-toggle="tooltip" data-pacement="bottom" title="停用" href="#state">' +
+                            '<button type="button" title="锁定" data-id="'+ data[i].id +'" class="btn btn-link btn-xs">' +
                             '<span class="glyphicon glyphicon-off" aria-hidden="true"></span>' +
-                            '</a>' +
-                            '<a data-toggle="tooltip" data-pacement="bottom" title="编辑" class="ml-5" href="#update">' +
-                            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>' +
-                            '<a data-toggle="tooltip" data-pacement="bottom" title="修改密码" class="ml-5" href="#passowrd">' +
+                            '</button>' +
+                            '<button type="button" data-toggle="modal" data-target="#save-user" title="编辑" data-id="'+ data[i].id +'" class="btn btn-link btn-xs update-user">' +
+                            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
+                            '</button>' +
+                            '<button type="button" title="修改密码" data-id="'+ data[i].id +'" class="btn btn-link btn-xs">' +
                             '<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>' +
-                            '</a>' +
-                            '<a data-toggle="tooltip" data-pacement="bottom" title="删除用户" class="ml-5" href="#delete">' +
+                            '</button>' +
+                            '<button type="button" title="删除用户" data-id="'+ data[i].id +'" class="btn btn-link btn-xs">' +
                             '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>' +
-                            '</a>' +
+                            '</button>' +
                             '</td>' +
                             '</tr>';
                         $(dom).append(html);
@@ -774,14 +778,78 @@
                 }
                 $("#add-user").click(function () {
                     $("#u-title").text("添加用户");
+                    $("#u-method").val("addUser");
+                    $("#user-password").show();
+                    $("#user-type").val(0);
                 });
                 $("#add-admin").click(function () {
-                    $("#u-title").text("添加管理员")
+                    $("#u-title").text("添加管理员");
+                    $("#u-method").val("addUser");
+                    $("#user-password").show();
+                    $("#user-type").val(1);
+                });
+                // 编辑用户按钮
+                $(document).on("click", ".update-user", function () {
+                    $("#u-title").text("修改用户");
+                    $("#u-method").val("updateUser");
+                    $("#user-password").hide();
+                    getUser($(this).data("id"));
                 });
                 $("#sex-list li a").click(function () {
-                    $("#sex").val($(this).text())
+                    $("#sex").val($(this).text());
                 });
             });
+
+            function getUser(id) {
+                $.ajax({
+                   url:"/adminUser",
+                   data:{"method":"findByIdUser","id":id},
+                   type:"post",
+                   success:function (data) {
+                       data = eval("(" + data + ")");
+                       $("#user-id").val(data.id);
+                       $("#password").val(data.userPassword);
+                       $("#user-avatar-show").attr("src",data.avatar);
+                       $("#name").val(data.userName);
+                       $("#email").val(data.mail);
+                       $("#user-type").val(data.userType);
+                       $("#sex").val(data.sex);
+                       $("#phone-call").val(data.phoneCall);
+                   }
+                });
+            }
+            // 提交按钮
+            $("#push-user").click(function () {
+                pushUser();
+                $("#user-from")[0].reset();
+                setTimeout(function () {
+                    location.reload();
+                }, 3400);
+                $("#sex").val("性别");
+            });
+            function pushUser() {
+                let files = $("#user-avatar").prop("files");
+                let formData = new FormData();
+                formData.append("id", $("#user-id").val());
+                formData.append("type", $("#user-type").val());
+                formData.append("avatar", files[0]);
+                formData.append("name", $("#name").val());
+                formData.append("email", $("#email").val());
+                formData.append("sex", $("#sex").val());
+                formData.append("phone", $("#phone-call").val());
+                formData.append("state", "1");
+                formData.append("password", $("#password").val());
+                formData.append("method", $("#u-method").val());
+                $.ajax({
+                    url:"/pushUser",
+                    type:"post",
+                    cache: false,
+                    data: formData,
+                    processData: false,
+                    contentType: false
+                })
+            }
+
             function updateAvatar(obj) {
                 let img = document.getElementById("user-avatar-show");
                 let file = obj.files[0];

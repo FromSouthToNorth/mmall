@@ -14,4 +14,6 @@ public interface UsersDAO {
     List<Users> findAllUsers();
     void findByIdUpdateUsers(Users users);
     void findByIdUpdatePassword(Users users);
+    void addUser(Users users);
+    void findByIdUpdateUser(Users users);
 }

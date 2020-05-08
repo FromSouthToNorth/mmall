@@ -119,4 +119,21 @@ public class Users {
         this.registerDate = registerDate;
         this.loginDate = loginDate;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", sex='" + sex + '\'' +
+                ", phoneCall='" + phoneCall + '\'' +
+                ", mail='" + mail + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", userType=" + userType +
+                ", state=" + state +
+                ", registerDate=" + registerDate +
+                ", loginDate=" + loginDate +
+                '}';
+    }
 }

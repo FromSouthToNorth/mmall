@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/adminGoods")
-public class adminGoodsServlet extends HttpServlet {
+public class AdminGoodsServlet extends HttpServlet {
     private final GoodsService goodsService = new GoodsServiceImpl();
     private final GoodsTypeService goodsTypeService = new GoodsTypeServiceImpl();
 

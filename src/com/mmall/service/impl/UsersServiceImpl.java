@@ -53,4 +53,14 @@ public class UsersServiceImpl implements UsersService {
     public void findByIdUpdatePassword(Users users) {
         usersDAO.findByIdUpdatePassword(users);
     }
+
+    @Override
+    public void addUser(Users users) {
+        usersDAO.addUser(users);
+    }
+
+    @Override
+    public void findByIdUpdateUser(Users users) {
+        usersDAO.findByIdUpdateUser(users);
+    }
 }

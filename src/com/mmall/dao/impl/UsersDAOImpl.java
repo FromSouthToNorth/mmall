@@ -236,4 +236,53 @@ public class UsersDAOImpl implements UsersDAO {
             JDBCTools.release(connection, statement, null);
         }
     }
+
+    @Override
+    public void addUser(Users users) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "insert into users (user_name, user_password, sex, phone_call, mail, avatar, user_type, state ,register_date) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = null;
+        try {
+            Date date = new Date(users.getRegisterDate().getTime());
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, users.getUserName());
+            statement.setString(2, users.getUserPassword());
+            statement.setString(3, users.getSex());
+            statement.setString(4, users.getPhoneCall());
+            statement.setString(5, users.getMail());
+            statement.setString(6, users.getAvatar());
+            statement.setInt(7, users.getUserType());
+            statement.setInt(8, users.getState());
+            statement.setDate(9, date);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
+    }
+
+    @Override
+    public void findByIdUpdateUser(Users users) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "update users set user_name = ?, user_password = ?, sex = ?, phone_call = ?, mail = ?, avatar = ?, user_type = ?, state = ? where id = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, users.getUserName());
+            statement.setString(2, users.getUserPassword());
+            statement.setString(3, users.getSex());
+            statement.setString(4, users.getPhoneCall());
+            statement.setString(5, users.getMail());
+            statement.setString(6, users.getAvatar());
+            statement.setInt(7, users.getUserType());
+            statement.setInt(8, users.getState());
+            statement.setInt(9, users.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
+    }
 }

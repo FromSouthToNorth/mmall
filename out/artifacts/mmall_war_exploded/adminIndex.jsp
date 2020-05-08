@@ -843,8 +843,8 @@
                 $.ajax({
                     url:"/pushUser",
                     type:"post",
-                    cache: false,
                     data: formData,
+                    cache: false,
                     processData: false,
                     contentType: false
                 })

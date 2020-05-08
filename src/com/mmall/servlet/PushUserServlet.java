@@ -1,6 +1,5 @@
 package com.mmall.servlet;
 
-import com.mmall.entity.Goods;
 import com.mmall.entity.Users;
 import com.mmall.service.UsersService;
 import com.mmall.service.impl.UsersServiceImpl;
@@ -24,6 +23,7 @@ import java.util.List;
 @WebServlet("/pushUser")
 public class PushUserServlet extends HttpServlet {
     private final UsersService usersService = new UsersServiceImpl();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
@@ -42,7 +42,9 @@ public class PushUserServlet extends HttpServlet {
                     String fieldName = fileItem.getFieldName();
                     String string = fileItem.getString("UTF-8");
                     if ("id".equals(fieldName)) {
-                        users.setId(Integer.parseInt(string));
+                        if (!string.equals("")) {
+                            users.setId(Integer.parseInt(string));
+                        }
                     }
                     if ("name".equals(fieldName)) {
                         users.setUserName(string);

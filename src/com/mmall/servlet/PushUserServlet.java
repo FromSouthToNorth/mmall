@@ -1,5 +1,6 @@
 package com.mmall.servlet;
 
+import com.alibaba.fastjson.JSON;
 import com.mmall.entity.Users;
 import com.mmall.service.UsersService;
 import com.mmall.service.impl.UsersServiceImpl;
@@ -103,5 +104,8 @@ public class PushUserServlet extends HttpServlet {
         } catch (FileUploadException e) {
             e.printStackTrace();
         }
+        List<Users> allUsers = usersService.findAllUsers();
+        String json = JSON.toJSONStringWithDateFormat(allUsers, "yyyy-MM-dd");
+        resp.getWriter().write(json);
     }
 }

@@ -55,13 +55,16 @@
         width: 90px;
         height: auto;
     }
+
     tbody td a {
         color: #000;
         display: inline-block;
     }
+
     .ml-5 {
         margin-left: 6px;
     }
+
     .label {
         display: inline-block;
     }
@@ -249,7 +252,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <!---->
-                    <div role="tabpanel" class="tab-pane fade in active" id="user-vip"  style="margin-top: 20px">
+                    <div role="tabpanel" class="tab-pane fade in active" id="user-vip" style="margin-top: 20px">
                         <form id="u-form-search" class="form-inline" novalidate="novalidate">
                             <div class="text-c">
                                 日期范围：
@@ -299,10 +302,10 @@
                                 </tbody>
                             </table>
                         </div>
-<%--                        <nav aria-label="Page navigation">--%>
-<%--                            <ul id="u-paging" class="pagination pull-right">--%>
-<%--                            </ul>--%>
-<%--                        </nav>--%>
+                        <%--                        <nav aria-label="Page navigation">--%>
+                        <%--                            <ul id="u-paging" class="pagination pull-right">--%>
+                        <%--                            </ul>--%>
+                        <%--                        </nav>--%>
                     </div>
                     <!---->
                     <!---->
@@ -358,10 +361,10 @@
                                 </tbody>
                             </table>
                         </div>
-<%--                        <nav aria-label="Page navigation">--%>
-<%--                            <ul id="admin-paging" class="pagination pull-right">--%>
-<%--                            </ul>--%>
-<%--                        </nav>--%>
+                        <%--                        <nav aria-label="Page navigation">--%>
+                        <%--                            <ul id="admin-paging" class="pagination pull-right">--%>
+                        <%--                            </ul>--%>
+                        <%--                        </nav>--%>
                     </div>
                     <!---->
                 </div>
@@ -370,7 +373,8 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
                             <h4 id="u-title" class="modal-title"></h4>
                         </div>
                         <div class="modal-body">
@@ -424,7 +428,44 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button id="push-user" type="button" class="btn btn-primary">提交</button>
+                            <button id="push-user" type="button" class="btn btn-primary" data-dismiss="modal">提交
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="update-password" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <form id="user_password">
+                                <div class="form-group">
+                                    <label for="old-password">旧密码</label>
+                                    <input id="old-password" type="password" class="form-control"
+                                           placeholder="旧密码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new-password">新密码</label>
+                                    <input id="new-password" type="password" class="form-control"
+                                           placeholder="新密码">
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwords">重复密码</label>
+                                    <input id="passwords" type="password" class="form-control"
+                                           placeholder="重复密码">
+                                </div>
+                                <input type="hidden" id="p-user-id" value="">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button id="push-password" type="button" class="btn btn-primary">提交
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -711,122 +752,125 @@
             }
         </script>
         <script>
-            $(function () {
-                let vip = [];
-                let admin = [];
-                function getData() {
-                    $.ajax({
-                        url:"/adminUser",
-                        type: "get",
-                        data:{"method":"findByAllUser"},
-                        dataType:"json",
-                        success:function (data) {
-                            classifyUser(data);
-                        }
-                    });
-                }
-                getData();
-                function classifyUser(data) {
-                    for (let i = 0; i < data.length; i++) {
-                        if (data[i].userType === 0) {
-                            vip.push(data[i]);
-                        } else {
-                            admin.push(data[i]);
-                        }
+            let vip = [];
+            let admin = [];
+
+            function getData() {
+                $.ajax({
+                    url: "/adminUser",
+                    type: "get",
+                    data: {"method": "findByAllUser"},
+                    dataType: "json",
+                    success: function (data) {
+                        classifyUser(data);
                     }
-                    $("#u-total").text(vip.length);
-                    $("#admin-total").text(admin.length);
-                    showData(admin,$("#adminList"), $("#u-paging"));
-                    showData(vip,$("#userList"),$("#admin-paging"));
-                }
-                function showData(data, dom,) {
-                    let html = "";
-                    let user_state = "";
-                    $(dom).empty();
-                    for (let i = 0; i < data.length; i ++) {
-                        if (data[i].state === 1) {
-                            user_state = '<span class="label label-success">已启用</span>';
-                        } else {
-                            user_state = '<span class="label label-danger">已停用</span>';
-                        }
-                        html = '<tr>' +
-                            '<td>'+ data[i].id +'</td>' +
-                            '<td>'+ data[i].userName +'</td>' +
-                            '<td>'+ data[i].sex +'</td>' +
-                            '<td>'+ data[i].phoneCall +'</td>' +
-                            '<td>'+ data[i].mail +'</td>' +
-                            '<td>'+ data[i].registerDate +'</td>' +
-                            '<td>'+ data[i].loginDate +'</td>' +
-                            '<td>'+ user_state +'</td>' +
-                            '<td>' +
-                            '<button type="button" title="锁定" data-id="'+ data[i].id +'" class="btn btn-link btn-xs">' +
-                            '<span class="glyphicon glyphicon-off" aria-hidden="true"></span>' +
-                            '</button>' +
-                            '<button type="button" data-toggle="modal" data-target="#save-user" title="编辑" data-id="'+ data[i].id +'" class="btn btn-link btn-xs update-user">' +
-                            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
-                            '</button>' +
-                            '<button type="button" title="修改密码" data-id="'+ data[i].id +'" class="btn btn-link btn-xs">' +
-                            '<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>' +
-                            '</button>' +
-                            '<button type="button" title="删除用户" data-id="'+ data[i].id +'" class="btn btn-link btn-xs">' +
-                            '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>' +
-                            '</button>' +
-                            '</td>' +
-                            '</tr>';
-                        $(dom).append(html);
+                });
+            }
+
+            getData();
+
+            function classifyUser(data) {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].userType === 0) {
+                        vip.push(data[i]);
+                    } else {
+                        admin.push(data[i]);
                     }
                 }
-                $("#add-user").click(function () {
-                    $("#u-title").text("添加用户");
-                    $("#u-method").val("addUser");
-                    $("#user-password").show();
-                    $("#user-type").val(0);
-                });
-                $("#add-admin").click(function () {
-                    $("#u-title").text("添加管理员");
-                    $("#u-method").val("addUser");
-                    $("#user-password").show();
-                    $("#user-type").val(1);
-                });
-                // 编辑用户按钮
-                $(document).on("click", ".update-user", function () {
-                    $("#u-title").text("修改用户");
-                    $("#u-method").val("updateUser");
-                    $("#user-password").hide();
-                    getUser($(this).data("id"));
-                });
-                $("#sex-list li a").click(function () {
-                    $("#sex").val($(this).text());
-                });
+                $("#u-total").text(vip.length);
+                $("#admin-total").text(admin.length);
+                showData(admin, $("#adminList"));
+                showData(vip, $("#userList"));
+            }
+
+            function showData(data, dom) {
+                let html = "";
+                let user_state = "";
+                $(dom).empty();
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].state === 1) {
+                        user_state = '<span class="label label-success">已启用</span>';
+                    } else {
+                        user_state = '<span class="label label-danger">已停用</span>';
+                    }
+                    html = '<tr>' +
+                        '<td>' + data[i].id + '</td>' +
+                        '<td>' + data[i].userName + '</td>' +
+                        '<td>' + data[i].sex + '</td>' +
+                        '<td>' + data[i].phoneCall + '</td>' +
+                        '<td>' + data[i].mail + '</td>' +
+                        '<td>' + data[i].registerDate + '</td>' +
+                        '<td>' + data[i].loginDate + '</td>' +
+                        '<td>' + user_state + '</td>' +
+                        '<td>' +
+                        '<button type="button" title="锁定" data-id="' + data[i].id + '" data-state="' + data[i].state + '" class="btn state-user btn-link btn-xs">' +
+                        '<span class="glyphicon glyphicon-off" aria-hidden="true"></span>' +
+                        '</button>' +
+                        '<button type="button" data-toggle="modal" data-target="#save-user" title="编辑" data-id="' + data[i].id + '" class="btn btn-link btn-xs update-user">' +
+                        '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
+                        '</button>' +
+                        '<button type="button" data-toggle="modal" data-target="#update-password" title="修改密码" data-id="' + data[i].id + '" class="btn update-user-password btn-link btn-xs">' +
+                        '<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>' +
+                        '</button>' +
+                        '<button type="button" title="删除用户" data-id="' + data[i].id + '" class="btn delete-user btn-link btn-xs">' +
+                        '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>' +
+                        '</button>' +
+                        '</td>' +
+                        '</tr>';
+                    $(dom).append(html);
+                }
+            }
+
+            $("#add-user").click(function () {
+                $("#u-title").text("添加用户");
+                $("#u-method").val("addUser");
+                $("#user-password").show();
+                $("#user-type").val(0);
+            });
+            $("#add-admin").click(function () {
+                $("#u-title").text("添加管理员");
+                $("#u-method").val("addUser");
+                $("#user-password").show();
+                $("#user-type").val(1);
+            });
+            // 编辑用户按钮
+            $(document).on("click", ".update-user", function () {
+                $("#u-title").text("修改用户");
+                $("#u-method").val("updateUser");
+                $("#user-password").hide();
+                getUser($(this).data("id"));
+            });
+            $("#sex-list li a").click(function () {
+                $("#sex").val($(this).text());
             });
 
             function getUser(id) {
                 $.ajax({
-                   url:"/adminUser",
-                   data:{"method":"findByIdUser","id":id},
-                   type:"post",
-                   success:function (data) {
-                       data = eval("(" + data + ")");
-                       $("#user-id").val(data.id);
-                       $("#password").val(data.userPassword);
-                       $("#user-avatar-show").attr("src",data.avatar);
-                       $("#name").val(data.userName);
-                       $("#email").val(data.mail);
-                       $("#user-type").val(data.userType);
-                       $("#sex").val(data.sex);
-                       $("#phone-call").val(data.phoneCall);
-                   }
+                    url: "/adminUser",
+                    data: {"method": "findByIdUser", "id": id},
+                    type: "post",
+                    success: function (data) {
+                        data = eval("(" + data + ")");
+                        $("#user-id").val(data.id);
+                        $("#password").val(data.userPassword);
+                        $("#user-avatar-show").attr("src", data.avatar);
+                        $("#name").val(data.userName);
+                        $("#email").val(data.mail);
+                        $("#user-type").val(data.userType);
+                        $("#sex").val(data.sex);
+                        $("#phone-call").val(data.phoneCall);
+                    }
                 });
             }
+
             // 提交按钮
             $("#push-user").click(function () {
                 pushUser();
                 $("#user-from")[0].reset();
-                setTimeout(function () {
-                    location.reload();
-                }, 3400);
                 $("#sex").val("性别");
+                window.location.reload();
             });
+
             function pushUser() {
                 let files = $("#user-avatar").prop("files");
                 let formData = new FormData();
@@ -841,13 +885,85 @@
                 formData.append("password", $("#password").val());
                 formData.append("method", $("#u-method").val());
                 $.ajax({
-                    url:"/pushUser",
-                    type:"post",
+                    url: "/pushUser",
+                    type: "post",
                     data: formData,
                     cache: false,
                     processData: false,
-                    contentType: false
+                    contentType: false,
+                    success: function () {
+                        window.location.reload();
+                    }
                 })
+            }
+
+            // 锁定用户按钮
+            $(document).on("click", ".state-user", function () {
+                let id = $(this).data("id");
+                let state = 0;
+                if (parseInt($(this).data("state")) === 0) {
+                    state = 1;
+                }
+                stateUser(id, state);
+            });
+
+            function stateUser(id, state) {
+                $.ajax({
+                    url: "/adminUser",
+                    type: "post",
+                    data: {"method": "stateUser", "id": id, "state": state},
+                    success: function () {
+                        window.location.reload();
+                    }
+                });
+            }
+
+            $(document).on("click", ".delete-user", function () {
+                let id = $(this).data("id");
+                $.ajax({
+                    url: "/adminUser",
+                    type: "post",
+                    data: {"method": "deleteUser", "id": id},
+                    success: function () {
+                        window.location.reload();
+                    }
+                })
+            });
+
+            $(document).on("click", ".update-user-password", function () {
+                $("#p-user-id").val($(this).data("id"));
+            })
+
+            $("#push-password").click(function () {
+                let id = $("#p-user-id").val();
+                let oldPassword = $("#old-password").val();
+                let newPassword = $("#new-password").val();
+                let passwords = $("#passwords").val();
+                console.log(oldPassword);
+                console.log(newPassword);
+                console.log(passwords);
+                if (oldPassword!=="" && newPassword!=="" && passwords!=="" && newPassword === passwords){
+                    $("#user_password")[0].reset();
+                    updatePassword(id, passwords, oldPassword);
+                } else {
+                    alert("请输入密码并且保持两次密码一致！")
+                }
+
+            });
+
+            function updatePassword(id, password, oldPassword) {
+                $.ajax({
+                   url:"/adminUser",
+                   type:"post",
+                   data:{"method":"updatePassword","id":id,"oldPassword": oldPassword,"password": password},
+                    success:function (data) {
+                       if (data === "密码错误！") {
+                           alert("旧密码不正确！")
+                       } else {
+                           window.location.reload();
+                       }
+                    }
+                });
             }
 
             function updateAvatar(obj) {

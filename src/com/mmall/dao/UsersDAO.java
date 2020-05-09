@@ -16,4 +16,7 @@ public interface UsersDAO {
     void findByIdUpdatePassword(Users users);
     void addUser(Users users);
     void findByIdUpdateUser(Users users);
+    void findByIdUpdateState(Integer id, Integer state);
+    void findByIdDeleteUser(Integer id);
+    Users findByIdAndPasswordUser(Integer id, String password);
 }

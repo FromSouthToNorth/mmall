@@ -63,4 +63,19 @@ public class UsersServiceImpl implements UsersService {
     public void findByIdUpdateUser(Users users) {
         usersDAO.findByIdUpdateUser(users);
     }
+
+    @Override
+    public void findByIdUpdateState(Integer id, Integer state) {
+        usersDAO.findByIdUpdateState(id, state);
+    }
+
+    @Override
+    public void findByIdDeleteUser(Integer id) {
+        usersDAO.findByIdDeleteUser(id);
+    }
+
+    @Override
+    public Users findByIdAndPasswordUser(Integer id, String password) {
+        return usersDAO.findByIdAndPasswordUser(id, password);
+    }
 }

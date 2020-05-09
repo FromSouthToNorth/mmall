@@ -3,6 +3,7 @@ package com.mmall.dao.impl;
 import com.mmall.dao.UsersDAO;
 import com.mmall.entity.Users;
 import com.mmall.utils.JDBCTools;
+import jdk.nashorn.internal.scripts.JD;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -284,5 +285,62 @@ public class UsersDAOImpl implements UsersDAO {
         } finally {
             JDBCTools.release(connection, statement, null);
         }
+    }
+
+    @Override
+    public void findByIdUpdateState(Integer id, Integer state) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "update users set state = ? where id = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, state);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
+    }
+
+    @Override
+    public void findByIdDeleteUser(Integer id) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "delete from users where id = ?";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, null);
+        }
+    }
+
+    @Override
+    public Users findByIdAndPasswordUser(Integer id, String password) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "select id from users where id = ? and user_password = ?";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Users users = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.setString(2, password);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                users = new Users();
+                users.setId(resultSet.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, resultSet);
+        }
+        return users;
     }
 }

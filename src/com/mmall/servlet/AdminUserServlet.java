@@ -41,5 +41,30 @@ public class AdminUserServlet extends HttpServlet {
             Users byIdUsers = usersService.findByIdUsers(Integer.parseInt(id));
             resp.getWriter().write(JSON.toJSONString(byIdUsers));
         }
+        if ("stateUser".equals(method)) {
+            String state = req.getParameter("state");
+            System.out.println(id + state);
+            usersService.findByIdUpdateState(Integer.parseInt(id), Integer.parseInt(state));
+        }
+        if ("deleteUser".equals(method)) {
+            usersService.findByIdDeleteUser(Integer.parseInt(id));
+        }
+        if ("updatePassword".equals(method)) {
+            String oldPassword = req.getParameter("oldPassword");
+            System.out.println(oldPassword);
+            System.out.println(id);
+            String password = req.getParameter("password");
+            Users byIdAndPasswordUser = usersService.findByIdAndPasswordUser(Integer.parseInt(id), oldPassword);
+            System.out.println(byIdAndPasswordUser);
+            if (byIdAndPasswordUser != null) {
+                Users users = new Users();
+                users.setId(Integer.parseInt(id));
+                users.setUserPassword(password);
+                usersService.findByIdUpdatePassword(users);
+                resp.getWriter().write("密码正确");
+            } else {
+                resp.getWriter().write("密码错误！");
+            }
+        }
     }
 }

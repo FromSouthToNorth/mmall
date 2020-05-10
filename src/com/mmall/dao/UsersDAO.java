@@ -19,4 +19,5 @@ public interface UsersDAO {
     void findByIdUpdateState(Integer id, Integer state);
     void findByIdDeleteUser(Integer id);
     Users findByIdAndPasswordUser(Integer id, String password);
+    List<Users> findByDateAndLikeNameUser(String minData, String maxData, String name, Integer type);
 }

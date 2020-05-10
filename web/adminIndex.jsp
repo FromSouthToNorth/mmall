@@ -121,7 +121,7 @@
                         <button id="goods-search" class="btn btn-primary" type="button"><span
                                 class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
                         </button>
-                        <button id="refresh" class="btn btn-warning pull-right btn-sm" type="button"><span
+                        <button class="btn refresh btn-warning pull-right btn-sm" type="button"><span
                                 class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                     </div>
                 </form>
@@ -241,15 +241,12 @@
             </div>
             <!-- 用户 -->
             <div role="tabpanel" class="tab-pane fade" id="user">
-                <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#user-vip" aria-controls="user-vip" role="tab"
                                                               data-toggle="tab">会员用户</a></li>
                     <li role="presentation"><a href="#admin" aria-controls="admin" role="tab" data-toggle="tab">管理员</a>
                     </li>
                 </ul>
-
-                <!-- Tab panes -->
                 <div class="tab-content">
                     <!---->
                     <div role="tabpanel" class="tab-pane fade in active" id="user-vip" style="margin-top: 20px">
@@ -261,13 +258,13 @@
                                 -
                                 <input class="form-control" id="u-maxDate" name="maxData" type="date"
                                        style="width: 140px;">
-                                <input class="form-control" id="user-name" type="text" name="goodsName"
+                                <input class="form-control" id="u-name" type="text" name="userName"
                                        placeholder="用户名称"
                                        style="width: 250px;">
-                                <button id="user-search" class="btn btn-primary" type="button"><span
+                                <button id="u-search" class="btn btn-primary" type="button"><span
                                         class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
                                 </button>
-                                <button id="u-refresh" class="btn btn-warning pull-right btn-sm" type="button"><span
+                                <button class="btn refresh btn-warning pull-right btn-sm" type="button"><span
                                         class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                             </div>
                         </form>
@@ -302,10 +299,10 @@
                                 </tbody>
                             </table>
                         </div>
-                        <%--                        <nav aria-label="Page navigation">--%>
-                        <%--                            <ul id="u-paging" class="pagination pull-right">--%>
-                        <%--                            </ul>--%>
-                        <%--                        </nav>--%>
+                        <nav aria-label="Page navigation">
+                            <ul id="u-paging" class=" pagination pull-right">
+                            </ul>
+                        </nav>
                     </div>
                     <!---->
                     <!---->
@@ -318,13 +315,13 @@
                                 -
                                 <input class="form-control" id="a-maxDate" name="maxData" type="date"
                                        style="width: 140px;">
-                                <input class="form-control" id="admin-name" type="text" name="goodsName"
+                                <input class="form-control" id="a-name" type="text" name="adminName"
                                        placeholder="管理员名称"
                                        style="width: 250px;">
-                                <button id="admin-search" class="btn btn-primary" type="button"><span
+                                <button id="a-search" class="btn btn-primary" type="button"><span
                                         class="glyphicon glyphicon-search" aria-hidden="true"></span> 搜索
                                 </button>
-                                <button id="a-refresh" class="btn btn-warning pull-right btn-sm" type="button"><span
+                                <button class="btn refresh btn-warning pull-right btn-sm" type="button"><span
                                         class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                             </div>
                         </form>
@@ -361,10 +358,10 @@
                                 </tbody>
                             </table>
                         </div>
-                        <%--                        <nav aria-label="Page navigation">--%>
-                        <%--                            <ul id="admin-paging" class="pagination pull-right">--%>
-                        <%--                            </ul>--%>
-                        <%--                        </nav>--%>
+                                                <nav aria-label="Page navigation">
+                                                    <ul id="a-paging" class="pagination pull-right">
+                                                    </ul>
+                                                </nav>
                     </div>
                     <!---->
                 </div>
@@ -489,7 +486,7 @@
                 }
 
                 defaultData();
-                $("#refresh").click(function () {
+                $(".refresh").click(function () {
                     location.reload();
                 });
                 $("#goods-search").click(function () {
@@ -567,8 +564,6 @@
                     dataDisplay(data, 0, num);
                     $(".pagination.pull-right li").eq(now_page).addClass("active");
                     $(document).on("click", "#g-next", function () {
-                        console.log("page=" + page);
-                        console.log("now_page=" + now_page);
                         if (now_page + 1 > page) {
                             $(this).addClass("disabled");
                             return;
@@ -752,6 +747,8 @@
             }
         </script>
         <script>
+            let num = 6;//每页显示多少条数据，暂定设为6.
+
             let vip = [];
             let admin = [];
 
@@ -820,6 +817,47 @@
                     $(dom).append(html);
                 }
             }
+
+            $("#a-search").click(function () {
+                let name = $("#a-name").val();
+                let min_date = $("#a-minDate").val();
+                let max_date = $("#a-maxDate").val();
+                if (name!==""&&max_date!==""&&min_date!=="") {
+                    selectUser(max_date, min_date, name, 1, $("#adminList"));
+                    $("#a-form-search")[0].reset();
+                } else {
+                    alert("请输入完整的检索数据！")
+                }
+            });
+
+            $("#u-search").click(function () {
+                let name = $("#u-name").val();
+                let min_date = $("#u-minDate").val();
+                let max_date = $("#u-maxDate").val();
+                if (name!==""&&max_date!==""&&min_date!=="") {
+                    selectUser(max_date, min_date, name, 0, $("#userList"));
+                    $("#u-form-search")[0].reset();
+                } else {
+                    alert("请输入完整的检索数据！")
+                }
+            })
+
+            function selectUser(max_date, min_date, name, user_type, dom) {
+                $.ajax({
+                    url:"/adminUser",
+                    type:"post",
+                    data: {"method":"findByDateAndLikeNameUser", "minData":min_date, "maxData":max_date, "name":name,"type":user_type},
+                    dataType:"json",
+                    success:function (data) {
+                        if (data.length !== 0) {
+                            showData(data, dom)
+                        } else {
+                            alert("没有检索到数据！")
+                        }
+                    }
+                })
+            }
+
 
             $("#add-user").click(function () {
                 $("#u-title").text("添加用户");

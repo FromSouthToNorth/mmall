@@ -3,7 +3,6 @@ package com.mmall.dao.impl;
 import com.mmall.dao.UsersDAO;
 import com.mmall.entity.Users;
 import com.mmall.utils.JDBCTools;
-import jdk.nashorn.internal.scripts.JD;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -335,6 +334,43 @@ public class UsersDAOImpl implements UsersDAO {
             while (resultSet.next()) {
                 users = new Users();
                 users.setId(resultSet.getInt(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JDBCTools.release(connection, statement, resultSet);
+        }
+        return users;
+    }
+
+    @Override
+    public List<Users> findByDateAndLikeNameUser(String minData, String maxData, String name, Integer type) {
+        Connection connection = JDBCTools.getConnection();
+        String sql = "select * from users where register_date between ? and ? and user_name like ? and user_type = ?";
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        List<Users> users = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, minData);
+            statement.setString(2, maxData);
+            statement.setString(3, "%" + name + "%");
+            statement.setInt(4, type);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                users.add(new Users(
+                        resultSet.getInt(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getInt(8),
+                        resultSet.getInt(9),
+                        resultSet.getDate(10),
+                        resultSet.getDate(11)
+                ));
             }
         } catch (SQLException e) {
             e.printStackTrace();

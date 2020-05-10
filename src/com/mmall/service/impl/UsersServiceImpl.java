@@ -78,4 +78,9 @@ public class UsersServiceImpl implements UsersService {
     public Users findByIdAndPasswordUser(Integer id, String password) {
         return usersDAO.findByIdAndPasswordUser(id, password);
     }
+
+    @Override
+    public List<Users> findByDateAndLikeNameUser(String minData, String maxData, String name, Integer type) {
+        return usersDAO.findByDateAndLikeNameUser(minData, maxData, name, type);
+    }
 }

@@ -66,5 +66,19 @@ public class AdminUserServlet extends HttpServlet {
                 resp.getWriter().write("密码错误！");
             }
         }
+        if ("findByDateAndLikeNameUser".equals(method)) {
+            String minData = req.getParameter("minData");
+            String maxData = req.getParameter("maxData");
+            String name = req.getParameter("name");
+            String type = req.getParameter("type");
+            System.out.println(maxData);
+            System.out.println(maxData);
+            System.out.println(name);
+            System.out.println(type);
+            Integer userType = Integer.parseInt(type);
+            List<Users> byDateAndLikeNameUser = usersService.findByDateAndLikeNameUser(minData, maxData, name, userType);
+            String json = JSON.toJSONStringWithDateFormat(byDateAndLikeNameUser, "yyyy-MM-dd");
+            resp.getWriter().write(json);
+        }
     }
 }

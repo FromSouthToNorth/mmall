@@ -950,9 +950,8 @@
                     url: "/adminUser",
                     type: "post",
                     data: {"method": "stateUser", "id": id, "state": state},
-                    success: function (data) {
-                        console.log(data);
-                        classifyUser(data);
+                    success: function () {
+                        window.location.reload();
                     }
                 });
             }

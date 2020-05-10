@@ -94,7 +94,7 @@ public class PushUserServlet extends HttpServlet {
             }
             if ("updateUser".equals(method)) {
                 if (fileName != null) {
-                    users.setAvatar("image/goods/" + fileName);
+                    users.setAvatar("image/avatar/" + fileName);
                 } else {
                     Users byIdUsers = usersService.findByIdUsers(users.getId());
                     users.setAvatar(byIdUsers.getAvatar());

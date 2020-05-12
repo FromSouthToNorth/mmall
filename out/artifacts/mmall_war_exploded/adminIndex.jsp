@@ -358,10 +358,10 @@
                                 </tbody>
                             </table>
                         </div>
-                                                <nav aria-label="Page navigation">
-                                                    <ul id="a-paging" class="pagination pull-right">
-                                                    </ul>
-                                                </nav>
+                        <nav aria-label="Page navigation">
+                            <ul id="a-paging" class="pagination pull-right">
+                            </ul>
+                        </nav>
                     </div>
                     <!---->
                 </div>
@@ -822,7 +822,7 @@
                 let name = $("#a-name").val();
                 let min_date = $("#a-minDate").val();
                 let max_date = $("#a-maxDate").val();
-                if (name!==""&&max_date!==""&&min_date!=="") {
+                if (name !== "" && max_date !== "" && min_date !== "") {
                     selectUser(max_date, min_date, name, 1, $("#adminList"));
                     $("#a-form-search")[0].reset();
                 } else {
@@ -834,7 +834,7 @@
                 let name = $("#u-name").val();
                 let min_date = $("#u-minDate").val();
                 let max_date = $("#u-maxDate").val();
-                if (name!==""&&max_date!==""&&min_date!=="") {
+                if (name !== "" && max_date !== "" && min_date !== "") {
                     selectUser(max_date, min_date, name, 0, $("#userList"));
                     $("#u-form-search")[0].reset();
                 } else {
@@ -844,11 +844,17 @@
 
             function selectUser(max_date, min_date, name, user_type, dom) {
                 $.ajax({
-                    url:"/adminUser",
-                    type:"post",
-                    data: {"method":"findByDateAndLikeNameUser", "minData":min_date, "maxData":max_date, "name":name,"type":user_type},
-                    dataType:"json",
-                    success:function (data) {
+                    url: "/adminUser",
+                    type: "post",
+                    data: {
+                        "method": "findByDateAndLikeNameUser",
+                        "minData": min_date,
+                        "maxData": max_date,
+                        "name": name,
+                        "type": user_type
+                    },
+                    dataType: "json",
+                    success: function (data) {
                         if (data.length !== 0) {
                             showData(data, dom)
                         } else {
@@ -906,7 +912,6 @@
                 pushUser();
                 $("#user-from")[0].reset();
                 $("#sex").val("性别");
-                window.location.reload();
             });
 
             function pushUser() {
@@ -930,7 +935,7 @@
                     processData: false,
                     contentType: false,
                     success: function () {
-                        window.location.reload();
+                        location.reload();
                     }
                 })
             }
@@ -951,7 +956,7 @@
                     type: "post",
                     data: {"method": "stateUser", "id": id, "state": state},
                     success: function () {
-                        window.location.reload();
+                        location.reload();
                     }
                 });
             }
@@ -963,7 +968,7 @@
                     type: "post",
                     data: {"method": "deleteUser", "id": id},
                     success: function () {
-                        window.location.reload();
+                        location.reload();
                     }
                 })
             });
@@ -980,7 +985,7 @@
                 console.log(oldPassword);
                 console.log(newPassword);
                 console.log(passwords);
-                if (oldPassword!=="" && newPassword!=="" && passwords!=="" && newPassword === passwords){
+                if (oldPassword !== "" && newPassword !== "" && passwords !== "" && newPassword === passwords) {
                     $("#user_password")[0].reset();
                     updatePassword(id, passwords, oldPassword);
                 } else {
@@ -991,15 +996,15 @@
 
             function updatePassword(id, password, oldPassword) {
                 $.ajax({
-                   url:"/adminUser",
-                   type:"post",
-                   data:{"method":"updatePassword","id":id,"oldPassword": oldPassword,"password": password},
-                    success:function (data) {
-                       if (data === "密码错误！") {
-                           alert("旧密码不正确！")
-                       } else {
-                           window.location.reload();
-                       }
+                    url: "/adminUser",
+                    type: "post",
+                    data: {"method": "updatePassword", "id": id, "oldPassword": oldPassword, "password": password},
+                    success: function (data) {
+                        if (data === "密码错误！") {
+                            alert("旧密码不正确！")
+                        } else {
+                            location.reload();
+                        }
                     }
                 });
             }

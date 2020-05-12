@@ -912,7 +912,6 @@
                 pushUser();
                 $("#user-from")[0].reset();
                 $("#sex").val("性别");
-                window.location.reload();
             });
 
             function pushUser() {
@@ -936,7 +935,7 @@
                     processData: false,
                     contentType: false,
                     success: function () {
-                        window.location.reload();
+                        location.reload();
                     }
                 })
             }
@@ -957,7 +956,7 @@
                     type: "post",
                     data: {"method": "stateUser", "id": id, "state": state},
                     success: function () {
-                        window.location.reload();
+                        location.reload();
                     }
                 });
             }
@@ -969,7 +968,7 @@
                     type: "post",
                     data: {"method": "deleteUser", "id": id},
                     success: function () {
-                        window.location.reload();
+                        location.reload();
                     }
                 })
             });
@@ -1004,7 +1003,7 @@
                         if (data === "密码错误！") {
                             alert("旧密码不正确！")
                         } else {
-                            window.location.reload();
+                            location.reload();
                         }
                     }
                 });

@@ -55,7 +55,6 @@ public class FileServlet extends HttpServlet {
                         goods.setPrice(Double.valueOf(string));
                     }
                     if ("goodsType".equals(fieldName)) {
-                        System.out.println(string);
                         Integer byTypeId = goodsTypeService.findByTypeId(string);
                         goods.setGoodsType(new GoodsType(byTypeId, string));
                     }

@@ -1,10 +1,10 @@
 $(function () {
-
     $("#index").click(function () {
         $("#term").val("index");
         location.href = "/goods?method=removeTerm";
     })
     let term = $("#term").val();
+    // 这个可以改为switch
     if (term === "all") {
         $("#all").addClass("active");
     } else if (term === "phone") {
@@ -57,6 +57,7 @@ $(function () {
     $(window).scroll(function () {
         // 为了保证兼容性，这里两个值，那个有值取那个
         // scrollTop 就是触发滚轮事件时滚轮的高度
+        // body没有scrollTop
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         // console.debug("滚动距离：" + scrollTop);
         if (scrollTop >= 124) {

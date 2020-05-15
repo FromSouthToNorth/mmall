@@ -22,49 +22,59 @@ $(function () {
     $(".account-nav li").click(function () {
         $(this).addClass("current").siblings().removeClass("current");
     });
+    var title = $("#title");
+    var order_form = $("#order-form");
+    var account_data_box = $("#account-data-box");
+    var address_title = $("#address-title");
+    var add_the_address = $("#add-the-address");
+    var null_address_hide = $("#null-address-hide");
+    var address_list =  $("#address-list");
+
     $("#mine-for").click(function () {
-        $("#title").text("我的订单");
-        $("#order-form").show();
-        $("#account-data-box").hide();
-        $("#address-title").hide();
-        $("#address-list").hide();
-        $("#add-the-address").hide();
-        $("#null-address-hide").val(0);
+        title.text("我的订单");
+        order_form.show();
+        account_data_box.hide();
+        address_title.hide();
+        address_list.hide();
+        add_the_address.hide();
+        null_address_hide.val(0);
         showAddress();
     });
     $("#account-data").click(function () {
-        $("#title").text("我的资料");
-        $("#order-form").hide();
-        $("#account-data-box").show();
-        $("#address-title").hide();
-        $("#address-list").hide();
-        $("#add-the-address").hide();
-        $("#null-address-hide").val(0);
+        title.text("我的资料");
+        order_form.hide();
+        account_data_box.show();
+        address_title.hide();
+        address_list.hide();
+        add_the_address.hide();
+        null_address_hide.val(0);
         showAddress();
     });
     $("#shipping-address").click(function () {
-        $("#null-address-hide").val(1);
-        $("#title").text("收货地址");
-        $("#order-form").hide();
-        $("#account-data-box").hide();
-        $("#address-title").show();
-        $("#address-list").show();
-        $("#add-the-address").show();
+        null_address_hide.val(1);
+        title.text("收货地址");
+        order_form.hide();
+        account_data_box.hide();
+        address_title.show();
+        address_list.show();
+        add_the_address.show();
         showAddress();
     });
+
+    var edit_avatar = $("#edit-avatar");
     $("#avatar-btn").click(function () {
-        $("#edit-avatar").show();
+        edit_avatar.show();
     });
     $("#avatar-close").click(function () {
-        $("#edit-avatar").hide();
+        $edit_avatar.hide();
     });
 
     function getData(data) {
         $("#address-list").empty();
         if (data.length === 0) {
-            $("#null-address-show").val(1);
+            null_address_hide.val(1);
         } else {
-            $("#null-address-show").val(0);
+            null_address_hide.val(0);
         }
         let type;
         for (let i = 0; i < data.length; i++) {

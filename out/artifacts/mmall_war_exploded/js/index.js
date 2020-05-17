@@ -1,20 +1,38 @@
 $(function () {
-    $("#index").click(function () {
+    let index = $("#index");
+    index.click(function () {
         $("#term").val("index");
         location.href = "/goods?method=removeTerm";
     })
     let term = $("#term").val();
     // 这个可以改为switch
-    if (term === "all") {
-        $("#all").addClass("active");
-    } else if (term === "phone") {
-        $("#goods-phone").addClass("active");
-    } else if (term === "costume") {
-        $("#costume").addClass("active");
-    } else if (term === "goodsCity") {
-        $("#goodsCity").addClass("active");
-    } else {
-        $("#index").addClass("active");
+    // if (term === "all") {
+    //     $("#all").addClass("active");
+    // } else if (term === "phone") {
+    //     $("#goods-phone").addClass("active");
+    // } else if (term === "costume") {
+    //     $("#costume").addClass("active");
+    // } else if (term === "goodsCity") {
+    //     $("#goodsCity").addClass("active");
+    // } else {
+    //     $("#index").addClass("active");
+    // }
+
+    switch (term) {
+        case term === "all":
+            $("#all").addClass("active");
+            break;
+        case term === "phone":
+            $("#goods-phone").addClass("active");
+            break;
+        case term === "costume":
+            $("#costume").addClass("active");
+            break;
+        case term === "goodsCity":
+            $("#goodsCity").addClass("active");
+            break;
+        default:
+            index.addClass("active");
     }
 
     $(".shop").mouseover(function () {

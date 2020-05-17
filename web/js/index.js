@@ -1,20 +1,38 @@
 $(function () {
-    $("#index").click(function () {
+    let index = $("#index");
+    index.click(function () {
         $("#term").val("index");
         location.href = "/goods?method=removeTerm";
     })
     let term = $("#term").val();
     // 这个可以改为switch
-    if (term === "all") {
-        $("#all").addClass("active");
-    } else if (term === "phone") {
-        $("#goods-phone").addClass("active");
-    } else if (term === "costume") {
-        $("#costume").addClass("active");
-    } else if (term === "goodsCity") {
-        $("#goodsCity").addClass("active");
-    } else {
-        $("#index").addClass("active");
+    // if (term === "all") {
+    //     $("#all").addClass("active");
+    // } else if (term === "phone") {
+    //     $("#goods-phone").addClass("active");
+    // } else if (term === "costume") {
+    //     $("#costume").addClass("active");
+    // } else if (term === "goodsCity") {
+    //     $("#goodsCity").addClass("active");
+    // } else {
+    //     $("#index").addClass("active");
+    // }
+
+    switch (term) {
+        case term === "all":
+            $("#all").addClass("active");
+            break;
+        case term === "phone":
+            $("#goods-phone").addClass("active");
+            break;
+        case term === "costume":
+            $("#costume").addClass("active");
+            break;
+        case term === "goodsCity":
+            $("#goodsCity").addClass("active");
+            break;
+        default:
+            index.addClass("active");
     }
 
     $(".shop").mouseover(function () {
@@ -57,7 +75,6 @@ $(function () {
     $(window).scroll(function () {
         // 为了保证兼容性，这里两个值，那个有值取那个
         // scrollTop 就是触发滚轮事件时滚轮的高度
-        // body没有scrollTop
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         // console.debug("滚动距离：" + scrollTop);
         if (scrollTop >= 124) {

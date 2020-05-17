@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class JDBCTools {
+
+    private JDBCTools() {}
+
     private static final DataSource dataSource;
 
     static {

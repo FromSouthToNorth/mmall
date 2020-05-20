@@ -75,7 +75,6 @@ $(function () {
     $(window).scroll(function () {
         // 为了保证兼容性，这里两个值，那个有值取那个
         // scrollTop 就是触发滚轮事件时滚轮的高度
-        // body没有scrollTop
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         // console.debug("滚动距离：" + scrollTop);
         if (scrollTop >= 124) {

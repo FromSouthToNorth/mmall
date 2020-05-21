@@ -62,7 +62,7 @@ public class CartDAOImpl implements CartDAO {
                         new Goods(
                                resultSet.getInt(15),
                                resultSet.getString(16),
-                                resultSet.getDouble(17),
+                                resultSet.getBigDecimal(17),
                                 resultSet.getString(18),
                                 resultSet.getString(19),
                                 new GoodsType(

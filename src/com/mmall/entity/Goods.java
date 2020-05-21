@@ -1,11 +1,12 @@
 package com.mmall.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Goods {
     private Integer id;
     private String goodsName;
-    private Double price;
+    private BigDecimal price;
     private String goodsTitle;
     private String goodsImg;
     private GoodsType goodsType;
@@ -15,7 +16,7 @@ public class Goods {
     public Goods() {
     }
 
-    public Goods(Integer id, String goodsName, Double price, String goodsTitle, String goodsImg, GoodsType goodsType, Date registerDate, Date updateDate) {
+    public Goods(Integer id, String goodsName, BigDecimal price, String goodsTitle, String goodsImg, GoodsType goodsType, Date registerDate, Date updateDate) {
         this.id = id;
         this.goodsName = goodsName;
         this.price = price;
@@ -42,11 +43,11 @@ public class Goods {
         this.goodsName = goodsName;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

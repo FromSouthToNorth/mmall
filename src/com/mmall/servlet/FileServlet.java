@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class FileServlet extends HttpServlet {
                         goods.setGoodsTitle(string);
                     }
                     if ("goodsPrice".equals(fieldName)) {
-                        goods.setPrice(Double.valueOf(string));
+                        goods.setPrice(new BigDecimal(string));
                     }
                     if ("goodsType".equals(fieldName)) {
                         Integer byTypeId = goodsTypeService.findByTypeId(string);

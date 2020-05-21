@@ -24,7 +24,7 @@ public class GoodsDAOImpl implements GoodsDAO {
                 goods.add(new Goods(
                        resultSet.getInt(1),
                        resultSet.getString(2),
-                       resultSet.getDouble(3),
+                       resultSet.getBigDecimal(3),
                        resultSet.getString(4),
                        resultSet.getString(5),
                        new GoodsType(resultSet.getInt(9),
@@ -56,7 +56,7 @@ public class GoodsDAOImpl implements GoodsDAO {
                 goods.add(new Goods(
                         resultSet.getInt(1),
                         resultSet.getString(2),
-                        resultSet.getDouble(3),
+                        resultSet.getBigDecimal(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
                         new GoodsType(resultSet.getInt(9),
@@ -88,7 +88,7 @@ public class GoodsDAOImpl implements GoodsDAO {
                 goods = new Goods(
                         resultSet.getInt(1),
                         resultSet.getString(2),
-                        resultSet.getDouble(3),
+                        resultSet.getBigDecimal(3),
                         resultSet.getString(4),
                         resultSet.getString(5),
                         new GoodsType(resultSet.getInt(9),
@@ -122,7 +122,7 @@ public class GoodsDAOImpl implements GoodsDAO {
                         new Goods(
                                 resultSet.getInt(1),
                                 resultSet.getString(2),
-                                resultSet.getDouble(3),
+                                resultSet.getBigDecimal(3),
                                 resultSet.getString(4),
                                 resultSet.getString(5),
                                 new GoodsType(
@@ -158,7 +158,7 @@ public class GoodsDAOImpl implements GoodsDAO {
                         new Goods(
                                 resultSet.getInt(1),
                                 resultSet.getString(2),
-                                resultSet.getDouble(3),
+                                resultSet.getBigDecimal(3),
                                 resultSet.getString(4),
                                 resultSet.getString(5),
                                 new GoodsType(
@@ -196,7 +196,7 @@ public class GoodsDAOImpl implements GoodsDAO {
                         new Goods(
                                 resultSet.getInt(1),
                                 resultSet.getString(2),
-                                resultSet.getDouble(3),
+                                resultSet.getBigDecimal(3),
                                 resultSet.getString(4),
                                 resultSet.getString(5),
                                 new GoodsType(
@@ -225,7 +225,7 @@ public class GoodsDAOImpl implements GoodsDAO {
         try {
             statement = connection.prepareStatement(sql);
             statement.setString(1, goods.getGoodsName());
-            statement.setDouble(2, goods.getPrice());
+            statement.setBigDecimal(2, goods.getPrice());
             statement.setString(3, goods.getGoodsTitle());
             statement.setString(4, goods.getGoodsImg());
             statement.setInt(5, goods.getGoodsType().getId());
@@ -247,7 +247,7 @@ public class GoodsDAOImpl implements GoodsDAO {
         try {
             statement = connection.prepareStatement(sql);
             statement.setString(1, goods.getGoodsName());
-            statement.setDouble(2, goods.getPrice());
+            statement.setBigDecimal(2, goods.getPrice());
             statement.setString(3, goods.getGoodsTitle());
             statement.setString(4, goods.getGoodsImg());
             statement.setInt(5, goods.getGoodsType().getId());
